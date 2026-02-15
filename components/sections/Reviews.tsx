@@ -11,8 +11,9 @@ export default function Reviews() {
       <div className="mx-auto max-w-7xl">
         <AnimateOnScroll>
           <SectionHeader
-            title="Co říkají klienti"
-            subtitle="Přečtěte si, proč nás klienti doporučují"
+            label="Reference"
+            title="Co říkají naši klienti"
+            subtitle="Spokojenost hostů je pro nás vždy na prvním místě."
           />
         </AnimateOnScroll>
 
@@ -38,7 +39,7 @@ export default function Reviews() {
 
                 {/* Author */}
                 <div className="mt-6 flex items-center gap-3 border-t border-border pt-6">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/10 font-heading text-sm font-bold text-gold">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-gold to-gold-dark font-heading text-sm font-bold text-background">
                     {review.initials}
                   </div>
                   <div>

@@ -7,6 +7,8 @@ const contactSchema = z.object({
   email: z.string().email(),
   phone: z.string().optional(),
   eventType: z.string().min(1),
+  eventDate: z.string().optional(),
+  eventLocation: z.string().optional(),
   message: z.string().min(10),
 });
 
@@ -15,7 +17,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = contactSchema.parse(body);
 
-    const contactEmail = process.env.CONTACT_EMAIL || "info@kajostudio.cz";
+    const contactEmail = process.env.CONTACT_EMAIL || "info@kajostudio360.cz";
 
     if (resend) {
       await resend.emails.send({
@@ -28,6 +30,8 @@ export async function POST(request: Request) {
           <p><strong>Email:</strong> ${data.email}</p>
           <p><strong>Telefon:</strong> ${data.phone || "Neuvedeno"}</p>
           <p><strong>Typ akce:</strong> ${data.eventType}</p>
+          <p><strong>Datum akce:</strong> ${data.eventDate || "Neuvedeno"}</p>
+          <p><strong>Místo konání:</strong> ${data.eventLocation || "Neuvedeno"}</p>
           <p><strong>Zpráva:</strong></p>
           <p>${data.message}</p>
         `,

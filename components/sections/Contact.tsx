@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
-import { Mail, Phone, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { SITE } from "@/lib/constants";
 import SectionHeader from "@/components/ui/SectionHeader";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
@@ -15,6 +15,8 @@ const contactSchema = z.object({
   email: z.string().email("Zadejte platný email"),
   phone: z.string().optional(),
   eventType: z.string().min(1, "Vyberte typ akce"),
+  eventDate: z.string().optional(),
+  eventLocation: z.string().optional(),
   message: z.string().min(10, "Zpráva musí mít alespoň 10 znaků"),
 });
 
@@ -56,8 +58,9 @@ export default function Contact() {
       <div className="mx-auto max-w-5xl">
         <AnimateOnScroll>
           <SectionHeader
-            title="Kontaktujte nás"
-            subtitle="Napište nám a my se vám ozveme do 24 hodin"
+            label="Kontakt"
+            title="Máte zájem? Ozvěte se nám"
+            subtitle="Vyplňte formulář a my se Vám ozveme do 24 hodin s nabídkou šitou na míru Vaší akci."
           />
         </AnimateOnScroll>
 
@@ -68,7 +71,7 @@ export default function Contact() {
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
-                    Jméno *
+                    Jméno
                   </label>
                   <input
                     id="name"
@@ -83,7 +86,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="email" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
-                    Email *
+                    E-mail
                   </label>
                   <input
                     id="email"
@@ -113,7 +116,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="eventType" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
-                    Typ akce *
+                    Typ akce
                   </label>
                   <select
                     id="eventType"
@@ -122,12 +125,12 @@ export default function Contact() {
                     {...register("eventType")}
                   >
                     <option value="" disabled>
-                      Vyberte typ akce
+                      Vyberte typ akce...
                     </option>
                     <option value="svatba">Svatba</option>
-                    <option value="firemni">Firemní akce</option>
                     <option value="narozeniny">Narozeniny</option>
-                    <option value="festival">Festival / Promo</option>
+                    <option value="firemni">Firemní akce</option>
+                    <option value="ples">Ples / Gala</option>
                     <option value="jine">Jiné</option>
                   </select>
                   {errors.eventType && (
@@ -136,14 +139,40 @@ export default function Contact() {
                 </div>
               </div>
 
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="eventDate" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
+                    Datum akce
+                  </label>
+                  <input
+                    id="eventDate"
+                    type="date"
+                    className={inputClasses}
+                    {...register("eventDate")}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="eventLocation" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
+                    Místo konání
+                  </label>
+                  <input
+                    id="eventLocation"
+                    type="text"
+                    placeholder="Město nebo adresa"
+                    className={inputClasses}
+                    {...register("eventLocation")}
+                  />
+                </div>
+              </div>
+
               <div>
                 <label htmlFor="message" className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
-                  Zpráva *
+                  Zpráva
                 </label>
                 <textarea
                   id="message"
-                  rows={5}
-                  placeholder="Popište vaši akci — datum, místo, počet hostů..."
+                  rows={4}
+                  placeholder="Popište nám Vaši představu..."
                   className={`${inputClasses} resize-none`}
                   {...register("message")}
                 />
@@ -158,7 +187,7 @@ export default function Contact() {
                 ) : (
                   <>
                     <Send size={16} />
-                    Odeslat zprávu
+                    Odeslat poptávku
                   </>
                 )}
               </Button>
@@ -188,6 +217,15 @@ export default function Contact() {
                 <ul className="space-y-4">
                   <li>
                     <a
+                      href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+                      className="flex items-center gap-3 text-sm text-muted transition-colors hover:text-gold"
+                    >
+                      <Phone size={18} className="text-gold" />
+                      {SITE.phone}
+                    </a>
+                  </li>
+                  <li>
+                    <a
                       href={`mailto:${SITE.email}`}
                       className="flex items-center gap-3 text-sm text-muted transition-colors hover:text-gold"
                     >
@@ -196,63 +234,52 @@ export default function Contact() {
                     </a>
                   </li>
                   <li>
-                    <a
-                      href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-                      className="flex items-center gap-3 text-sm text-muted transition-colors hover:text-gold"
-                    >
-                      <Phone size={18} className="text-gold" />
-                      {SITE.phone}
-                    </a>
+                    <div className="flex items-start gap-3 text-sm text-muted">
+                      <MapPin size={18} className="mt-0.5 shrink-0 text-gold" />
+                      <span className="whitespace-pre-line">{SITE.address}</span>
+                    </div>
                   </li>
                 </ul>
               </div>
 
               <div>
                 <h3 className="font-heading text-lg font-semibold mb-4">
-                  Sledujte nás
+                  Sociální sítě
                 </h3>
                 <div className="flex gap-3">
                   <a
                     href={SITE.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-border transition-all hover:border-gold hover:bg-gold/10"
-                    aria-label="Instagram"
+                    className="flex h-12 w-12 items-center justify-center rounded-xl border border-border text-xs font-semibold text-muted transition-all hover:border-gold hover:text-gold hover:bg-gold/10"
                   >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                  </a>
-                  <a
-                    href={SITE.tiktok}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-border transition-all hover:border-gold hover:bg-gold/10"
-                    aria-label="TikTok"
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.88-2.88 2.89 2.89 0 0 1 2.88-2.88c.28 0 .54.04.79.11v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.75a8.18 8.18 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.18z"/></svg>
+                    IG
                   </a>
                   <a
                     href={SITE.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-border transition-all hover:border-gold hover:bg-gold/10"
-                    aria-label="Facebook"
+                    className="flex h-12 w-12 items-center justify-center rounded-xl border border-border text-xs font-semibold text-muted transition-all hover:border-gold hover:text-gold hover:bg-gold/10"
                   >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    FB
+                  </a>
+                  <a
+                    href={SITE.tiktok}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-12 w-12 items-center justify-center rounded-xl border border-border text-xs font-semibold text-muted transition-all hover:border-gold hover:text-gold hover:bg-gold/10"
+                  >
+                    TT
                   </a>
                 </div>
               </div>
 
-              <div className="rounded-xl border border-border bg-surface-light p-6">
-                <h4 className="font-heading text-sm font-semibold mb-2">
+              <div className="rounded-xl border border-gold/15 bg-gold/[0.06] p-6">
+                <h4 className="font-heading text-sm font-semibold text-gold mb-2">
                   Rychlá odpověď
                 </h4>
                 <p className="text-xs text-muted leading-relaxed">
-                  Na všechny poptávky odpovídáme do 24 hodin. Pro urgentní
-                  dotazy volejte přímo na{" "}
-                  <a href={`tel:${SITE.phone.replace(/\s/g, "")}`} className="text-gold hover:text-gold-light transition-colors">
-                    {SITE.phone}
-                  </a>
-                  .
+                  Na každou poptávku odpovídáme do 24 hodin. Většinou se ozveme ještě tentýž den.
                 </p>
               </div>
             </div>

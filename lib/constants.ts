@@ -1,8 +1,9 @@
 export const SITE = {
   name: "Kajo Studio 360",
   url: "https://kajostudio.cz",
-  email: "info@kajostudio.cz",
-  phone: "+420 777 888 999",
+  email: "info@kajostudio360.cz",
+  phone: "+420 XXX XXX XXX",
+  address: "Kajo Studio 360\nUlice 123, Město",
   instagram: "https://instagram.com/kajostudio360",
   tiktok: "https://tiktok.com/@kajostudio360",
   facebook: "https://facebook.com/kajostudio360",
@@ -12,6 +13,7 @@ export const NAV_LINKS = [
   { label: "Jak to funguje", href: "#jak-to-funguje" },
   { label: "Balíčky", href: "#balicky" },
   { label: "Galerie", href: "#galerie" },
+  { label: "Vouchery", href: "#vouchery" },
   { label: "Recenze", href: "#recenze" },
   { label: "FAQ", href: "#faq" },
   { label: "Kontakt", href: "#kontakt" },
@@ -22,136 +24,169 @@ export const STEPS = [
     number: "01",
     title: "Kontaktujte nás",
     description:
-      "Napište nám nebo zavolejte. Probereme vaši akci, termín a představy.",
+      "Vyplňte poptávkový formulář s datem, místem a typem akce. Ozveme se do 24 hodin.",
   },
   {
     number: "02",
-    title: "Připravíme vše",
+    title: "Domluvíme detaily",
     description:
-      "Přivezeme 360° photobooth, nastavíme osvětlení a připravíme rekvizity.",
+      "Vybereme balíček, domluvíme personalizaci a upřesníme vše potřebné pro Vaši akci.",
   },
   {
     number: "03",
-    title: "Točí se!",
+    title: "Přijedeme a nastavíme",
     description:
-      "Hosté vstoupí na plošinu a během pár sekund vznikne epické 360° video.",
+      "Náš tým dorazí s předstihem, nainstaluje booth a zajistí, že vše funguje na 100%.",
   },
   {
     number: "04",
-    title: "Sdílení ihned",
+    title: "Užijte si zábavu",
     description:
-      "Video se okamžitě zpracuje a hosté si ho sdílí přímo na sociální sítě.",
+      "Vaši hosté se baví, my obsluhujeme booth. Videa dostanete ihned v digitální galerii.",
   },
 ];
 
 export const PACKAGES = [
   {
     name: "Základní",
-    price: "od 8 990 Kč",
+    price: "X XXX Kč",
+    priceSuffix: "/ akce",
+    duration: "1 hodina zábavy",
+    note: "Ideální pro menší oslavy a narozeniny",
+    icon: "bolt" as const,
     features: [
-      "2 hodiny zábavy",
+      "Profesionální obsluha",
       "Neomezený počet natočení",
-      "Okamžité sdílení",
-      "Vlastní overlay s logem",
-      "Obsluha na místě",
-      "Rekvizity v ceně",
+      "Rekvizity a doplňky",
+      "Okamžité sdílení přes QR kód",
+      "Digitální galerie videí",
+      "Instalace a odvoz v ceně",
     ],
     highlighted: false,
   },
   {
     name: "Premium",
-    price: "od 14 990 Kč",
+    price: "X XXX Kč",
+    priceSuffix: "/ akce",
+    duration: "2 hodiny zábavy",
+    note: "Perfektní pro svatby a firemní akce",
+    icon: "star" as const,
     badge: "NEJOBLÍBENĚJŠÍ",
     features: [
-      "4 hodiny zábavy",
-      "Neomezený počet natočení",
-      "Okamžité sdílení",
-      "Vlastní overlay s logem",
-      "Obsluha na místě",
-      "Prémiové rekvizity",
-      "LED podium",
-      "Slow-motion efekt",
-      "Online galerie",
+      "Vše ze základního balíčku",
+      "Vlastní branding (logo, barvy)",
+      "Slow-motion efekty",
+      "Prémiové pozadí dle výběru",
+      "USB s videy po akci",
+      "Prioritní termíny",
     ],
     highlighted: true,
   },
 ];
 
 export const GALLERY_ITEMS = [
-  { tag: "Svatba", gradient: "from-gold/20 to-gold/5" },
-  { tag: "Firemní akce", gradient: "from-purple-500/20 to-purple-500/5" },
-  { tag: "Narozeniny", gradient: "from-pink-500/20 to-pink-500/5" },
-  { tag: "Festival", gradient: "from-blue-500/20 to-blue-500/5" },
-  { tag: "Promo", gradient: "from-green-500/20 to-green-500/5" },
+  {
+    tag: "Video",
+    title: "Svatební 360 zážitek",
+    description: "Romantická atmosféra zachycená v pohybu",
+    gradient: "from-gold/20 to-gold/5",
+  },
+  {
+    tag: "Narozeniny",
+    title: "Oslava 30. narozenin",
+    description: "Party plná energie a zábavy",
+    gradient: "from-purple-500/20 to-purple-500/5",
+  },
+  {
+    tag: "Firemní akce",
+    title: "Teambuilding 2025",
+    description: "Kreativní zábava pro celý tým",
+    gradient: "from-emerald-500/20 to-emerald-500/5",
+  },
+  {
+    tag: "Video",
+    title: "Firemní vánoční večírek",
+    description: "Elegance a zábava v jednom",
+    gradient: "from-gold/15 to-amber-500/5",
+  },
+  {
+    tag: "Ples",
+    title: "Reprezentační ples",
+    description: "Exkluzivní momenty na plese",
+    gradient: "from-blue-500/20 to-blue-500/5",
+  },
 ];
 
 export const REVIEWS = [
   {
-    name: "Petra K.",
-    initials: "PK",
-    event: "Svatba",
+    name: "Kateřina N.",
+    initials: "KN",
+    event: "Svatba, Praha",
     rating: 5,
-    text: "Absolutní pecka! Hosté se od photoboothu nemohli odtrhnout. Videa jsou úžasná kvalita a sdílení fungovalo bezchybně. Děkujeme!",
+    text: "Fotobooth byl absolutní hit naší svatby! Hosté se bavili celý večer a videa jsou naprosto úžasná. Jednoznačně nejlepší investice do zábavy.",
   },
   {
-    name: "Martin D.",
-    initials: "MD",
-    event: "Firemní večírek",
+    name: "Martin T.",
+    initials: "MT",
+    event: "Firemní akce, Brno",
     rating: 5,
-    text: "Profesionální přístup od začátku do konce. Kluci přijeli, vše nachystali a postarali se o skvělou zábavu. Jednoznačně doporučuji.",
+    text: "Objednali jsme na firemní vánoční večírek a kolegové byli nadšení. Profesionální přístup, skvělá kvalita videí. Určitě objednáme znovu!",
   },
   {
-    name: "Lucie S.",
-    initials: "LS",
-    event: "Narozeniny",
+    name: "Lucie P.",
+    initials: "LP",
+    event: "Narozeniny, Ostrava",
     rating: 5,
-    text: "Byl to ten nejlepší dárek! Každý z hostů dostal úžasné video na památku. Profesionální obsluha a super rekvizity.",
+    text: "Manžel měl padesátiny a chtěla jsem něco speciálního. 360 booth předčil všechna očekávání. Děkujeme za perfektní servis!",
   },
 ];
 
 export const FAQ_ITEMS = [
   {
-    question: "Kolik místa photobooth potřebuje?",
+    question: "Kolik místa fotobooth potřebuje?",
     answer:
-      "360° photobooth potřebuje prostor přibližně 3×3 metry. Plošina má průměr 80 cm a kolem ní potřebujeme prostor pro rameno kamery a bezpečný pohyb hostů.",
+      "Booth potřebuje prostor přibližně 3×3 metry. Poradíme Vám s rozmístěním na Vaší akci.",
   },
   {
-    question: "Kolik lidí se vejde na plošinu najednou?",
+    question: "Potřebujete přístup k elektřině?",
     answer:
-      "Na plošinu se pohodlně vejdou 1–3 osoby. Pro skupinové záběry doporučujeme max. 3 osoby, aby bylo video co nejefektnější.",
+      "Ano, potřebujeme standardní elektrickou zásuvku 230V v dosahu do 10 metrů od místa instalace.",
   },
   {
-    question: "Jak dlouho trvá jedno natočení?",
+    question: "Jak dlouho trvá instalace?",
     answer:
-      "Samotné natočení trvá přibližně 15–30 sekund. Zpracování a odeslání videa pak zabere asi 1 minutu. Host má své video k dispozici prakticky okamžitě.",
+      "Instalace trvá přibližně 30–45 minut. Přijedeme s dostatečným předstihem před začátkem akce.",
   },
   {
-    question: "Můžeme mít vlastní logo/overlay na videu?",
+    question: "Lze personalizovat pozadí a overlay?",
     answer:
-      "Samozřejmě! Ke každému balíčku patří vlastní overlay s vaším logem nebo textem. Připravíme ho podle vašich představ před akcí.",
+      "Ano, v Premium balíčku zahrnujeme vlastní branding — logo, barvy, pozadí i textové overlaye podle Vašich přání.",
   },
   {
-    question: "Jedete i mimo Prahu?",
+    question: "Jak hosté získají svá videa?",
     answer:
-      "Ano, pokrýváme celou Českou republiku. U akcí mimo Prahu a Středočeský kraj účtujeme cestovné dle vzdálenosti. Konkrétní cenu vám rádi sdělíme.",
+      "Každý host si stáhne video okamžitě přes QR kód přímo na svůj telefon. Po akci obdržíte kompletní galerii.",
   },
   {
-    question: "Co je potřeba z naší strany zajistit?",
+    question: "Fungujete i mimo velká města?",
     answer:
-      "Potřebujeme pouze přístup k elektrické zásuvce (230V) a rovný povrch pro umístění plošiny. O vše ostatní se postaráme my.",
+      "Ano, jezdíme po celé ČR. Doprava je v ceně v rámci našich hlavních regionů, ostatní lokality dle dohody.",
   },
 ];
 
-export const COVERAGE_REGIONS = {
-  primary: ["Praha", "Brno", "Ostrava"],
-  available: ["Plzeň", "Liberec", "Olomouc", "České Budějovice", "Hradec Králové"],
-  onRequest: ["Karlovy Vary", "Ústí nad Labem", "Zlín", "Jihlava", "Pardubice"],
-};
+export const COVERAGE_CITIES = [
+  { name: "Praha a Středočeský kraj", badge: "Hlavní region", type: "primary" as const },
+  { name: "Brno a Jihomoravský kraj", badge: "Hlavní region", type: "primary" as const },
+  { name: "Ostrava a Moravskoslezský kraj", badge: "Dostupné", type: "available" as const },
+  { name: "Plzeň a Západní Čechy", badge: "Dostupné", type: "available" as const },
+  { name: "Olomouc a okolí", badge: "Dostupné", type: "available" as const },
+  { name: "Liberec, Hradec Králové", badge: "Na poptávku", type: "onRequest" as const },
+];
 
 export const VOUCHER_BENEFITS = [
-  "Darujte zážitek, na který se nezapomíná",
-  "Platnost voucheru 12 měsíců",
-  "Možnost výběru balíčku",
-  "Elegantní digitální podoba",
-  "Osobní věnování",
+  "Okamžité doručení na e-mail",
+  "Platnost 12 měsíců od nákupu",
+  "Elegantní PDF design k tisku",
+  "Bezpečná platba kartou",
+  "Osobní věnování na přání",
 ];

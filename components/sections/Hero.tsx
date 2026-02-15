@@ -10,6 +10,16 @@ export default function Hero() {
       className="relative flex min-h-screen items-center justify-center overflow-hidden px-6"
       aria-label="Úvodní sekce"
     >
+      {/* Radial gradient background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden="true"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 40%, rgba(200,169,110,0.12) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(200,169,110,0.06) 0%, transparent 40%)",
+        }}
+      />
+
       {/* Rotating circle decoration */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
         <motion.div
@@ -37,7 +47,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block rounded-full border border-gold/30 bg-gold/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-gold">
-            360° Photobooth
+            360 Fotobooth na Vaší akci
           </span>
         </motion.div>
 
@@ -47,9 +57,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          Vaše akce se{" "}
+          Zážitek, který se{" "}
           <em className="not-italic text-gold">točí</em>{" "}
-          kolem zážitků
+          kolem Vás
         </motion.h1>
 
         <motion.p
@@ -58,7 +68,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          Prémiový 360° photobooth, který promění každou událost v nezapomenutelný zážitek. Svatby, firemní akce, narozeniny.
+          Pronájem prémiového 360 fotoboothu na svatby, narozeniny, firemní akce a další události po celé ČR.
         </motion.p>
 
         <motion.div
@@ -67,7 +77,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}
         >
-          <Button href="#kontakt">Chci nabídku</Button>
+          <Button href="#kontakt">Nezávazná poptávka</Button>
           <Button variant="outline" href="#jak-to-funguje">
             Jak to funguje
           </Button>

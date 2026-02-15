@@ -37,7 +37,8 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" className="font-heading text-xl font-bold tracking-tight">
           KAJO{" "}
-          <span className="text-gold">STUDIO</span>
+          <span className="text-gold">STUDIO</span>{" "}
+          360
         </a>
 
         {/* Desktop nav */}

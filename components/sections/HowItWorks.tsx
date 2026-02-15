@@ -11,8 +11,9 @@ export default function HowItWorks() {
       <div className="mx-auto max-w-7xl">
         <AnimateOnScroll>
           <SectionHeader
-            title="Jak to funguje"
-            subtitle="Čtyři jednoduché kroky ke skvělému zážitku"
+            label="Jak to funguje"
+            title="Čtyři jednoduché kroky k nezapomenutelné zábavě"
+            subtitle="Celý proces je maximálně jednoduchý. Vy si užíváte akci, my se postaráme o zbytek."
           />
         </AnimateOnScroll>
 

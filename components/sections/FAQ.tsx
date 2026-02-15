@@ -22,8 +22,8 @@ export default function FAQ() {
       <div className="mx-auto max-w-5xl">
         <AnimateOnScroll>
           <SectionHeader
-            title="Časté dotazy"
-            subtitle="Odpovědi na nejčastější otázky"
+            label="Časté dotazy"
+            title="Vše, co potřebujete vědět"
           />
         </AnimateOnScroll>
 
