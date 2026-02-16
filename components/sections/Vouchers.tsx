@@ -7,12 +7,12 @@ import Button from "@/components/ui/Button";
 
 export default function Vouchers() {
   return (
-    <section id="vouchery" className="py-28 px-6 border-t border-white/[0.06]">
+    <section id="vouchery" className="py-28 px-6 lg:px-12 border-t border-white/[0.06]">
       <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Dárkové poukazy"
-            title="Darujte zážitek, který nikdo nečeká"
+            title="Darujte zážitek, který<br>nikdo nečeká"
             subtitle="Online nákup voucheru na pronájem 360 fotoboothu. Perfektní dárek na svatbu, narozeniny nebo firemní akci."
           />
         </AnimateOnScroll>

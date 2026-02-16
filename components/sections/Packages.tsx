@@ -22,12 +22,12 @@ function PackageIcon({ icon }: { icon: "bolt" | "star" }) {
 
 export default function Packages() {
   return (
-    <section id="balicky" className="py-28 px-6 border-t border-white/[0.06]">
+    <section id="balicky" className="py-28 px-6 lg:px-12 border-t border-white/[0.06]">
       <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Ceník"
-            title="Vyberte si balíček podle Vaší akce"
+            title="Vyberte si balíček<br>podle Vaší akce"
             subtitle="Každý balíček zahrnuje kompletní servis včetně obsluhy, rekvizit a okamžitého sdílení videí."
           />
         </AnimateOnScroll>

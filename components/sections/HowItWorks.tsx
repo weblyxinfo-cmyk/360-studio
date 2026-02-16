@@ -6,12 +6,12 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 export default function HowItWorks() {
   return (
-    <section id="jak-to-funguje" className="py-28 px-6 border-t border-white/[0.06]">
+    <section id="jak-to-funguje" className="py-28 px-6 lg:px-12 border-t border-white/[0.06]">
       <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Jak to funguje"
-            title="Čtyři jednoduché kroky k nezapomenutelné zábavě"
+            title="Čtyři jednoduché kroky<br>k nezapomenutelné zábavě"
             subtitle="Celý proces je maximálně jednoduchý. Vy si užíváte akci, my se postaráme o zbytek."
           />
         </AnimateOnScroll>

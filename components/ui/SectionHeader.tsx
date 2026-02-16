@@ -20,9 +20,10 @@ export default function SectionHeader({
           {label}
         </div>
       )}
-      <h2 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.15] tracking-tight">
-        {title}
-      </h2>
+      <h2
+        className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.15] tracking-tight whitespace-pre-line"
+        dangerouslySetInnerHTML={{ __html: title }}
+      />
       {subtitle && (
         <p className="mt-6 text-base text-muted max-w-[550px] leading-relaxed font-light">
           {subtitle}

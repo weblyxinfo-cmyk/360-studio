@@ -38,73 +38,52 @@ export default function Hero() {
         />
       </div>
 
-      {/* Content */}
+      {/* Content — CSS animations so content is visible even without JS */}
       <div className="relative z-10 text-center max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span className="inline-block rounded-full border border-gold/30 bg-gold/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-gold">
+        <div className="hero-fadeup" style={{ animationDelay: "0.3s" }}>
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-5 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-gold">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
             360 Fotobooth na Vaší akci
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h1
-          className="mt-8 font-heading font-extrabold leading-none tracking-tight"
-          style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+        <h1
+          className="mt-8 font-heading font-extrabold leading-none tracking-tight hero-fadeup"
+          style={{ fontSize: "clamp(3rem, 8vw, 7rem)", animationDelay: "0.5s" }}
         >
           Zážitek, který
           <br />
           se <em className="italic text-gold">točí</em> kolem Vás
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          className="mt-6 text-lg text-muted max-w-[500px] mx-auto leading-relaxed font-light"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+        <p
+          className="mt-6 text-lg text-muted max-w-[500px] mx-auto leading-relaxed font-light hero-fadeup"
+          style={{ animationDelay: "0.7s" }}
         >
           Pronájem prémiového 360 fotoboothu na svatby, narozeniny, firemní akce a další události po celé ČR.
-        </motion.p>
+        </p>
 
-        <motion.div
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.45 }}
+        <div
+          className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center hero-fadeup"
+          style={{ animationDelay: "0.9s" }}
         >
           <Button href="#kontakt">Nezávazná poptávka</Button>
           <Button variant="outline" href="#jak-to-funguje">
             Jak to funguje
           </Button>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}
-      <motion.a
+      <a
         href="#jak-to-funguje"
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted hover:text-gold transition-colors"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted hover:text-gold transition-colors hero-fadeup"
         aria-label="Srolujte dolů"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
+        style={{ animationDelay: "1.2s" }}
       >
         <span className="text-xs uppercase tracking-[0.2em]">Scroll</span>
-        <div className="w-[1px] h-10 overflow-hidden">
-          <motion.div
-            className="w-full h-full bg-gradient-to-b from-gold to-transparent"
-            animate={{
-              scaleY: [0, 1, 1, 0],
-              transformOrigin: ["top", "top", "bottom", "bottom"],
-            }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-      </motion.a>
+        <div className="scroll-line" />
+      </a>
     </section>
   );
 }

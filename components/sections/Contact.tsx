@@ -54,12 +54,12 @@ export default function Contact() {
     "w-full rounded-xl border border-white/[0.1] bg-white/[0.03] px-5 py-4 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-gold focus:outline-none";
 
   return (
-    <section id="kontakt" className="py-28 px-6 border-t border-white/[0.06]">
+    <section id="kontakt" className="py-28 px-6 lg:px-12 border-t border-white/[0.06]">
       <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Kontakt"
-            title="Máte zájem? Ozvěte se nám"
+            title="Máte zájem?<br>Ozvěte se nám"
             subtitle="Vyplňte formulář a my se Vám ozveme do 24 hodin s nabídkou šitou na míru Vaší akci."
           />
         </AnimateOnScroll>

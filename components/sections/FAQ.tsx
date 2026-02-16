@@ -17,7 +17,7 @@ export default function FAQ() {
   const rightColumn = FAQ_ITEMS.slice(half);
 
   return (
-    <section id="faq" className="py-28 px-6 border-t border-white/[0.06]">
+    <section id="faq" className="py-28 px-6 lg:px-12 border-t border-white/[0.06]">
       <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader

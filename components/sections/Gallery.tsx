@@ -30,12 +30,12 @@ const particlePositions = [
 
 export default function Gallery() {
   return (
-    <section id="galerie" className="py-28 px-6 border-t border-white/[0.06]">
+    <section id="galerie" className="py-28 px-6 lg:px-12 border-t border-white/[0.06]">
       <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Galerie"
-            title="Podívejte se, jak to vypadá v akci"
+            title="Podívejte se, jak<br>to vypadá v akci"
             subtitle="Ukázky z reálných akcí. Brzy zde najdete fotky a videa z našich 360 booth zážitků."
           />
         </AnimateOnScroll>

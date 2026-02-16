@@ -14,12 +14,12 @@ const dotPositions = [
 
 export default function CoverageMap() {
   return (
-    <section className="py-28 px-6 border-t border-white/[0.06]">
+    <section className="py-28 px-6 lg:px-12 border-t border-white/[0.06]">
       <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Působnost"
-            title="Kde všude nás najdete"
+            title="Kde všude<br>nás najdete"
             subtitle="Působíme po celé České republice s hlavním zaměřením na následující regiony."
           />
         </AnimateOnScroll>

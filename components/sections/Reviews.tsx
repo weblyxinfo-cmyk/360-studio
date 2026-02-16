@@ -7,7 +7,7 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 export default function Reviews() {
   return (
-    <section id="recenze" className="py-28 px-6 border-t border-white/[0.06]">
+    <section id="recenze" className="py-28 px-6 lg:px-12 border-t border-white/[0.06]">
       <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
