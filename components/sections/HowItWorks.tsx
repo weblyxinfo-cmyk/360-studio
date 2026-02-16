@@ -3,12 +3,11 @@
 import { STEPS } from "@/lib/constants";
 import SectionHeader from "@/components/ui/SectionHeader";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
-import { ArrowRight } from "lucide-react";
 
 export default function HowItWorks() {
   return (
-    <section id="jak-to-funguje" className="py-24 px-6">
-      <div className="mx-auto max-w-7xl">
+    <section id="jak-to-funguje" className="py-28 px-6 border-t border-white/[0.06]">
+      <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Jak to funguje"
@@ -17,27 +16,26 @@ export default function HowItWorks() {
           />
         </AnimateOnScroll>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step, i) => (
             <AnimateOnScroll key={step.number} delay={i * 0.1}>
-              <div className="group relative flex h-full flex-col items-center">
-                {/* Card */}
-                <div className="relative flex h-full w-full flex-col rounded-2xl border border-border bg-surface p-8 text-center transition-all duration-300 hover:border-gold/30 hover:bg-surface-light">
-                  <span className="font-heading text-5xl font-bold text-gold/20 transition-colors group-hover:text-gold/40">
+              <div className="group relative">
+                <div className="relative rounded-[20px] border border-white/[0.06] bg-white/[0.02] p-10 transition-all duration-400 hover:bg-gold/5 hover:border-gold/20 hover:-translate-y-1">
+                  <span className="font-heading text-5xl font-extrabold text-gold/15 leading-none mb-5 block">
                     {step.number}
                   </span>
-                  <h3 className="mt-4 font-heading text-lg font-semibold">
+                  <h3 className="font-heading text-lg font-bold mb-3">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-muted leading-relaxed">
+                  <p className="text-sm text-muted leading-relaxed font-light">
                     {step.description}
                   </p>
                 </div>
 
-                {/* Arrow connector (hidden on last item and mobile) */}
+                {/* Arrow connector */}
                 {i < STEPS.length - 1 && (
-                  <div className="absolute -right-3 top-1/2 -translate-y-1/2 hidden text-gold/20 lg:block" aria-hidden="true">
-                    <ArrowRight size={20} />
+                  <div className="absolute -right-4 top-1/2 -translate-y-1/2 hidden text-gold text-xl z-10 lg:block" aria-hidden="true">
+                    →
                   </div>
                 )}
               </div>

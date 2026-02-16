@@ -7,14 +7,6 @@ import Button from "@/components/ui/Button";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
     return () => {
@@ -24,18 +16,19 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-gold/10 transition-all duration-300"
+      style={{
+        background: "rgba(10,10,10,0.7)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+      }}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
+        className="flex items-center justify-between px-6 py-4 lg:px-12"
         aria-label="Hlavní navigace"
       >
         {/* Logo */}
-        <a href="#" className="font-heading text-xl font-bold tracking-tight">
+        <a href="#" className="font-heading text-xl font-extrabold tracking-wide">
           KAJO{" "}
           <span className="text-gold">STUDIO</span>{" "}
           360
@@ -47,7 +40,7 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-muted transition-colors hover:text-foreground"
+                className="relative text-xs uppercase tracking-wider text-muted font-medium transition-colors hover:text-gold after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-gold after:transition-all hover:after:w-full"
               >
                 {link.label}
               </a>

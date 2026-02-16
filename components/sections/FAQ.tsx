@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
 import { FAQ_ITEMS } from "@/lib/constants";
 import SectionHeader from "@/components/ui/SectionHeader";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
@@ -18,8 +17,8 @@ export default function FAQ() {
   const rightColumn = FAQ_ITEMS.slice(half);
 
   return (
-    <section id="faq" className="py-24 px-6 bg-surface">
-      <div className="mx-auto max-w-5xl">
+    <section id="faq" className="py-28 px-6 border-t border-white/[0.06]">
+      <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Časté dotazy"
@@ -27,7 +26,7 @@ export default function FAQ() {
           />
         </AnimateOnScroll>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="mt-16 grid gap-4 md:grid-cols-2">
           {[leftColumn, rightColumn].map((column, colIndex) => (
             <div key={colIndex} className="space-y-4">
               {column.map((item, i) => {
@@ -35,30 +34,26 @@ export default function FAQ() {
                 const isOpen = openIndex === index;
 
                 return (
-                  <AnimateOnScroll
-                    key={index}
-                    delay={index * 0.05}
-                  >
-                    <div className="rounded-xl border border-border bg-surface-light transition-colors hover:border-gold/20">
-                      <button
-                        onClick={() => toggle(index)}
-                        className="flex w-full items-center justify-between gap-4 p-5 text-left cursor-pointer"
-                        aria-expanded={isOpen}
-                      >
-                        <span className="font-heading text-sm font-semibold leading-snug pr-2">
+                  <AnimateOnScroll key={index} delay={index * 0.05}>
+                    <div
+                      className="rounded-[20px] border border-white/[0.06] transition-all duration-300 hover:border-gold/20 hover:bg-white/[0.02] cursor-pointer"
+                      onClick={() => toggle(index)}
+                    >
+                      <div className="flex items-center justify-between gap-4 p-8">
+                        <span className="font-heading text-base font-semibold leading-snug">
                           {item.question}
                         </span>
-                        <span className="shrink-0 text-gold">
-                          {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                        <span className="shrink-0 text-gold text-2xl font-light">
+                          {isOpen ? "−" : "+"}
                         </span>
-                      </button>
+                      </div>
                       <div
                         className={`grid transition-all duration-300 ${
                           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                         }`}
                       >
                         <div className="overflow-hidden">
-                          <p className="px-5 pb-5 text-sm leading-relaxed text-muted">
+                          <p className="px-8 pb-8 text-sm leading-relaxed text-muted font-light">
                             {item.answer}
                           </p>
                         </div>

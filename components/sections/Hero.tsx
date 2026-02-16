@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 export default function Hero() {
@@ -16,27 +15,27 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           background:
-            "radial-gradient(circle at 50% 40%, rgba(200,169,110,0.12) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(200,169,110,0.06) 0%, transparent 40%)",
+            "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,169,110,0.12) 0%, transparent 70%), radial-gradient(ellipse 50% 80% at 20% 80%, rgba(200,169,110,0.06) 0%, transparent 50%), radial-gradient(ellipse 50% 80% at 80% 80%, rgba(200,169,110,0.06) 0%, transparent 50%)",
         }}
       />
 
       {/* Rotating circle decoration */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
         <motion.div
-          className="h-[500px] w-[500px] rounded-full border border-gold/10 sm:h-[600px] sm:w-[600px] lg:h-[700px] lg:w-[700px]"
+          className="h-[600px] w-[600px] rounded-full border border-gold/15"
           animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 h-3 w-3 rounded-full bg-gold" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 h-2 w-2 rounded-full bg-gold/50" />
-        </motion.div>
-        <motion.div
-          className="absolute h-[300px] w-[300px] rounded-full border border-gold/5 sm:h-[400px] sm:w-[400px] lg:h-[500px] lg:w-[500px]"
-          animate={{ rotate: -360 }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         >
-          <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-gold/30" />
+          <div
+            className="absolute -top-1.5 left-1/2 -translate-x-1/2 h-3 w-3 rounded-full bg-gold"
+            style={{ boxShadow: "0 0 20px rgba(200,169,110,0.6)" }}
+          />
         </motion.div>
+        <motion.div
+          className="absolute h-[450px] w-[450px] rounded-full border border-gold/[0.08]"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+        />
       </div>
 
       {/* Content */}
@@ -52,18 +51,19 @@ export default function Hero() {
         </motion.div>
 
         <motion.h1
-          className="mt-8 font-heading text-5xl font-bold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl"
+          className="mt-8 font-heading font-extrabold leading-none tracking-tight"
+          style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          Zážitek, který se{" "}
-          <em className="not-italic text-gold">točí</em>{" "}
-          kolem Vás
+          Zážitek, který
+          <br />
+          se <em className="italic text-gold">točí</em> kolem Vás
         </motion.h1>
 
         <motion.p
-          className="mt-6 text-lg text-muted max-w-2xl mx-auto sm:text-xl"
+          className="mt-6 text-lg text-muted max-w-[500px] mx-auto leading-relaxed font-light"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -87,19 +87,23 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.a
         href="#jak-to-funguje"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted hover:text-gold transition-colors"
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted hover:text-gold transition-colors"
         aria-label="Srolujte dolů"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
       >
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronDown size={20} />
-        </motion.div>
+        <span className="text-xs uppercase tracking-[0.2em]">Scroll</span>
+        <div className="w-[1px] h-10 overflow-hidden">
+          <motion.div
+            className="w-full h-full bg-gradient-to-b from-gold to-transparent"
+            animate={{
+              scaleY: [0, 1, 1, 0],
+              transformOrigin: ["top", "top", "bottom", "bottom"],
+            }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </div>
       </motion.a>
     </section>
   );

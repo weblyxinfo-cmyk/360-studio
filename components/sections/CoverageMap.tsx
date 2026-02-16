@@ -1,28 +1,21 @@
 "use client";
 
-import { MapPin } from "lucide-react";
 import { COVERAGE_CITIES } from "@/lib/constants";
 import SectionHeader from "@/components/ui/SectionHeader";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
-const badgeStyles = {
-  primary: "text-gold border-gold/30",
-  available: "text-emerald-400 border-emerald-500/30",
-  onRequest: "text-blue-400 border-blue-500/30",
-};
-
 const dotPositions = [
-  { top: "35%", left: "45%" },
-  { top: "45%", left: "55%", animationDelay: "0.5s" },
-  { top: "55%", left: "40%", animationDelay: "1s" },
-  { top: "30%", left: "60%", animationDelay: "1.5s" },
-  { top: "50%", left: "35%", animationDelay: "0.7s" },
+  { top: "35%", left: "45%", delay: "0s" },
+  { top: "45%", left: "55%", delay: "0.5s" },
+  { top: "55%", left: "40%", delay: "1s" },
+  { top: "30%", left: "60%", delay: "1.5s" },
+  { top: "50%", left: "35%", delay: "0.7s" },
 ];
 
 export default function CoverageMap() {
   return (
-    <section className="py-24 px-6">
-      <div className="mx-auto max-w-7xl">
+    <section className="py-28 px-6 border-t border-white/[0.06]">
+      <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Působnost"
@@ -31,10 +24,10 @@ export default function CoverageMap() {
           />
         </AnimateOnScroll>
 
-        <div className="grid gap-12 items-start md:grid-cols-2">
+        <div className="mt-16 grid gap-16 items-center md:grid-cols-2">
           {/* Map placeholder with animated dots */}
           <AnimateOnScroll direction="left">
-            <div className="aspect-[4/3] rounded-2xl border border-border bg-surface-light flex items-center justify-center relative overflow-hidden">
+            <div className="aspect-[4/3] rounded-[20px] border border-white/[0.08] bg-white/[0.02] flex items-center justify-center relative overflow-hidden">
               {/* Radial gradient background */}
               <div
                 className="absolute inset-0"
@@ -48,16 +41,22 @@ export default function CoverageMap() {
               {dotPositions.map((pos, i) => (
                 <div
                   key={i}
-                  className="absolute h-2.5 w-2.5 rounded-full bg-gold shadow-[0_0_15px_rgba(200,169,110,0.5)]"
-                  style={{ top: pos.top, left: pos.left }}
+                  className="absolute h-2.5 w-2.5 rounded-full bg-gold"
+                  style={{
+                    top: pos.top,
+                    left: pos.left,
+                    boxShadow: "0 0 15px rgba(200,169,110,0.5)",
+                  }}
                 >
                   <div
-                    className="absolute -inset-1 rounded-full border border-gold/30 animate-ping"
-                    style={{ animationDelay: pos.animationDelay || "0s" }}
+                    className="absolute -inset-1 rounded-full border border-gold/30"
+                    style={{
+                      animation: `pingDot 2s infinite ${pos.delay}`,
+                    }}
                   />
                 </div>
               ))}
-              <span className="relative z-10 text-xs text-muted uppercase tracking-widest">
+              <span className="relative z-10 text-sm text-muted uppercase tracking-widest">
                 Interaktivní mapa
               </span>
             </div>
@@ -66,16 +65,14 @@ export default function CoverageMap() {
           {/* City list */}
           <AnimateOnScroll direction="right">
             <div>
-              <ul className="divide-y divide-border">
+              <ul>
                 {COVERAGE_CITIES.map((city) => (
                   <li
                     key={city.name}
-                    className="flex items-center justify-between py-4 text-sm"
+                    className="flex items-center justify-between py-4 text-base border-b border-white/[0.06]"
                   >
                     <span>{city.name}</span>
-                    <span
-                      className={`rounded-full border px-3 py-0.5 text-xs ${badgeStyles[city.type]}`}
-                    >
+                    <span className="rounded-full border border-gold/30 px-3 py-0.5 text-xs text-gold">
                       {city.badge}
                     </span>
                   </li>

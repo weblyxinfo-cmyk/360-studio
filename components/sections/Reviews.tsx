@@ -7,8 +7,8 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 
 export default function Reviews() {
   return (
-    <section id="recenze" className="py-24 px-6">
-      <div className="mx-auto max-w-7xl">
+    <section id="recenze" className="py-28 px-6 border-t border-white/[0.06]">
+      <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Reference"
@@ -17,29 +17,29 @@ export default function Reviews() {
           />
         </AnimateOnScroll>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="mt-16 grid gap-8 md:grid-cols-3">
           {REVIEWS.map((review, i) => (
             <AnimateOnScroll key={review.name} delay={i * 0.1}>
-              <article className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-8 transition-all duration-300 hover:border-gold/30 hover:bg-surface-light">
+              <article className="group flex h-full flex-col rounded-[20px] border border-white/[0.06] bg-white/[0.02] p-10 transition-all duration-400 hover:border-gold/20 hover:-translate-y-1">
                 {/* Stars */}
-                <div className="flex gap-1" aria-label={`Hodnocení ${review.rating} z 5`}>
+                <div className="flex gap-0.5 text-gold mb-4" aria-label={`Hodnocení ${review.rating} z 5`}>
                   {Array.from({ length: review.rating }).map((_, j) => (
                     <Star
                       key={j}
-                      size={16}
+                      size={14}
                       className="fill-gold text-gold"
                     />
                   ))}
                 </div>
 
                 {/* Quote */}
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-muted">
-                  &ldquo;{review.text}&rdquo;
+                <blockquote className="flex-1 text-[0.95rem] leading-relaxed text-muted/90 italic font-light mb-6">
+                  &bdquo;{review.text}&ldquo;
                 </blockquote>
 
                 {/* Author */}
-                <div className="mt-6 flex items-center gap-3 border-t border-border pt-6">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-gold to-gold-dark font-heading text-sm font-bold text-background">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-gold to-gold-dark font-heading text-sm font-bold text-background">
                     {review.initials}
                   </div>
                   <div>

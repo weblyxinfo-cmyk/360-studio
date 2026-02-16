@@ -2,8 +2,8 @@ import { SITE } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 py-8 flex flex-col items-center gap-4 text-sm text-muted sm:flex-row sm:justify-between">
+    <footer className="border-t border-white/[0.06]">
+      <div className="mx-auto max-w-[1200px] px-6 py-12 flex flex-col items-center gap-4 text-sm text-muted sm:flex-row sm:justify-between">
         <a
           href="#"
           className="font-heading text-base font-bold tracking-tight text-foreground"

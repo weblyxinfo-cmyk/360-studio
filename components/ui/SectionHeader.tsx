@@ -11,23 +11,27 @@ export default function SectionHeader({
   title,
   subtitle,
   description,
-  centered = true,
+  centered = false,
 }: SectionHeaderProps) {
   return (
     <div className={`mb-16 ${centered ? "text-center" : ""}`}>
       {label && (
-        <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-widest text-gold">
+        <div className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
           {label}
-        </span>
+        </div>
       )}
-      <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+      <h2 className="font-heading text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.15] tracking-tight">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-lg text-muted max-w-2xl mx-auto">{subtitle}</p>
+        <p className="mt-6 text-base text-muted max-w-[550px] leading-relaxed font-light">
+          {subtitle}
+        </p>
       )}
       {description && (
-        <p className="mt-3 text-sm text-muted max-w-xl mx-auto">{description}</p>
+        <p className="mt-3 text-sm text-muted max-w-[550px] leading-relaxed font-light">
+          {description}
+        </p>
       )}
     </div>
   );

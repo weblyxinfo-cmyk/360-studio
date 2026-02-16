@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import { SITE } from "@/lib/constants";
 import SectionHeader from "@/components/ui/SectionHeader";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
@@ -51,11 +51,11 @@ export default function Contact() {
   };
 
   const inputClasses =
-    "w-full rounded-xl border border-border bg-surface-light px-4 py-3 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-gold focus:outline-none";
+    "w-full rounded-xl border border-white/[0.1] bg-white/[0.03] px-5 py-4 text-sm text-foreground placeholder:text-muted/60 transition-colors focus:border-gold focus:outline-none";
 
   return (
-    <section id="kontakt" className="py-24 px-6 bg-surface">
-      <div className="mx-auto max-w-5xl">
+    <section id="kontakt" className="py-28 px-6 border-t border-white/[0.06]">
+      <div className="mx-auto max-w-[1200px]">
         <AnimateOnScroll>
           <SectionHeader
             label="Kontakt"
@@ -64,9 +64,9 @@ export default function Contact() {
           />
         </AnimateOnScroll>
 
-        <div className="grid gap-12 md:grid-cols-5">
+        <div className="grid gap-16 md:grid-cols-2">
           {/* Form */}
-          <AnimateOnScroll direction="left" className="md:col-span-3">
+          <AnimateOnScroll direction="left">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
@@ -208,77 +208,53 @@ export default function Contact() {
           </AnimateOnScroll>
 
           {/* Contact info */}
-          <AnimateOnScroll direction="right" className="md:col-span-2">
-            <div className="space-y-8">
+          <AnimateOnScroll direction="right">
+            <div className="flex flex-col gap-8">
               <div>
-                <h3 className="font-heading text-lg font-semibold mb-4">
-                  Kontaktní údaje
-                </h3>
-                <ul className="space-y-4">
-                  <li>
-                    <a
-                      href={`tel:${SITE.phone.replace(/\s/g, "")}`}
-                      className="flex items-center gap-3 text-sm text-muted transition-colors hover:text-gold"
-                    >
-                      <Phone size={18} className="text-gold" />
-                      {SITE.phone}
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`mailto:${SITE.email}`}
-                      className="flex items-center gap-3 text-sm text-muted transition-colors hover:text-gold"
-                    >
-                      <Mail size={18} className="text-gold" />
-                      {SITE.email}
-                    </a>
-                  </li>
-                  <li>
-                    <div className="flex items-start gap-3 text-sm text-muted">
-                      <MapPin size={18} className="mt-0.5 shrink-0 text-gold" />
-                      <span className="whitespace-pre-line">{SITE.address}</span>
-                    </div>
-                  </li>
-                </ul>
+                <h4 className="font-heading font-bold text-base mb-2">Telefon</h4>
+                <a
+                  href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+                  className="text-muted transition-colors hover:text-gold leading-relaxed"
+                >
+                  {SITE.phone}
+                </a>
               </div>
-
               <div>
-                <h3 className="font-heading text-lg font-semibold mb-4">
-                  Sociální sítě
-                </h3>
-                <div className="flex gap-3">
-                  <a
-                    href={SITE.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-12 w-12 items-center justify-center rounded-xl border border-border text-xs font-semibold text-muted transition-all hover:border-gold hover:text-gold hover:bg-gold/10"
-                  >
-                    IG
-                  </a>
-                  <a
-                    href={SITE.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-12 w-12 items-center justify-center rounded-xl border border-border text-xs font-semibold text-muted transition-all hover:border-gold hover:text-gold hover:bg-gold/10"
-                  >
-                    FB
-                  </a>
-                  <a
-                    href={SITE.tiktok}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-12 w-12 items-center justify-center rounded-xl border border-border text-xs font-semibold text-muted transition-all hover:border-gold hover:text-gold hover:bg-gold/10"
-                  >
-                    TT
-                  </a>
+                <h4 className="font-heading font-bold text-base mb-2">E-mail</h4>
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="text-muted transition-colors hover:text-gold leading-relaxed"
+                >
+                  {SITE.email}
+                </a>
+              </div>
+              <div>
+                <h4 className="font-heading font-bold text-base mb-2">Adresa</h4>
+                <p className="text-muted leading-relaxed whitespace-pre-line">{SITE.address}</p>
+              </div>
+              <div>
+                <h4 className="font-heading font-bold text-base mb-2">Sociální sítě</h4>
+                <div className="flex gap-4 mt-2">
+                  {[
+                    { label: "IG", href: SITE.instagram },
+                    { label: "FB", href: SITE.facebook },
+                    { label: "TT", href: SITE.tiktok },
+                  ].map((social) => (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.1] text-xs font-semibold text-muted transition-all hover:border-gold hover:text-gold hover:bg-gold/10"
+                    >
+                      {social.label}
+                    </a>
+                  ))}
                 </div>
               </div>
-
-              <div className="rounded-xl border border-gold/15 bg-gold/[0.06] p-6">
-                <h4 className="font-heading text-sm font-semibold text-gold mb-2">
-                  Rychlá odpověď
-                </h4>
-                <p className="text-xs text-muted leading-relaxed">
+              <div className="mt-auto rounded-2xl border border-gold/15 bg-gold/[0.06] p-6">
+                <h4 className="font-heading font-bold text-gold mb-2">Rychlá odpověď</h4>
+                <p className="text-sm text-muted leading-relaxed">
                   Na každou poptávku odpovídáme do 24 hodin. Většinou se ozveme ještě tentýž den.
                 </p>
               </div>
