@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 const syne = Syne({
   subsets: ["latin"],
@@ -17,15 +15,15 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Kajo Studio 360 | Prémiový 360° Photobooth",
+  title: "Kajo Studio 360 | Premiovy 360° Photobooth",
   description:
-    "Pronájem prémiového 360° photoboothu pro svatby, firemní akce a narozeniny. Epická videa, okamžité sdílení, profesionální obsluha po celé ČR.",
+    "Pronajem premioveho 360° photoboothu pro svatby, firemni akce a narozeniny. Epicka videa, okamzite sdileni, profesionalni obsluha po cele CR.",
   keywords: [
     "360 photobooth",
-    "photobooth pronájem",
+    "photobooth pronajem",
     "360 video",
-    "svatební photobooth",
-    "firemní akce",
+    "svatebni photobooth",
+    "firemni akce",
     "Praha",
     "Brno",
     "Ostrava",
@@ -35,9 +33,9 @@ export const metadata: Metadata = {
     locale: "cs_CZ",
     url: "https://kajostudio.cz",
     siteName: "Kajo Studio 360",
-    title: "Kajo Studio 360 | Prémiový 360° Photobooth",
+    title: "Kajo Studio 360 | Premiovy 360° Photobooth",
     description:
-      "Pronájem prémiového 360° photoboothu pro svatby, firemní akce a narozeniny.",
+      "Pronajem premioveho 360° photoboothu pro svatby, firemni akce a narozeniny.",
   },
   robots: {
     index: true,
@@ -55,13 +53,12 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     name: "Kajo Studio 360",
     description:
-      "Pronájem prémiového 360° photoboothu pro svatby, firemní akce a narozeniny.",
+      "Pronajem premioveho 360° photoboothu pro svatby, firemni akce a narozeniny.",
     url: "https://kajostudio.cz",
-    email: "info@kajostudio.cz",
-    telephone: "+420777888999",
+    email: "info@kajostudio360.cz",
     areaServed: {
       "@type": "Country",
-      name: "Česká republika",
+      name: "Ceska republika",
     },
     priceRange: "$$",
   };
@@ -74,11 +71,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-background text-foreground antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
