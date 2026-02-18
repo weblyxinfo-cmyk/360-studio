@@ -1,5 +1,5 @@
 import { drizzle } from "drizzle-orm/libsql";
-import { createClient } from "@libsql/client";
+import { createClient } from "@libsql/client/web";
 import * as users from "./schema/users";
 import * as reviews from "./schema/reviews";
 import * as galleryItems from "./schema/gallery-items";
@@ -11,7 +11,7 @@ import * as availability from "./schema/availability";
 import * as settings from "./schema/settings";
 
 const client = createClient({
-  url: process.env.TURSO_DATABASE_URL || "file:local.db",
+  url: process.env.TURSO_DATABASE_URL || "libsql://localhost",
   authToken: process.env.TURSO_AUTH_TOKEN,
 });
 
