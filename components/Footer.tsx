@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="logo" style={{ fontSize: "1.1rem" }}>
-          KAJO <span>STUDIO</span> 360
+          <img src="/images/logo.png" alt="KAJO Studio 360" style={{ height: "56px", width: "auto" }} />
         </div>
         <p>&copy; 2026 Kajo Studio 360. Vsechna prava vyhrazena.</p>
         <p>

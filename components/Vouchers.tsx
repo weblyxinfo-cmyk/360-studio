@@ -13,18 +13,17 @@ export default function Vouchers() {
       </p>
       <div className="voucher-card">
         <div className="voucher-visual">
-          <div className="voucher-mock">
-            <div className="voucher-mock-logo">
-              KAJO{" "}
-              <span style={{ color: "var(--color-gold)" }}>STUDIO</span> 360
-            </div>
-            <div className="voucher-mock-title">Darkovy voucher</div>
-            <div className="voucher-mock-desc">
-              Pronajem 360 fotoboothu
-              <br />
-              na akci dle vlastniho vyberu
-            </div>
-            <div className="voucher-mock-code">KAJO-2026-XXXX</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", width: "100%" }}>
+            <img
+              src="/images/vouchers/voucher-2h.jpg"
+              alt="Darkovy poukaz na 2 hodiny pronajmu Fotospin 360"
+              style={{ width: "100%", borderRadius: "12px", boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}
+            />
+            <img
+              src="/images/vouchers/voucher-1h.jpg"
+              alt="Darkovy poukaz na 1 hodinu pronajmu Fotospin 360"
+              style={{ width: "100%", borderRadius: "12px", boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}
+            />
           </div>
         </div>
         <div className="voucher-info">

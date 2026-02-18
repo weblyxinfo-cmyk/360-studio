@@ -9,11 +9,14 @@ interface GalleryItemData {
 }
 
 const fallbackItems = [
-  { id: "1", tag: "Video", title: "Svatebni 360 zazitek", subtitle: "Romanticka atmosfera zachycena v pohybu", hasPlay: true, imageUrl: null, gridSpan: "2x2" },
-  { id: "2", tag: "Narozeniny", title: "Oslava 30. narozenin", subtitle: "Party plna energie a zabavy", hasPlay: false, imageUrl: null, gridSpan: "1x1" },
-  { id: "3", tag: "Firemni akce", title: "Teambuilding 2025", subtitle: "Kreativni zabava pro cely tym", hasPlay: false, imageUrl: null, gridSpan: "1x1" },
-  { id: "4", tag: "Video", title: "Firemni vanocni vecirek", subtitle: "Elegance a zabava v jednom", hasPlay: true, imageUrl: null, gridSpan: "1x1" },
-  { id: "5", tag: "Ples", title: "Reprezentacni ples", subtitle: "Exkluzivni momenty na plese", hasPlay: false, imageUrl: null, gridSpan: "1x1" },
+  { id: "1", tag: "Party", title: "Vecirek plny energie", subtitle: "Nezastavitelna zabava na parketu", hasPlay: false, imageUrl: "/images/gallery/party-vecirek.jpg", gridSpan: "2x2" },
+  { id: "2", tag: "Svatba", title: "Svatebni 360 zazitek", subtitle: "Romanticka atmosfera zachycena v pohybu", hasPlay: false, imageUrl: "/images/gallery/svatba.jpg", gridSpan: "1x1" },
+  { id: "3", tag: "Gala", title: "Cerveny koberec", subtitle: "Exkluzivni momenty na gala veceru", hasPlay: false, imageUrl: "/images/gallery/gala-cerveny-koberec.jpg", gridSpan: "1x1" },
+  { id: "4", tag: "Letni party", title: "Letni party pod hvezdami", subtitle: "Konfety, svetylka a super nalada", hasPlay: false, imageUrl: "/images/gallery/letni-party.jpg", gridSpan: "1x1" },
+  { id: "5", tag: "Neon", title: "Neon party s mazlikem", subtitle: "Zabava pro vsechny vcetne ctyrnohych kamaradu", hasPlay: false, imageUrl: "/images/gallery/neon-party.jpg", gridSpan: "1x1" },
+  { id: "6", tag: "Rodina", title: "Rodinny den", subtitle: "Krasne momenty s celou rodinou", hasPlay: false, imageUrl: "/images/gallery/rodinny-den.jpg", gridSpan: "1x1" },
+  { id: "7", tag: "Festival", title: "Letni festival", subtitle: "Barvy, slunce a skvela nalada", hasPlay: false, imageUrl: "/images/gallery/letni-festival.jpg", gridSpan: "1x1" },
+  { id: "8", tag: "Street", title: "Street dance session", subtitle: "Energie a pohyb v ulicich", hasPlay: false, imageUrl: "/images/gallery/street-dance.jpg", gridSpan: "1x1" },
 ];
 
 export default function Gallery({ data }: { data?: GalleryItemData[] }) {
