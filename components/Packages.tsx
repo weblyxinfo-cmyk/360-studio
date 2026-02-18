@@ -49,7 +49,7 @@ export default function Packages({ data }: { data?: PackageData[] }) {
           <div className="package-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
           <h3>Zakladni</h3>
           <div className="package-duration">1 hodina zabavy</div>
-          <div className="package-price">X XXX Kc <span>/ akce</span></div>
+          <div className="package-price">7 990 Kc <span>/ akce</span></div>
           <p className="package-note">Idealni pro mensi oslavy a narozeniny</p>
           <ul className="package-features">
             <li>Profesionalni obsluha</li><li>Neomezeny pocet natoceni</li><li>Rekvizity a doplnky</li>
@@ -61,7 +61,7 @@ export default function Packages({ data }: { data?: PackageData[] }) {
           <div className="package-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
           <h3>Premium</h3>
           <div className="package-duration">2 hodiny zabavy</div>
-          <div className="package-price">X XXX Kc <span>/ akce</span></div>
+          <div className="package-price">12 990 Kc <span>/ akce</span></div>
           <p className="package-note">Perfektni pro svatby a firemni akce</p>
           <ul className="package-features">
             <li>Vse ze zakladniho balicku</li><li>Vlastni branding (logo, barvy)</li><li>Slow-motion efekty</li>

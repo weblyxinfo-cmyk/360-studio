@@ -1,0 +1,150 @@
+"use client";
+
+import { useState } from "react";
+
+const packages = [
+  { id: "1h", name: "1 hodina", price: "7 990", description: "Zakladni balik — 1 hodina zabavy na Vasi akci" },
+  { id: "2h", name: "2 hodiny", price: "12 990", description: "Premium balik — 2 hodiny zabavy s vlastnim brandingem" },
+];
+
+export default function VoucherPage() {
+  const [selected, setSelected] = useState("2h");
+  const [form, setForm] = useState({
+    buyerName: "", buyerEmail: "",
+    recipientName: "", recipientEmail: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+
+  const selectedPkg = packages.find((p) => p.id === selected)!;
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/payments/gopay/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          packageType: selected,
+          ...form,
+        }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.gatewayUrl) {
+          window.location.href = data.gatewayUrl;
+          return;
+        }
+      }
+      setStatus("error");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  return (
+    <div style={{ minHeight: "100vh", background: "var(--color-background)", color: "var(--color-foreground)" }}>
+      <nav className="site-nav">
+        <a href="/" className="logo">KAJO <span>STUDIO</span> 360</a>
+        <a href="/" style={{ color: "var(--color-muted)", fontSize: "0.9rem" }}>Zpet na hlavni stranku</a>
+      </nav>
+
+      <section style={{ maxWidth: "800px", margin: "0 auto", padding: "6rem 1.5rem 4rem" }}>
+        <div className="section-label">Darkovy poukaz</div>
+        <h1 className="section-title" style={{ marginBottom: "1rem" }}>
+          Darujte zazitek<br />na 360 fotoboothu
+        </h1>
+        <p className="section-desc" style={{ marginBottom: "3rem" }}>
+          Vyberte balicek, vyplnte udaje a zapladte online. Voucher s unikatnim kodem prijde okamzite na e-mail.
+        </p>
+
+        {/* Package selection */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "2.5rem" }}>
+          {packages.map((pkg) => (
+            <button
+              key={pkg.id}
+              onClick={() => setSelected(pkg.id)}
+              style={{
+                padding: "1.5rem",
+                borderRadius: "12px",
+                border: selected === pkg.id ? "2px solid var(--color-gold)" : "2px solid rgba(255,255,255,0.1)",
+                background: selected === pkg.id ? "rgba(200,169,110,0.1)" : "rgba(255,255,255,0.03)",
+                cursor: "pointer",
+                textAlign: "left",
+                color: "var(--color-foreground)",
+                transition: "all 0.2s",
+              }}
+            >
+              <div style={{ fontSize: "0.8rem", color: "var(--color-gold)", marginBottom: "0.3rem", textTransform: "uppercase", letterSpacing: "0.1em" }}>{pkg.name}</div>
+              <div style={{ fontSize: "1.8rem", fontWeight: 700, fontFamily: "var(--font-heading)" }}>{pkg.price} Kc</div>
+              <div style={{ fontSize: "0.85rem", color: "var(--color-muted)", marginTop: "0.3rem" }}>{pkg.description}</div>
+            </button>
+          ))}
+        </div>
+
+        {/* Voucher preview */}
+        <div style={{ marginBottom: "2.5rem" }}>
+          <img
+            src={selected === "2h" ? "/images/vouchers/voucher-2h.jpg" : "/images/vouchers/voucher-1h.jpg"}
+            alt={`Darkovy poukaz — ${selectedPkg.name}`}
+            style={{ width: "100%", borderRadius: "12px", boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}
+          />
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit}>
+          <h3 style={{ marginBottom: "1.5rem", fontFamily: "var(--font-heading)", fontSize: "1.2rem" }}>Udaje kupujiciho</h3>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="buyerName">Vase jmeno</label>
+              <input id="buyerName" type="text" required value={form.buyerName} onChange={(e) => setForm({ ...form, buyerName: e.target.value })} placeholder="Jan Novak" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="buyerEmail">Vas e-mail</label>
+              <input id="buyerEmail" type="email" required value={form.buyerEmail} onChange={(e) => setForm({ ...form, buyerEmail: e.target.value })} placeholder="jan@email.cz" />
+            </div>
+          </div>
+
+          <h3 style={{ marginBottom: "1.5rem", marginTop: "2rem", fontFamily: "var(--font-heading)", fontSize: "1.2rem" }}>Udaje obdarovaneho</h3>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="recipientName">Jmeno obdarovaneho</label>
+              <input id="recipientName" type="text" value={form.recipientName} onChange={(e) => setForm({ ...form, recipientName: e.target.value })} placeholder="Jmeno (nepovinne)" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="recipientEmail">E-mail obdarovaneho</label>
+              <input id="recipientEmail" type="email" value={form.recipientEmail} onChange={(e) => setForm({ ...form, recipientEmail: e.target.value })} placeholder="E-mail (nepovinne)" />
+            </div>
+          </div>
+
+          <div className="form-group" style={{ marginTop: "0.5rem" }}>
+            <label htmlFor="message">Osobni venovani</label>
+            <textarea id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Vsechno nejlepsi k narozeninam! S laskou..." />
+          </div>
+
+          <div style={{ marginTop: "2rem", padding: "1.5rem", background: "rgba(200,169,110,0.08)", borderRadius: "12px", border: "1px solid rgba(200,169,110,0.2)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+            <div>
+              <div style={{ fontSize: "0.85rem", color: "var(--color-muted)" }}>Celkem k uhrade</div>
+              <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)", color: "var(--color-gold)" }}>{selectedPkg.price} Kc</div>
+            </div>
+            <button type="submit" className="btn-primary" disabled={status === "sending"} style={{ minWidth: "200px" }}>
+              {status === "sending" ? "Presmerovavam na platbu..." : "Zaplatit a odeslat voucher"}
+            </button>
+          </div>
+
+          {status === "error" && (
+            <div className="form-error" style={{ marginTop: "1rem" }}>
+              Platebni brana neni momentalne dostupna. Kontaktujte nas prosim primo na info@kajostudio360.cz
+            </div>
+          )}
+        </form>
+
+        <p style={{ textAlign: "center", marginTop: "2rem", fontSize: "0.85rem", color: "var(--color-muted)" }}>
+          Platba kartou pres zabezpecenou branu GoPay. Voucher prijde okamzite po zaplaceni.
+          <br />Platnost 12 mesicu od zakoupeni.
+        </p>
+      </section>
+    </div>
+  );
+}
