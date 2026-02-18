@@ -19,7 +19,7 @@ export default function Navbar() {
     <>
       <nav className="site-nav">
         <a href="/" className="logo">
-          <img src="/images/logo.png" alt="KAJO Studio 360" style={{ height: "48px", width: "auto" }} />
+          KAJO <span>STUDIO</span> 360
         </a>
         <ul className="nav-links">
           {links.map((link) => (
