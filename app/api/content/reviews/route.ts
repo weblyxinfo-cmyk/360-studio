@@ -1,17 +1,18 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { reviews } from "@/db/schema/reviews";
-import { eq, asc } from "drizzle-orm";
+import { asc } from "drizzle-orm";
 
 export async function GET() {
   try {
-    const visibleReviews = await db
+    const allReviews = await db
       .select()
       .from(reviews)
-      .where(eq(reviews.isVisible, true))
       .orderBy(asc(reviews.sortOrder));
+    const visibleReviews = allReviews.filter((r) => r.isVisible);
     return NextResponse.json(visibleReviews);
-  } catch {
+  } catch (error) {
+    console.error("Reviews API error:", error);
     return NextResponse.json([]);
   }
 }

@@ -5,11 +5,11 @@ import { eq, asc } from "drizzle-orm";
 
 export async function GET() {
   try {
-    const visiblePackages = await db
+    const allPackages = await db
       .select()
       .from(packages)
-      .where(eq(packages.isVisible, true))
       .orderBy(asc(packages.sortOrder));
+    const visiblePackages = allPackages.filter((pkg) => pkg.isVisible);
 
     const result = await Promise.all(
       visiblePackages.map(async (pkg) => {
@@ -23,7 +23,8 @@ export async function GET() {
     );
 
     return NextResponse.json(result);
-  } catch {
+  } catch (error) {
+    console.error("Packages API error:", error);
     return NextResponse.json([]);
   }
 }
