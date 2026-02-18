@@ -11,7 +11,7 @@ import * as availability from "./schema/availability";
 import * as settings from "./schema/settings";
 
 const client = createClient({
-  url: process.env.TURSO_DATABASE_URL!,
+  url: process.env.TURSO_DATABASE_URL || "file:local.db",
   authToken: process.env.TURSO_AUTH_TOKEN,
 });
 

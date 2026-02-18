@@ -1,4 +1,6 @@
-const cities = [
+interface CoverageCity { name: string; badge: string; }
+
+const fallbackCities: CoverageCity[] = [
   { name: "Praha a Stredocesky kraj", badge: "Hlavni region" },
   { name: "Brno a Jihomoravsky kraj", badge: "Hlavni region" },
   { name: "Ostrava a Moravskoslezsky kraj", badge: "Dostupne" },
@@ -7,7 +9,9 @@ const cities = [
   { name: "Liberec, Hradec Kralove", badge: "Na poptavku" },
 ];
 
-export default function Coverage() {
+export default function Coverage({ data }: { data?: CoverageCity[] }) {
+  const cities = data && data.length > 0 ? data : fallbackCities;
+
   return (
     <section className="site-section" id="pokryti">
       <div className="section-label">Pusobnost</div>
@@ -37,15 +41,8 @@ export default function Coverage() {
               </li>
             ))}
           </ul>
-          <p
-            style={{
-              fontSize: "0.85rem",
-              color: "var(--color-muted)",
-              marginTop: "1.5rem",
-            }}
-          >
-            Doprava v hlavnich regionech je v cene. Ostatni lokality dle
-            individualni dohody.
+          <p style={{ fontSize: "0.85rem", color: "var(--color-muted)", marginTop: "1.5rem" }}>
+            Doprava v hlavnich regionech je v cene. Ostatni lokality dle individualni dohody.
           </p>
         </div>
       </div>
