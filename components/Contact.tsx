@@ -114,7 +114,9 @@ export default function Contact() {
         <div className="contact-info">
           <div className="contact-block">
             <h4>Telefon</h4>
-            <a href="tel:+420000000000">+420 XXX XXX XXX</a>
+            <a href="tel:+420777987543">Katerina Vitkova — 777 987 543</a>
+            <br />
+            <a href="tel:+420730172812">Josef Perny — 730 172 812</a>
           </div>
           <div className="contact-block">
             <h4>E-mail</h4>
@@ -125,7 +127,9 @@ export default function Contact() {
             <p>
               Kajo Studio 360
               <br />
-              Ulice 123, Mesto
+              Ceskoslovenske armady 1175
+              <br />
+              Slavkov u Brna 684 01
             </p>
           </div>
           <div className="contact-block">
