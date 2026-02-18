@@ -9,38 +9,58 @@ import FAQ from "@/components/FAQ";
 import Coverage from "@/components/Coverage";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { db } from "@/db";
+import { reviews as reviewsTable } from "@/db/schema/reviews";
+import { galleryItems } from "@/db/schema/gallery-items";
+import { packages as packagesTable, packageFeatures } from "@/db/schema/packages";
+import { settings } from "@/db/schema/settings";
+import { asc, eq } from "drizzle-orm";
 
-export const revalidate = 60; // ISR - revalidate every 60 seconds
+export const revalidate = 60;
 
 async function getHomeData() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-
   try {
-    const [reviewsRes, galleryRes, packagesRes] = await Promise.all([
-      fetch(`${baseUrl}/api/content/reviews`, { next: { revalidate: 60 } }).catch(() => null),
-      fetch(`${baseUrl}/api/content/gallery`, { next: { revalidate: 60 } }).catch(() => null),
-      fetch(`${baseUrl}/api/content/packages`, { next: { revalidate: 60 } }).catch(() => null),
-    ]);
+    // Fetch directly from DB instead of via API
+    const allReviews = await db.select().from(reviewsTable).orderBy(asc(reviewsTable.sortOrder));
+    const visibleReviews = allReviews.filter((r) => r.isVisible);
 
-    const reviews = reviewsRes?.ok ? await reviewsRes.json() : undefined;
-    const gallery = galleryRes?.ok ? await galleryRes.json() : undefined;
-    const packages = packagesRes?.ok ? await packagesRes.json() : undefined;
+    const allGallery = await db.select().from(galleryItems).orderBy(asc(galleryItems.sortOrder));
+    const visibleGallery = allGallery.filter((g) => g.isVisible);
 
-    // FAQ and Coverage from public settings
+    const allPackages = await db.select().from(packagesTable).orderBy(asc(packagesTable.sortOrder));
+    const visiblePackages = allPackages.filter((p) => p.isVisible);
+
+    const pkgsWithFeatures = await Promise.all(
+      visiblePackages.map(async (pkg) => {
+        const features = await db
+          .select()
+          .from(packageFeatures)
+          .where(eq(packageFeatures.packageId, pkg.id))
+          .orderBy(asc(packageFeatures.sortOrder));
+        return { ...pkg, features };
+      })
+    );
+
+    // FAQ and Coverage from settings
     let faq, coverage;
     try {
-      const settingsRes = await fetch(`${baseUrl}/api/content/settings`, { next: { revalidate: 60 } });
-      if (settingsRes.ok) {
-        const settingsData = await settingsRes.json();
-        faq = settingsData.faq?.value ? JSON.parse(settingsData.faq.value) : undefined;
-        coverage = settingsData.coverage?.value ? JSON.parse(settingsData.coverage.value) : undefined;
-      }
+      const [faqRow] = await db.select().from(settings).where(eq(settings.key, "faq")).limit(1);
+      const [coverageRow] = await db.select().from(settings).where(eq(settings.key, "coverage")).limit(1);
+      faq = faqRow?.value ? JSON.parse(faqRow.value) : undefined;
+      coverage = coverageRow?.value ? JSON.parse(coverageRow.value) : undefined;
     } catch {
-      // Settings fetch may fail during build
+      // Settings may not exist yet
     }
 
-    return { reviews, gallery, packages, faq, coverage };
-  } catch {
+    return {
+      reviews: visibleReviews.length > 0 ? visibleReviews : undefined,
+      gallery: visibleGallery.length > 0 ? visibleGallery : undefined,
+      packages: pkgsWithFeatures.length > 0 ? pkgsWithFeatures : undefined,
+      faq,
+      coverage,
+    };
+  } catch (error) {
+    console.error("getHomeData error:", error);
     return { reviews: undefined, gallery: undefined, packages: undefined, faq: undefined, coverage: undefined };
   }
 }

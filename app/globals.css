@@ -571,16 +571,24 @@ body::after {
   position: relative; z-index: 2; font-size: 0.8rem;
   color: var(--color-muted); letter-spacing: 0.1em; text-transform: uppercase;
 }
-.coverage-cities { list-style: none; }
+.coverage-cities {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem 2rem;
+}
 .coverage-cities li {
-  padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
   display: flex; justify-content: space-between; align-items: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 .coverage-cities li span {
-  font-size: 0.8rem; color: var(--color-gold);
-  padding: 0.2rem 0.8rem; border: 1px solid rgba(200,169,110,0.3);
-  border-radius: 50px;
+  font-size: 0.7rem; color: var(--color-gold);
+  padding: 0.15rem 0.6rem; border: 1px solid rgba(200,169,110,0.3);
+  border-radius: 50px; white-space: nowrap; margin-left: 0.5rem;
+}
+@media (max-width: 600px) {
+  .coverage-cities { grid-template-columns: 1fr; }
 }
 
 /* ===== CONTACT ===== */
