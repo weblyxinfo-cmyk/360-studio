@@ -11,9 +11,14 @@ export default function Hero() {
           <br />
           se <em>toci</em> kolem Vas
         </h1>
+        <img
+          src="/images/logo-kajo.png"
+          alt="KAJO Studio 360"
+          style={{ maxWidth: "200px", margin: "1.5rem auto" }}
+        />
         <p className="hero-sub">
-          Pronajem premioveho 360 fotoboothu na svatby, narozeniny, firemni akce
-          a dalsi udalosti po cele CR.
+          Pronajem premioveho 360 fotobothu na svatby, narozeniny, firemni akce
+          a dalsi udalosti.
         </p>
         <div className="hero-actions">
           <a href="#kontakt" className="btn-primary">

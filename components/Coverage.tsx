@@ -50,7 +50,7 @@ export default function Coverage({ data }: { data?: CoverageCity[] }) {
         nas najdete
       </h2>
       <p className="section-desc">
-        Pusobime predevsim na Morave a v Jihoceskych krajich. Dalsi lokality dle dohody.
+        Pusobime predevsim v Jihomoravskem kraji, Olomoucky, Zlinsky kraj a Vysocina. Dalsi lokality dle dohody.
       </p>
       <div className="coverage-content">
         <div className="map-placeholder" style={{ background: "transparent", border: "none", position: "relative" }}>
@@ -97,7 +97,7 @@ export default function Coverage({ data }: { data?: CoverageCity[] }) {
             ))}
           </ul>
           <p style={{ fontSize: "0.85rem", color: "var(--color-muted)", marginTop: "1.5rem" }}>
-            Doprava v hlavnich regionech je v cene. Ostatni lokality dle individualni dohody.
+            Doprava v hlavnich ctyrech regionech je v cene. Ostatni lokality dle individualni dohody.
           </p>
         </div>
       </div>

@@ -28,6 +28,11 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
+        <div className="nav-socials" style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+          <a href="#" aria-label="Instagram" style={{ color: "#E1306C", fontSize: "0.85rem", fontWeight: 600 }}>IG</a>
+          <a href="#" aria-label="Facebook" style={{ color: "#1877F2", fontSize: "0.85rem", fontWeight: 600 }}>FB</a>
+          <a href="#" aria-label="TikTok" style={{ color: "#fff", fontSize: "0.85rem", fontWeight: 600 }}>TT</a>
+        </div>
         <a href="#kontakt" className="nav-cta">
           Chci nabidku
         </a>

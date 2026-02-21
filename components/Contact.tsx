@@ -40,15 +40,15 @@ export default function Contact() {
 
   return (
     <section className="site-section" id="kontakt">
-      <div className="section-label">Kontakt</div>
+      <div className="section-label">Poptavka</div>
       <h2 className="section-title">
         Mate zajem?
         <br />
         Ozvete se nam
       </h2>
       <p className="section-desc">
-        Vyplnte formular a my se Vam ozveme do 24 hodin s nabidkou sitou na miru
-        Vasi akci.
+        Vyplnte formular a my se Vam co nejdrive ozveme s nabidkou sitou na miru.
+        Platite az po potvrzeni terminu.
       </p>
       <div className="contact-grid">
         <form className="contact-form" onSubmit={handleSubmit}>
@@ -113,19 +113,13 @@ export default function Contact() {
         </form>
         <div className="contact-info">
           <div className="contact-block">
-            <h4>Telefon</h4>
-            <a href="tel:+420777987543">Katerina Vitkova — 777 987 543</a>
-            <br />
-            <a href="tel:+420730172812">Josef Perny — 730 172 812</a>
-          </div>
-          <div className="contact-block">
             <h4>E-mail</h4>
             <a href="mailto:info@kajostudio360.cz">info@kajostudio360.cz</a>
           </div>
           <div className="contact-block">
             <h4>Adresa</h4>
             <p>
-              Kajo Studio 360
+              <strong style={{ fontSize: "1.1rem" }}>KAJO Studio 360</strong>
               <br />
               Ceskoslovenske armady 1175
               <br />
@@ -135,16 +129,15 @@ export default function Contact() {
           <div className="contact-block">
             <h4>Socialni site</h4>
             <div className="social-links">
-              <a href="#" className="social-link">IG</a>
-              <a href="#" className="social-link">FB</a>
-              <a href="#" className="social-link">TT</a>
+              <a href="#" className="social-link" style={{ color: "#E1306C" }}>IG</a>
+              <a href="#" className="social-link" style={{ color: "#1877F2" }}>FB</a>
+              <a href="#" className="social-link" style={{ color: "#000" }}>TT</a>
             </div>
           </div>
           <div className="contact-response-box">
             <h4>Rychla odpoved</h4>
             <p>
-              Na kazdou poptavku odpovidame do 24 hodin. Vetsinou se ozveme
-              jeste tentyz den.
+              Snazime se odpovedet jeste v den Vasi zpravy.
             </p>
           </div>
         </div>
