@@ -8,7 +8,7 @@ export default function Footer() {
         <p style={{ marginTop: "0.5rem" }}>
           <strong>KAJO Studio 360</strong>
           <br />
-          Ceskoslovenske armady 1175, Slavkov u Brna 684 01
+          Československé armády 1175, Slavkov u Brna 684 01
         </p>
         <p style={{ marginTop: "0.5rem" }}>
           <a href="mailto:info@kajostudio360.cz">info@kajostudio360.cz</a>
@@ -18,9 +18,9 @@ export default function Footer() {
           <a href="#" className="social-link" style={{ color: "#1877F2" }}>FB</a>
           <a href="#" className="social-link" style={{ color: "#000" }}>TT</a>
         </div>
-        <p style={{ marginTop: "1rem" }}>&copy; 2026 KAJO Studio 360. Vsechna prava vyhrazena.</p>
+        <p style={{ marginTop: "1rem" }}>&copy; 2026 KAJO Studio 360. Všechna práva vyhrazena.</p>
         <p>
-          Web vytvoril{" "}
+          Web vytvořil{" "}
           <a href="https://weblyx.cz" target="_blank" rel="noopener noreferrer">
             Weblyx.cz
           </a>

@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const links = [
   { href: "#jak-to-funguje", label: "Jak to funguje" },
-  { href: "#balicky", label: "Balicky" },
+  { href: "#balicky", label: "Balíčky" },
   { href: "#galerie", label: "Galerie" },
   { href: "#vouchery", label: "Vouchery" },
   { href: "#recenze", label: "Recenze" },
@@ -34,7 +34,7 @@ export default function Navbar() {
           <a href="#" aria-label="TikTok" style={{ color: "#fff", fontSize: "0.85rem", fontWeight: 600 }}>TT</a>
         </div>
         <a href="#kontakt" className="nav-cta">
-          Chci nabidku
+          Chci nabídku
         </a>
         <button
           className="nav-mobile-btn"
@@ -55,7 +55,7 @@ export default function Navbar() {
             </a>
           ))}
           <a href="#kontakt" className="btn-primary" style={{ marginTop: "1rem" }}>
-            Chci nabidku
+            Chci nabídku
           </a>
         </div>
       )}

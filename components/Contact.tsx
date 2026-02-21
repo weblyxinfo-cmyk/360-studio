@@ -40,22 +40,22 @@ export default function Contact() {
 
   return (
     <section className="site-section" id="kontakt">
-      <div className="section-label">Poptavka</div>
+      <div className="section-label">Poptávka</div>
       <h2 className="section-title">
-        Mate zajem?
+        Máte zájem?
         <br />
-        Ozvete se nam
+        Ozvěte se nám
       </h2>
       <p className="section-desc">
-        Vyplnte formular a my se Vam co nejdrive ozveme s nabidkou sitou na miru.
-        Platite az po potvrzeni terminu.
+        Vyplňte formulář a my se Vám co nejdříve ozveme s nabídkou šitou na míru.
+        Platíte až po potvrzení termínu.
       </p>
       <div className="contact-grid">
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="name">Jmeno</label>
-              <input id="name" name="name" type="text" placeholder="Vase jmeno" required />
+              <label htmlFor="name">Jméno</label>
+              <input id="name" name="name" type="text" placeholder="Vaše jméno" required />
             </div>
             <div className="form-group">
               <label htmlFor="email">E-mail</label>
@@ -73,9 +73,9 @@ export default function Contact() {
                 <option value="">Vyberte typ akce...</option>
                 <option value="svatba">Svatba</option>
                 <option value="narozeniny">Narozeniny</option>
-                <option value="firemni">Firemni akce</option>
+                <option value="firemni">Firemní akce</option>
                 <option value="ples">Ples / Gala</option>
-                <option value="jine">Jine</option>
+                <option value="jine">Jiné</option>
               </select>
             </div>
           </div>
@@ -85,29 +85,29 @@ export default function Contact() {
               <input id="date" name="date" type="date" />
             </div>
             <div className="form-group">
-              <label htmlFor="location">Misto konani</label>
-              <input id="location" name="location" type="text" placeholder="Mesto nebo adresa" />
+              <label htmlFor="location">Místo konání</label>
+              <input id="location" name="location" type="text" placeholder="Město nebo adresa" />
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="message">Zprava</label>
+            <label htmlFor="message">Zpráva</label>
             <textarea
               id="message"
               name="message"
-              placeholder="Popiste nam Vasi predstavu..."
+              placeholder="Popište nám Vaši představu..."
             />
           </div>
           <button type="submit" className="btn-primary" disabled={status === "sending"}>
-            {status === "sending" ? "Odesilam..." : "Odeslat poptavku"}
+            {status === "sending" ? "Odesílám..." : "Odeslat poptávku"}
           </button>
           {status === "success" && (
             <div className="form-success">
-              Dekujeme! Vase poptavka byla odeslana. Ozveme se Vam do 24 hodin.
+              Děkujeme! Vaše poptávka byla odeslána. Ozveme se Vám do 24 hodin.
             </div>
           )}
           {status === "error" && (
             <div className="form-error">
-              Nastala chyba. Zkuste to prosim znovu nebo nas kontaktujte primo.
+              Nastala chyba. Zkuste to prosím znovu nebo nás kontaktujte přímo.
             </div>
           )}
         </form>
@@ -121,13 +121,13 @@ export default function Contact() {
             <p>
               <strong style={{ fontSize: "1.1rem" }}>KAJO Studio 360</strong>
               <br />
-              Ceskoslovenske armady 1175
+              Československé armády 1175
               <br />
               Slavkov u Brna 684 01
             </p>
           </div>
           <div className="contact-block">
-            <h4>Socialni site</h4>
+            <h4>Sociální sítě</h4>
             <div className="social-links">
               <a href="#" className="social-link" style={{ color: "#E1306C" }}>IG</a>
               <a href="#" className="social-link" style={{ color: "#1877F2" }}>FB</a>
@@ -135,9 +135,9 @@ export default function Contact() {
             </div>
           </div>
           <div className="contact-response-box">
-            <h4>Rychla odpoved</h4>
+            <h4>Rychlá odpověď</h4>
             <p>
-              Snazime se odpovedet jeste v den Vasi zpravy.
+              Snažíme se odpovědět ještě v den Vaší zprávy.
             </p>
           </div>
         </div>

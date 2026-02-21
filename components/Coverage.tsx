@@ -3,37 +3,37 @@
 interface CoverageCity { name: string; badge: string; }
 
 const fallbackCities: CoverageCity[] = [
-  { name: "Brno", badge: "Hlavni region" },
-  { name: "Zlin", badge: "Hlavni region" },
-  { name: "Olomouc", badge: "Dostupne" },
-  { name: "Kromeriz", badge: "Dostupne" },
-  { name: "Prerov", badge: "Dostupne" },
-  { name: "Vyskov", badge: "Dostupne" },
-  { name: "Kurim", badge: "Dostupne" },
-  { name: "Jihlava", badge: "Dostupne" },
-  { name: "Velke Mezirici", badge: "Dostupne" },
-  { name: "Boskovice", badge: "Dostupne" },
-  { name: "Breclav", badge: "Dostupne" },
-  { name: "Hodonin", badge: "Dostupne" },
-  { name: "Mikulov", badge: "Dostupne" },
-  { name: "Znojmo", badge: "Na poptavku" },
+  { name: "Brno", badge: "Hlavní region" },
+  { name: "Zlín", badge: "Hlavní region" },
+  { name: "Olomouc", badge: "Dostupné" },
+  { name: "Kroměříž", badge: "Dostupné" },
+  { name: "Přerov", badge: "Dostupné" },
+  { name: "Vyškov", badge: "Dostupné" },
+  { name: "Kuřim", badge: "Dostupné" },
+  { name: "Jihlava", badge: "Dostupné" },
+  { name: "Velké Meziříčí", badge: "Dostupné" },
+  { name: "Boskovice", badge: "Dostupné" },
+  { name: "Břeclav", badge: "Dostupné" },
+  { name: "Hodonín", badge: "Dostupné" },
+  { name: "Mikulov", badge: "Dostupné" },
+  { name: "Znojmo", badge: "Na poptávku" },
 ];
 
 // Approximate positions on an SVG map (x, y) — scaled to 500x400 viewBox
 // Based on real geographic coordinates of Czech cities projected to SVG
 const cityDots: { name: string; x: number; y: number }[] = [
   { name: "Brno", x: 280, y: 220 },
-  { name: "Zlin", x: 370, y: 200 },
+  { name: "Zlín", x: 370, y: 200 },
   { name: "Olomouc", x: 350, y: 140 },
-  { name: "Kromeriz", x: 340, y: 180 },
-  { name: "Prerov", x: 355, y: 155 },
-  { name: "Vyskov", x: 310, y: 200 },
-  { name: "Kurim", x: 265, y: 210 },
+  { name: "Kroměříž", x: 340, y: 180 },
+  { name: "Přerov", x: 355, y: 155 },
+  { name: "Vyškov", x: 310, y: 200 },
+  { name: "Kuřim", x: 265, y: 210 },
   { name: "Jihlava", x: 175, y: 190 },
-  { name: "Velke Mezirici", x: 220, y: 195 },
+  { name: "Velké Meziříčí", x: 220, y: 195 },
   { name: "Boskovice", x: 280, y: 165 },
-  { name: "Breclav", x: 310, y: 280 },
-  { name: "Hodonin", x: 345, y: 260 },
+  { name: "Břeclav", x: 310, y: 280 },
+  { name: "Hodonín", x: 345, y: 260 },
   { name: "Mikulov", x: 290, y: 295 },
   { name: "Znojmo", x: 230, y: 290 },
 ];
@@ -43,14 +43,14 @@ export default function Coverage({ data }: { data?: CoverageCity[] }) {
 
   return (
     <section className="site-section" id="pokryti">
-      <div className="section-label">Pusobnost</div>
+      <div className="section-label">Působnost</div>
       <h2 className="section-title">
-        Kde vsude
+        Kde všude
         <br />
-        nas najdete
+        nás najdete
       </h2>
       <p className="section-desc">
-        Pusobime predevsim v Jihomoravskem kraji, Olomoucky, Zlinsky kraj a Vysocina. Dalsi lokality dle dohody.
+        Působíme především v Jihomoravském kraji, Olomoucký, Zlínský kraj a Vysočina. Další lokality dle dohody.
       </p>
       <div className="coverage-content">
         <div className="map-placeholder" style={{ background: "transparent", border: "none", position: "relative" }}>
@@ -97,7 +97,7 @@ export default function Coverage({ data }: { data?: CoverageCity[] }) {
             ))}
           </ul>
           <p style={{ fontSize: "0.85rem", color: "var(--color-muted)", marginTop: "1.5rem" }}>
-            Doprava v hlavnich ctyrech regionech je v cene. Ostatni lokality dle individualni dohody.
+            Doprava v hlavních čtyřech regionech je v ceně. Ostatní lokality dle individuální dohody.
           </p>
         </div>
       </div>

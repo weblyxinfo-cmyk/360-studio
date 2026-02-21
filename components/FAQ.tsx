@@ -5,11 +5,11 @@ import { useState } from "react";
 interface FAQItem { q: string; a: string; }
 
 const fallbackFaqs: FAQItem[] = [
-  { q: "Kolik mista fotobooth potrebuje?", a: "Booth potrebuje prostor priblizne 3x3 metry. Poradime Vam s rozmistenim na Vasi akci." },
-  { q: "Potrebujete pristup k elektrine?", a: "Ano, potrebujeme standardni elektrickou zasuvku 230V v dosahu do 10 metru od mista instalace." },
-  { q: "Jak dlouho trva instalace?", a: "Instalace trva priblizne 30-45 minut. Prijedeme s dostatecnym predstihem pred zacatkem akce." },
-  { q: "Jak hoste ziskaji sva videa?", a: "Kazdy host si stahne video okamzite pres QR kod primo na svuj telefon. Po akci obdrzite kompletni galerii." },
-  { q: "Fungujete i mimo velka mesta?", a: "Ano, jezdime po cele CR. Doprava je v cene v ramci nasich hlavnich regionu, ostatni lokality dle dohody." },
+  { q: "Kolik místa fotobooth potřebuje?", a: "Booth potřebuje prostor přibližně 3x3 metry. Poradíme Vám s rozmístěním na Vaší akci." },
+  { q: "Potřebujete přístup k elektřině?", a: "Ano, potřebujeme standardní elektrickou zásuvku 230V v dosahu do 10 metrů od místa instalace." },
+  { q: "Jak dlouho trvá instalace?", a: "Instalace trvá přibližně 30-45 minut. Přijedeme s dostatečným předstihem před začátkem akce." },
+  { q: "Jak hosté získají svá videa?", a: "Každý host si stáhne video okamžitě přes QR kód přímo na svůj telefon. Po akci obdržíte kompletní galerii." },
+  { q: "Fungujete i mimo velká města?", a: "Ano, jezdíme po celé ČR. Doprava je v ceně v rámci našich hlavních regionů, ostatní lokality dle dohody." },
 ];
 
 export default function FAQ({ data }: { data?: FAQItem[] }) {
@@ -18,8 +18,8 @@ export default function FAQ({ data }: { data?: FAQItem[] }) {
 
   return (
     <section className="site-section" id="faq">
-      <div className="section-label">Caste dotazy</div>
-      <h2 className="section-title">Vse, co potrebujete vedet</h2>
+      <div className="section-label">Časté dotazy</div>
+      <h2 className="section-title">Vše, co potřebujete vědět</h2>
       <div className="faq-grid">
         {faqs.map((faq, i) => (
           <div

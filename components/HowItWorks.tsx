@@ -1,23 +1,23 @@
 const steps = [
   {
     num: "01",
-    title: "Kontaktujte nas",
-    desc: "Vyplnte poptavkovy formular s datem, mistem a typem akce. Ozveme se do 24 hodin.",
+    title: "Kontaktujte nás",
+    desc: "Vyplňte poptávkový formulář s datem, místem a typem akce. Ozveme se do 24 hodin.",
   },
   {
     num: "02",
-    title: "Domluvime detaily",
-    desc: "Pomuzeme Vam vybrat balicek, prizpusobime vse podle Vasich prani a doladime detaily Vasi akce.",
+    title: "Domluvíme detaily",
+    desc: "Pomůžeme Vám vybrat balíček, přizpůsobíme vše podle Vašich přání a doladíme detaily Vaší akce.",
   },
   {
     num: "03",
-    title: "Prijedeme a nastavime",
-    desc: "Nas tym dorazi s predstihem, nainstaluje booth a zajisti, ze vse funguje na 100%.",
+    title: "Přijedeme a nastavíme",
+    desc: "Náš tým dorazí s předstihem, nainstaluje booth a zajistí, že vše funguje na 100%.",
   },
   {
     num: "04",
-    title: "Uzijte si zabavu",
-    desc: "Vasi hoste se bavi, my obsluhujeme booth.",
+    title: "Užijte si zábavu",
+    desc: "Vaši hosté se baví, my obsluhujeme booth.",
   },
 ];
 
@@ -26,11 +26,11 @@ export default function HowItWorks() {
     <section className="site-section" id="jak-to-funguje">
       <div className="section-label">Jak to funguje</div>
       <h2 className="section-title">
-        Ctyri kroky
-        <br />k zabave
+        Čtyři kroky
+        <br />k zábavě
       </h2>
       <p className="section-desc">
-        Cely proces je maximalne jednoduchy. Vy si uzivate akci, my se postarame
+        Celý proces je maximálně jednoduchý. Vy si užíváte akci, my se postaráme
         o zbytek.
       </p>
       <div className="steps-grid">
