@@ -24,15 +24,15 @@ export default function VoucherSuccess() {
             fontWeight: 700,
           }}
         >
-          Dekujeme za nakup!
+          Děkujeme za nákup!
         </h1>
         <p style={{ marginTop: "1rem", color: "var(--color-muted)" }}>
-          Vas darkovy poukaz byl uspesne zakoupen. Podrobnosti jsme vam zaslali
-          na email.
+          Váš dárkový poukaz byl úspěšně zakoupen. Podrobnosti jsme Vám zaslali
+          na e-mail.
         </p>
         <div style={{ marginTop: "2rem" }}>
           <a href="/" className="btn-primary" style={{ display: "inline-block" }}>
-            Zpet na hlavni stranku
+            Zpět na hlavní stránku
           </a>
         </div>
       </div>

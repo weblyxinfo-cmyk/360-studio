@@ -5,7 +5,7 @@ export default function Vouchers() {
       <h2 className="section-title">
         Darujte zážitek, který
         <br />
-        nikdo nečeká
+        nikdo neočekává
       </h2>
       <p className="section-desc">
         Online nákup voucheru na pronájem 360 fotoboothu. Perfektní dárek na
@@ -30,7 +30,7 @@ export default function Vouchers() {
           <h3>Nákup za pár kliků</h3>
           <p>
             Vyberte balíček, zaplaťte online a voucher s unikátním kódem Vám
-            přijde okamžitě na e-mail jako PDF ke stažení nebo vytištění.
+            přijde do 24 hodin na e-mail jako PDF ke stažení nebo vytištění.
           </p>
           <ul className="voucher-perks">
             <li>Doručení do 24 hod</li>

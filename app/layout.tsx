@@ -15,15 +15,15 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Kajo Studio 360 | Premiovy 360° Photobooth",
+  title: "Kajo Studio 360 | Prémiový 360° Photobooth",
   description:
-    "Pronajem premioveho 360° photoboothu pro svatby, firemni akce a narozeniny. Epicka videa, okamzite sdileni, profesionalni obsluha po cele CR.",
+    "Pronájem prémiového 360° photoboothu pro svatby, firemní akce a narozeniny. Epická videa, okamžité sdílení, profesionální obsluha po celé ČR.",
   keywords: [
     "360 photobooth",
-    "photobooth pronajem",
+    "photobooth pronájem",
     "360 video",
-    "svatebni photobooth",
-    "firemni akce",
+    "svatební photobooth",
+    "firemní akce",
     "Praha",
     "Brno",
     "Ostrava",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     locale: "cs_CZ",
     url: "https://kajostudio.cz",
     siteName: "Kajo Studio 360",
-    title: "Kajo Studio 360 | Premiovy 360° Photobooth",
+    title: "Kajo Studio 360 | Prémiový 360° Photobooth",
     description:
-      "Pronajem premioveho 360° photoboothu pro svatby, firemni akce a narozeniny.",
+      "Pronájem prémiového 360° photoboothu pro svatby, firemní akce a narozeniny.",
   },
   robots: {
     index: true,
@@ -53,12 +53,12 @@ export default function RootLayout({
     "@type": "LocalBusiness",
     name: "Kajo Studio 360",
     description:
-      "Pronajem premioveho 360° photoboothu pro svatby, firemni akce a narozeniny.",
+      "Pronájem prémiového 360° photoboothu pro svatby, firemní akce a narozeniny.",
     url: "https://kajostudio.cz",
     email: "info@kajostudio360.cz",
     areaServed: {
       "@type": "Country",
-      name: "Ceska republika",
+      name: "Česká republika",
     },
     priceRange: "$$",
   };
