@@ -11,11 +11,6 @@ export default function Hero() {
           <br />
           se <em>točí</em> kolem Vás
         </h1>
-        <img
-          src="/images/logo-kajo.png"
-          alt="KAJO Studio 360"
-          style={{ maxWidth: "200px", margin: "1.5rem auto" }}
-        />
         <p className="hero-sub">
           Pronájem prémiového 360 fotobothu na svatby, narozeniny, firemní akce
           a další události.
