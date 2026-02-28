@@ -25,7 +25,7 @@ export default function Packages({ data }: { data?: PackageData[] }) {
               <h3>{pkg.name}</h3>
               <div className="package-duration">{pkg.duration}</div>
               <div className="package-price">
-                {pkg.price > 0 ? `${(pkg.price / 100).toLocaleString("cs-CZ")} Kč` : "X XXX Kč"} <span>/ akce</span>
+                {pkg.price > 0 ? `${(pkg.price / 100).toLocaleString("cs-CZ")} Kč` : "Na poptávku"} <span>/ akce</span>
               </div>
               {pkg.priceNote && <p className="package-note">{pkg.priceNote}</p>}
               <ul className="package-features">
@@ -49,7 +49,7 @@ export default function Packages({ data }: { data?: PackageData[] }) {
           <div className="package-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
           <h3>START</h3>
           <div className="package-duration">1 hodina zábavy</div>
-          <div className="package-price">X XXX Kč <span>/ akce</span></div>
+          <div className="package-price">7 990 Kč <span>/ akce</span></div>
           <p className="package-note">Ideální volba pro menší oslavy a kratší akce.</p>
           <ul className="package-features">
             <li>Profesionální obsluha</li>
@@ -66,7 +66,7 @@ export default function Packages({ data }: { data?: PackageData[] }) {
           <div className="package-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
           <h3>DOUBLE FUN</h3>
           <div className="package-duration">2 hodiny zábavy</div>
-          <div className="package-price">X XXX Kč <span>/ akce</span></div>
+          <div className="package-price">12 990 Kč <span>/ akce</span></div>
           <p className="package-note">Perfektní řešení pro svatby a větší oslavy.</p>
           <ul className="package-features">
             <li>Profesionální obsluha</li>
