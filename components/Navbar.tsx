@@ -54,17 +54,6 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="nav-socials">
-          <a href="#" aria-label="Instagram" className="nav-social-icon" style={{ color: "#E1306C" }}>
-            <IconInstagram />
-          </a>
-          <a href="#" aria-label="Facebook" className="nav-social-icon" style={{ color: "#1877F2" }}>
-            <IconFacebook />
-          </a>
-          <a href="#" aria-label="TikTok" className="nav-social-icon" style={{ color: "#fff" }}>
-            <IconTikTok />
-          </a>
-        </div>
         <a href="#kontakt" className="nav-cta">
           Chci nabídku
         </a>
