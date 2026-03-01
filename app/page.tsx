@@ -45,9 +45,31 @@ async function getHomeData() {
     let faq, coverage;
     try {
       const [faqRow] = await db.select().from(settings).where(eq(settings.key, "faq")).limit(1);
-      const [coverageRow] = await db.select().from(settings).where(eq(settings.key, "coverage")).limit(1);
       faq = faqRow?.value ? JSON.parse(faqRow.value) : undefined;
-      coverage = coverageRow?.value ? JSON.parse(coverageRow.value) : undefined;
+
+      // Coverage: try coverage_cities first (simple array), then coverage (object format)
+      const [coverageCitiesRow] = await db.select().from(settings).where(eq(settings.key, "coverage_cities")).limit(1);
+      if (coverageCitiesRow?.value) {
+        const cityNames: string[] = JSON.parse(coverageCitiesRow.value);
+        const mainRegions = ["Brno", "Zlín"];
+        coverage = cityNames.map((name) => ({
+          name,
+          badge: mainRegions.includes(name) ? "Hlavní region" : "Dostupné",
+        }));
+      } else {
+        const [coverageRow] = await db.select().from(settings).where(eq(settings.key, "coverage")).limit(1);
+        if (coverageRow?.value) {
+          const raw = JSON.parse(coverageRow.value);
+          if (Array.isArray(raw)) {
+            coverage = raw;
+          } else if (raw.mainRegions && raw.cities) {
+            coverage = [
+              ...raw.mainRegions.map((n: string) => ({ name: n, badge: "Hlavní region" })),
+              ...raw.cities.map((n: string) => ({ name: n, badge: "Dostupné" })),
+            ];
+          }
+        }
+      }
     } catch {
       // Settings may not exist yet
     }

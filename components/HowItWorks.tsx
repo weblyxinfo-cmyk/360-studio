@@ -7,7 +7,7 @@ const steps = [
   {
     num: "02",
     title: "Domluvíme detaily",
-    desc: "Pomůžeme Vám vybrat balíček, přizpůsobíme vše podle Vašich přání a doladíme detaily Vaší akce.",
+    desc: "Vybereme balíček, domluvíme personalizaci a upřesníme vše potřebné pro Vaší akci.",
   },
   {
     num: "03",
@@ -17,7 +17,7 @@ const steps = [
   {
     num: "04",
     title: "Užijte si zábavu",
-    desc: "Vaši hosté se baví, my obsluhujeme booth.",
+    desc: "Vaší hosté se baví, my obsluhujeme booth. Videa dostanete ihned v digitální galerii.",
   },
 ];
 
@@ -26,8 +26,8 @@ export default function HowItWorks() {
     <section className="site-section" id="jak-to-funguje">
       <div className="section-label">Jak to funguje</div>
       <h2 className="section-title">
-        Čtyři kroky
-        <br />k zábavě
+        Čtyři jednoduché kroky
+        <br />k nezapomenutelné zábavě
       </h2>
       <p className="section-desc">
         Celý proces je maximálně jednoduchý. Vy si užíváte akci, my se postaráme

@@ -9,7 +9,7 @@ const links = [
   { href: "#vouchery", label: "Vouchery" },
   { href: "#recenze", label: "Recenze" },
   { href: "#faq", label: "FAQ" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "#poptat", label: "Kontakt" },
 ];
 
 function IconInstagram() {
@@ -54,7 +54,7 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <a href="#kontakt" className="nav-cta">
+        <a href="#poptat" className="nav-cta">
           Chci nabídku
         </a>
         <button
@@ -75,12 +75,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <div className="nav-mobile-socials">
-            <a href="#" aria-label="Instagram" style={{ color: "#E1306C" }}><IconInstagram /></a>
-            <a href="#" aria-label="Facebook" style={{ color: "#1877F2" }}><IconFacebook /></a>
-            <a href="#" aria-label="TikTok" style={{ color: "#fff" }}><IconTikTok /></a>
-          </div>
-          <a href="#kontakt" className="btn-primary" style={{ marginTop: "1rem" }}>
+          <a href="#poptat" className="btn-primary" style={{ marginTop: "1rem" }}>
             Chci nabídku
           </a>
         </div>

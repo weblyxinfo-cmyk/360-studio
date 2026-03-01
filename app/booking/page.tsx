@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { ChevronLeft, ChevronRight, Calendar, Clock, Package, User, Check } from "lucide-react";
 
 interface PackageData {
@@ -28,25 +29,49 @@ const steps = [
 ];
 
 export default function BookingPage() {
+  return (
+    <Suspense fallback={<div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>Načítání...</div>}>
+      <BookingContent />
+    </Suspense>
+  );
+}
+
+function BookingContent() {
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(0);
   const [packages, setPackages] = useState<PackageData[]>([]);
   const [availability, setAvailability] = useState<AvailableDate[]>([]);
   const [currentMonth, setCurrentMonth] = useState(() => {
+    const paramDate = searchParams.get("date");
+    if (paramDate) {
+      const [y, m] = paramDate.split("-");
+      return `${y}-${m}`;
+    }
     const d = new Date();
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
   });
 
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTime, setSelectedTime] = useState({ start: "", end: "" });
-  const [selectedPackage, setSelectedPackage] = useState("");
+  const [selectedDate, setSelectedDate] = useState(searchParams.get("date") || "");
+  const [selectedTime, setSelectedTime] = useState({ start: searchParams.get("timeStart") || "", end: searchParams.get("timeEnd") || "" });
+  const [selectedPackage, setSelectedPackage] = useState(searchParams.get("package") || "");
   const [voucherCode, setVoucherCode] = useState("");
   const [voucherDiscount, setVoucherDiscount] = useState(0);
   const [voucherError, setVoucherError] = useState("");
   const [form, setForm] = useState({
-    name: "", email: "", phone: "", eventType: "", location: "", notes: "",
+    name: searchParams.get("name") || "",
+    email: searchParams.get("email") || "",
+    phone: "", eventType: "", location: "", notes: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+
+  // If URL has all params, skip to details/summary step
+  const prefilled = !!(searchParams.get("date") && searchParams.get("package"));
+  const [initialStep] = useState(() => prefilled ? 3 : 0);
+
+  useEffect(() => {
+    if (prefilled) setStep(initialStep);
+  }, [prefilled, initialStep]);
 
   useEffect(() => {
     fetch("/api/booking/packages").then((r) => r.json()).then(setPackages);

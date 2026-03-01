@@ -12,12 +12,15 @@ export default function Hero() {
           se <em>točí</em> kolem Vás
         </h1>
         <p className="hero-sub">
-          Pronájem prémiového 360 fotobothu na svatby, narozeniny, firemní akce
-          a další události.
+          Pronájem prémiového 360 fotoboothu na svatby, narozeniny, firemní akce
+          a další události po celé ČR.
+        </p>
+        <p className="hero-sub" style={{ fontSize: "0.85rem", opacity: 0.7, marginTop: "0.5rem" }}>
+          Odpovídáme do 24 hodin. Platíte až po potvrzení termínu.
         </p>
         <div className="hero-actions">
-          <a href="#kontakt" className="btn-primary">
-            Nezávazná poptávka
+          <a href="#poptat" className="btn-primary">
+            Nezávazně poptat termín
           </a>
           <a href="#jak-to-funguje" className="btn-outline">
             Jak to funguje

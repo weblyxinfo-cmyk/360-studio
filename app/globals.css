@@ -66,12 +66,14 @@ body::after {
   font-family: var(--font-heading);
   font-weight: 800; font-size: 1.1rem;
   letter-spacing: 0.05em; color: var(--color-foreground);
+  white-space: nowrap;
 }
 .logo span { color: var(--color-gold); }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
 .nav-links a {
-  color: var(--color-muted-light); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  color: var(--color-muted-light); text-decoration: none; font-size: 0.8rem; font-weight: 500;
   letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; position: relative;
+  white-space: nowrap;
 }
 .nav-links a::after {
   content: ''; position: absolute; bottom: -4px; left: 0;
@@ -110,6 +112,7 @@ body::after {
   padding: 0.7rem 1.8rem; border-radius: 50px;
   font-weight: 600; font-size: 0.85rem; text-decoration: none;
   letter-spacing: 0.05em; transition: all 0.3s; text-transform: uppercase;
+  white-space: nowrap; flex-shrink: 0;
 }
 .nav-cta:hover { background: var(--color-gold-light); transform: scale(1.05); }
 
@@ -395,14 +398,15 @@ body::after {
 .gallery-item .g-content {
   position: absolute; inset: 0; display: flex; flex-direction: column;
   justify-content: flex-end; padding: 2rem;
-  background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 40%, transparent 70%);
+  background: linear-gradient(to top, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.15) 30%, transparent 50%);
   z-index: 2;
 }
 .gallery-item .g-tag {
-  display: inline-block; padding: 0.3rem 0.8rem;
-  border: 1px solid rgba(200,169,110,0.4); border-radius: 50px;
-  font-size: 0.65rem; color: var(--color-gold);
-  letter-spacing: 0.12em; text-transform: uppercase;
+  display: inline-block; padding: 0.35rem 0.9rem;
+  background: rgba(200,169,110,0.2); backdrop-filter: blur(8px);
+  border: 1px solid rgba(200,169,110,0.5); border-radius: 50px;
+  font-size: 0.7rem; color: #fff; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
   margin-bottom: 0.6rem; width: fit-content;
 }
 .gallery-item .g-title {

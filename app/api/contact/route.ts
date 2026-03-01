@@ -1,15 +1,19 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { resend } from "@/lib/resend";
+import { db } from "@/db";
+import { inquiries } from "@/db/schema/inquiries";
+import { nanoid } from "nanoid";
 
 const contactSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
   phone: z.string().optional(),
   eventType: z.string().min(1),
+  packageType: z.string().optional(),
   eventDate: z.string().optional(),
   eventLocation: z.string().optional(),
-  message: z.string().min(10),
+  message: z.string().optional().default("Prosím o nezávaznou nabídku."),
 });
 
 export async function POST(request: Request) {
@@ -17,6 +21,20 @@ export async function POST(request: Request) {
     const body = await request.json();
     const data = contactSchema.parse(body);
 
+    // Always save to DB so inquiries are never lost
+    await db.insert(inquiries).values({
+      id: nanoid(),
+      name: data.name,
+      email: data.email,
+      phone: data.phone || null,
+      eventType: data.eventType,
+      packageType: data.packageType || null,
+      eventDate: data.eventDate || null,
+      eventLocation: data.eventLocation || null,
+      message: data.message || null,
+    });
+
+    // Send email notification if Resend is configured
     const contactEmail = process.env.CONTACT_EMAIL || "info@kajostudio360.cz";
 
     if (resend) {
@@ -30,14 +48,13 @@ export async function POST(request: Request) {
           <p><strong>Email:</strong> ${data.email}</p>
           <p><strong>Telefon:</strong> ${data.phone || "Neuvedeno"}</p>
           <p><strong>Typ akce:</strong> ${data.eventType}</p>
+          <p><strong>Balíček:</strong> ${data.packageType || "Neuvedeno"}</p>
           <p><strong>Datum akce:</strong> ${data.eventDate || "Neuvedeno"}</p>
           <p><strong>Místo konání:</strong> ${data.eventLocation || "Neuvedeno"}</p>
           <p><strong>Zpráva:</strong></p>
           <p>${data.message}</p>
         `,
       });
-    } else {
-      console.log("Resend not configured. Contact form submission:", data);
     }
 
     return NextResponse.json({ success: true });

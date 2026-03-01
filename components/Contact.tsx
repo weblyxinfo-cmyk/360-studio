@@ -47,9 +47,10 @@ export default function Contact() {
           email: data.get("email"),
           phone: data.get("phone"),
           eventType: data.get("eventType"),
-          date: data.get("date"),
-          location: data.get("location"),
-          message: data.get("message"),
+          packageType: data.get("packageType"),
+          eventDate: data.get("date"),
+          eventLocation: data.get("location"),
+          message: data.get("message") || "Prosím o nezávaznou nabídku.",
         }),
       });
 
@@ -65,37 +66,37 @@ export default function Contact() {
   }
 
   return (
-    <section className="site-section" id="kontakt">
+    <section className="site-section" id="poptat">
       <div className="section-label">Poptávka</div>
       <h2 className="section-title">
-        Máte zájem?
+        Poptat 360°
         <br />
-        Ozvěte se nám
+        photobooth
       </h2>
       <p className="section-desc">
-        Vyplňte formulář a my se Vám co nejdříve ozveme s nabídkou šitou na míru.
+        Vyplňte formulář a my se Vám ozveme do 24 hodin s nabídkou šitou na míru.
         Platíte až po potvrzení termínu.
       </p>
       <div className="contact-grid">
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="name">Jméno</label>
+              <label htmlFor="name">Jméno a příjmení *</label>
               <input id="name" name="name" type="text" placeholder="Vaše jméno" required />
             </div>
             <div className="form-group">
-              <label htmlFor="email">E-mail</label>
+              <label htmlFor="email">E-mail *</label>
               <input id="email" name="email" type="email" placeholder="vas@email.cz" required />
             </div>
           </div>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="phone">Telefon</label>
-              <input id="phone" name="phone" type="tel" placeholder="+420 ..." />
+              <label htmlFor="phone">Telefon *</label>
+              <input id="phone" name="phone" type="tel" placeholder="+420 ..." required />
             </div>
             <div className="form-group">
-              <label htmlFor="eventType">Typ akce</label>
-              <select id="eventType" name="eventType">
+              <label htmlFor="eventType">Typ akce *</label>
+              <select id="eventType" name="eventType" required>
                 <option value="">Vyberte typ akce...</option>
                 <option value="svatba">Svatba</option>
                 <option value="narozeniny">Narozeniny</option>
@@ -107,20 +108,30 @@ export default function Contact() {
           </div>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="date">Datum akce</label>
-              <input id="date" name="date" type="date" />
+              <label htmlFor="date">Preferovaný termín *</label>
+              <input id="date" name="date" type="date" required />
             </div>
+            <div className="form-group">
+              <label htmlFor="packageType">Balíček</label>
+              <select id="packageType" name="packageType">
+                <option value="">Nevím, poraďte mi</option>
+                <option value="zakladni">Základní (7 990 Kč / 1h)</option>
+                <option value="premium">Premium (12 990 Kč / 2h)</option>
+              </select>
+            </div>
+          </div>
+          <div className="form-row">
             <div className="form-group">
               <label htmlFor="location">Místo konání</label>
               <input id="location" name="location" type="text" placeholder="Město nebo adresa" />
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="message">Zpráva</label>
+            <label htmlFor="message">Poznámka</label>
             <textarea
               id="message"
               name="message"
-              placeholder="Popište nám Vaši představu..."
+              placeholder="Máte speciální požadavky? Napište nám..."
             />
           </div>
           <button type="submit" className="btn-primary" disabled={status === "sending"}>
@@ -128,16 +139,23 @@ export default function Contact() {
           </button>
           {status === "success" && (
             <div className="form-success">
-              Děkujeme! Vaše poptávka byla odeslána. Ozveme se Vám do 24 hodin.
+              Děkujeme! Ověříme dostupnost termínu a ozveme se Vám do 24 hodin.
+              Pokud je to urgentní, volejte na 777 987 543.
             </div>
           )}
           {status === "error" && (
             <div className="form-error">
-              Nastala chyba. Zkuste to prosím znovu nebo nás kontaktujte přímo.
+              Nastala chyba. Zkuste to prosím znovu nebo nás kontaktujte přímo na info@kajostudio360.cz
             </div>
           )}
         </form>
         <div className="contact-info">
+          <div className="contact-block">
+            <h4>Telefon</h4>
+            <a href="tel:+420777987543">Kateřina Vítková — 777 987 543</a>
+            <br />
+            <a href="tel:+420730172812">Josef Perný — 730 172 812</a>
+          </div>
           <div className="contact-block">
             <h4>E-mail</h4>
             <a href="mailto:info@kajostudio360.cz">info@kajostudio360.cz</a>
@@ -163,7 +181,8 @@ export default function Contact() {
           <div className="contact-response-box">
             <h4>Rychlá odpověď</h4>
             <p>
-              Snažíme se odpovědět ještě v den Vaší zprávy.
+              Na každou poptávku odpovídáme do 24 hodin. Většinou se ozveme
+              ještě tentýž den.
             </p>
           </div>
         </div>

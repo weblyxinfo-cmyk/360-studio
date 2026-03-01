@@ -56,7 +56,7 @@ export default function VoucherPage() {
           Darujte zážitek<br />na 360 fotoboothu
         </h1>
         <p className="section-desc" style={{ marginBottom: "3rem" }}>
-          Vyberte balíček, vyplňte údaje a zaplaťte online. Voucher s unikátním kódem přijde do 24 hodin na e-mail.
+          Vyberte balíček, vyplňte údaje a zaplaťte online. Voucher s unikátním kódem přijde okamžitě na e-mail.
         </p>
 
         {/* Package selection */}
@@ -141,7 +141,7 @@ export default function VoucherPage() {
         </form>
 
         <p style={{ textAlign: "center", marginTop: "2rem", fontSize: "0.85rem", color: "var(--color-muted)" }}>
-          Platba kartou přes zabezpečenou bránu GoPay. Voucher přijde do 24 hodin po zaplacení.
+          Platba kartou přes zabezpečenou bránu GoPay. Voucher přijde okamžitě po zaplacení.
           <br />Platnost 12 měsíců od zakoupení.
         </p>
       </section>

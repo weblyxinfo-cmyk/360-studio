@@ -7,3 +7,4 @@ export { bookings } from "./bookings";
 export { payments } from "./payments";
 export { availabilitySlots, availabilityPatterns } from "./availability";
 export { settings } from "./settings";
+export { inquiries } from "./inquiries";

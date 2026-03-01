@@ -8,6 +8,7 @@ const fallbackFaqs: FAQItem[] = [
   { q: "Kolik místa fotobooth potřebuje?", a: "Booth potřebuje prostor přibližně 3x3 metry. Poradíme Vám s rozmístěním na Vaší akci." },
   { q: "Potřebujete přístup k elektřině?", a: "Ano, potřebujeme standardní elektrickou zásuvku 230V v dosahu do 10 metrů od místa instalace." },
   { q: "Jak dlouho trvá instalace?", a: "Instalace trvá přibližně 30-45 minut. Přijedeme s dostatečným předstihem před začátkem akce." },
+  { q: "Lze personalizovat pozadí a overlay?", a: "Ano, v Premium balíčku zahrnujeme vlastní branding - logo, barvy, pozadí i textové overlaye podle Vašich přání." },
   { q: "Jak hosté získají svá videa?", a: "Každý host si stáhne video okamžitě přes QR kód přímo na svůj telefon. Po akci obdržíte kompletní galerii." },
   { q: "Fungujete i mimo velká města?", a: "Ano, jezdíme po celé ČR. Doprava je v ceně v rámci našich hlavních regionů, ostatní lokality dle dohody." },
 ];

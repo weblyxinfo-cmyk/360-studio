@@ -18,10 +18,12 @@ import {
   Menu,
   X,
   ChevronRight,
+  MessageSquare,
 } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/inquiries", label: "Poptávky", icon: MessageSquare },
   { href: "/admin/reviews", label: "Recenze", icon: Star },
   { href: "/admin/gallery", label: "Galerie", icon: Image },
   { href: "/admin/packages", label: "Balíčky", icon: Package },

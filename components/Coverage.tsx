@@ -50,7 +50,7 @@ export default function Coverage({ data }: { data?: CoverageCity[] }) {
         nás najdete
       </h2>
       <p className="section-desc">
-        Působíme především v Jihomoravském kraji, Olomoucký, Zlínský kraj a Vysočina. Další lokality dle dohody.
+        Působíme především na Moravě a v Jihočeských krajích. Další lokality dle dohody.
       </p>
       <div className="coverage-content">
         <div className="map-placeholder" style={{ background: "transparent", border: "none", position: "relative" }}>
@@ -97,7 +97,7 @@ export default function Coverage({ data }: { data?: CoverageCity[] }) {
             ))}
           </ul>
           <p style={{ fontSize: "0.85rem", color: "var(--color-muted)", marginTop: "1.5rem" }}>
-            Doprava v hlavních čtyřech regionech je v ceně. Ostatní lokality dle individuální dohody.
+            Doprava v hlavních regionech je v ceně. Ostatní lokality dle individuální dohody.
           </p>
         </div>
       </div>

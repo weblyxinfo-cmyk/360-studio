@@ -31,10 +31,21 @@ export default function GalleryPage() {
   useEffect(() => { fetchItems(); }, []);
 
   async function fetchItems() {
-    const res = await fetch("/api/admin/gallery");
-    const data = await res.json();
-    setItems(data);
-    setLoading(false);
+    try {
+      const res = await fetch("/api/admin/gallery");
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        setItems(data);
+      } else {
+        console.error("Gallery API returned unexpected data:", data);
+        setItems([]);
+      }
+    } catch (error) {
+      console.error("Failed to fetch gallery items:", error);
+      setItems([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   function openCreate() {
