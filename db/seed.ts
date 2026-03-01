@@ -284,37 +284,49 @@ async function seed() {
   console.log("✅ Gallery items seeded");
 
   // Seed packages
-  const basicPkgId = nanoid();
-  const premiumPkgId = nanoid();
+  const startPkgId = nanoid();
+  const doubleFunPkgId = nanoid();
+  const vipPkgId = nanoid();
 
   await db.insert(packages).values([
     {
-      id: basicPkgId,
-      slug: "zakladni",
-      name: "Základní",
+      id: startPkgId,
+      slug: "start",
+      name: "START",
       duration: "1 hodina zábavy",
-      price: 0, // Price TBD - placeholder
+      price: 799000, // 7 990 Kč v haléřích
       priceNote: "Ideální pro menší oslavy a narozeniny",
       isFeatured: false,
       isVisible: true,
       sortOrder: 1,
     },
     {
-      id: premiumPkgId,
-      slug: "premium",
-      name: "Premium",
+      id: doubleFunPkgId,
+      slug: "double-fun",
+      name: "DOUBLE FUN",
       duration: "2 hodiny zábavy",
-      price: 0, // Price TBD - placeholder
+      price: 1299000, // 12 990 Kč v haléřích
       priceNote: "Perfektní pro svatby a firemní akce",
       isFeatured: true,
       featuredLabel: "NEJOBLÍBENĚJŠÍ",
       isVisible: true,
       sortOrder: 2,
     },
+    {
+      id: vipPkgId,
+      slug: "vip-360-exclusive",
+      name: "VIP 360 Exclusive",
+      duration: "Dle dohody",
+      price: 0, // Cena na míru — zobrazí se "Dle dohody"
+      priceNote: "Pro nejnáročnější klienty a exkluzivní eventy",
+      isFeatured: false,
+      isVisible: true,
+      sortOrder: 3,
+    },
   ]).onConflictDoNothing();
 
   // Seed package features
-  const basicFeatures = [
+  const startFeatures = [
     "Profesionální obsluha",
     "Neomezený počet natočení",
     "Rekvizity a doplňky",
@@ -323,8 +335,8 @@ async function seed() {
     "Instalace a odvoz v ceně",
   ];
 
-  const premiumFeatures = [
-    "Vše ze základního balíčku",
+  const doubleFunFeatures = [
+    "Vše ze START balíčku",
     "Vlastní branding (logo, barvy)",
     "Slow-motion efekty",
     "Prémiové pozadí dle výběru",
@@ -332,20 +344,38 @@ async function seed() {
     "Prioritní termíny",
   ];
 
-  for (let i = 0; i < basicFeatures.length; i++) {
+  const vipFeatures = [
+    "Vše z DOUBLE FUN balíčku",
+    "Neomezená doba pronájmu",
+    "Individuální grafický návrh",
+    "Dedikovaný koordinátor",
+    "Přednostní technická podpora",
+    "Kompletní post-produkce",
+  ];
+
+  for (let i = 0; i < startFeatures.length; i++) {
     await db.insert(packageFeatures).values({
       id: nanoid(),
-      packageId: basicPkgId,
-      text: basicFeatures[i],
+      packageId: startPkgId,
+      text: startFeatures[i],
       sortOrder: i + 1,
     }).onConflictDoNothing();
   }
 
-  for (let i = 0; i < premiumFeatures.length; i++) {
+  for (let i = 0; i < doubleFunFeatures.length; i++) {
     await db.insert(packageFeatures).values({
       id: nanoid(),
-      packageId: premiumPkgId,
-      text: premiumFeatures[i],
+      packageId: doubleFunPkgId,
+      text: doubleFunFeatures[i],
+      sortOrder: i + 1,
+    }).onConflictDoNothing();
+  }
+
+  for (let i = 0; i < vipFeatures.length; i++) {
+    await db.insert(packageFeatures).values({
+      id: nanoid(),
+      packageId: vipPkgId,
+      text: vipFeatures[i],
       sortOrder: i + 1,
     }).onConflictDoNothing();
   }
