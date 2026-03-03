@@ -305,7 +305,7 @@ body::after {
   background: linear-gradient(135deg, rgba(200,169,110,0.08), rgba(200,169,110,0.02));
 }
 .package.featured::before {
-  content: 'NEJČASTĚJŠÍ VOLBA'; position: absolute; top: 1.5rem; right: -2rem;
+  content: 'NEJČASTĚJŠÍ'; position: absolute; top: 1.5rem; right: -2rem;
   background: var(--color-gold); color: var(--color-background);
   padding: 0.3rem 3rem; font-size: 0.65rem; font-weight: 700;
   letter-spacing: 0.1em; transform: rotate(45deg);
