@@ -3,8 +3,8 @@
 import { useState } from "react";
 
 const packages = [
-  { id: "1h", name: "1 hodina", price: "7 990", description: "Základní balík — 1 hodina zábavy na Vaší akci" },
-  { id: "2h", name: "2 hodiny", price: "12 990", description: "Premium balík — 2 hodiny zábavy s vlastním brandingem" },
+  { id: "1h", name: "START", price: "7 990", description: "1 hodina zábavy na Vaší akci" },
+  { id: "2h", name: "DOUBLE FUN", price: "12 990", description: "2 hodiny zábavy na Vaší akci" },
 ];
 
 export default function VoucherPage() {
@@ -56,7 +56,7 @@ export default function VoucherPage() {
           Darujte zážitek<br />na 360 fotoboothu
         </h1>
         <p className="section-desc" style={{ marginBottom: "3rem" }}>
-          Vyberte balíček, vyplňte údaje a zaplaťte online. Voucher s unikátním kódem přijde okamžitě na e-mail.
+          Vyberte balíček, vyplňte údaje a zaplaťte online. Voucher s unikátním kódem přijde do 24 hodin na e-mail.
         </p>
 
         {/* Package selection */}
@@ -141,7 +141,7 @@ export default function VoucherPage() {
         </form>
 
         <p style={{ textAlign: "center", marginTop: "2rem", fontSize: "0.85rem", color: "var(--color-muted)" }}>
-          Platba kartou přes zabezpečenou bránu GoPay. Voucher přijde okamžitě po zaplacení.
+          Platba kartou přes zabezpečenou bránu GoPay. Voucher přijde do 24 hodin po zaplacení.
           <br />Platnost 12 měsíců od zakoupení.
         </p>
       </section>

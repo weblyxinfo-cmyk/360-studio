@@ -16,12 +16,12 @@ export default function Vouchers() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem", width: "100%" }}>
             <img
               src="/images/vouchers/voucher-2h.jpg"
-              alt="Dárkový poukaz na 2 hodiny pronájmu Fotospin 360"
+              alt="Dárkový poukaz na 2 hodiny pronájmu KAJO Studio 360"
               style={{ width: "100%", borderRadius: "12px", boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}
             />
             <img
               src="/images/vouchers/voucher-1h.jpg"
-              alt="Dárkový poukaz na 1 hodinu pronájmu Fotospin 360"
+              alt="Dárkový poukaz na 1 hodinu pronájmu KAJO Studio 360"
               style={{ width: "100%", borderRadius: "12px", boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}
             />
           </div>
@@ -30,7 +30,7 @@ export default function Vouchers() {
           <h3>Nákup za pár kliků</h3>
           <p>
             Vyberte balíček, zaplaťte online a voucher s unikátním kódem Vám
-            přijde okamžitě na e-mail jako PDF ke stažení nebo vytištění.
+            přijde do 24 hodin na e-mail jako PDF ke stažení nebo vytištění.
           </p>
           <ul className="voucher-perks">
             <li>Doručení do 24 hod</li>
