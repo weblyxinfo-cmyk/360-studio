@@ -167,8 +167,8 @@ export default function Contact() {
           <div className="contact-block">
             <h4>Sociální sítě</h4>
             <div className="social-links">
-              <a href="#" className="social-link" aria-label="Instagram" style={{ color: "#E1306C" }}><IconInstagram /></a>
-              <a href="#" className="social-link" aria-label="Facebook" style={{ color: "#1877F2" }}><IconFacebook /></a>
+              <a href="https://www.instagram.com/kajostudio360" className="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer" style={{ color: "#E1306C" }}><IconInstagram /></a>
+              <a href="https://www.facebook.com/kajostudio360" className="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer" style={{ color: "#1877F2" }}><IconFacebook /></a>
               <a href="#" className="social-link" aria-label="TikTok" style={{ color: "#fff" }}><IconTikTok /></a>
             </div>
           </div>

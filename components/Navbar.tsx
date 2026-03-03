@@ -55,10 +55,10 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="nav-socials">
-          <a href="#" className="nav-social-icon" aria-label="Instagram" style={{ color: "#E1306C" }} target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/kajostudio360" className="nav-social-icon" aria-label="Instagram" style={{ color: "#E1306C" }} target="_blank" rel="noopener noreferrer">
             <IconInstagram />
           </a>
-          <a href="#" className="nav-social-icon" aria-label="Facebook" style={{ color: "#1877F2" }} target="_blank" rel="noopener noreferrer">
+          <a href="https://www.facebook.com/kajostudio360" className="nav-social-icon" aria-label="Facebook" style={{ color: "#1877F2" }} target="_blank" rel="noopener noreferrer">
             <IconFacebook />
           </a>
           <a href="#" className="nav-social-icon" aria-label="TikTok" style={{ color: "#fff" }} target="_blank" rel="noopener noreferrer">
@@ -90,10 +90,10 @@ export default function Navbar() {
             Chci nabídku
           </a>
           <div className="nav-mobile-socials">
-            <a href="#" aria-label="Instagram" style={{ color: "#E1306C" }} target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/kajostudio360" aria-label="Instagram" style={{ color: "#E1306C" }} target="_blank" rel="noopener noreferrer">
               <IconInstagram />
             </a>
-            <a href="#" aria-label="Facebook" style={{ color: "#1877F2" }} target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/kajostudio360" aria-label="Facebook" style={{ color: "#1877F2" }} target="_blank" rel="noopener noreferrer">
               <IconFacebook />
             </a>
             <a href="#" aria-label="TikTok" style={{ color: "#fff" }} target="_blank" rel="noopener noreferrer">
