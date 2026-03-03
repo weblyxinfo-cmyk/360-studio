@@ -11,9 +11,14 @@ export default function Hero() {
           <br />
           se <em>točí</em> kolem Vás
         </h1>
+        <img
+          src="/images/logo-kajo.png"
+          alt="KAJO Studio 360"
+          style={{ maxWidth: "180px", margin: "0 auto 1.5rem", display: "block" }}
+        />
         <p className="hero-sub">
           Pronájem prémiového 360 fotoboothu na svatby, narozeniny, firemní akce
-          a další události po celé ČR.
+          a další události.
         </p>
         <p className="hero-sub" style={{ fontSize: "0.85rem", opacity: 0.7, marginTop: "0.5rem" }}>
           Odpovídáme do 24 hodin. Platíte až po potvrzení termínu.

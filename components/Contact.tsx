@@ -74,7 +74,7 @@ export default function Contact() {
         photobooth
       </h2>
       <p className="section-desc">
-        Vyplňte formulář a my se Vám ozveme do 24 hodin s nabídkou šitou na míru.
+        Vyplňte formulář a my se Vám co nejdříve ozveme s nabídkou šitou na míru.
         Platíte až po potvrzení termínu.
       </p>
       <div className="contact-grid">
@@ -115,8 +115,9 @@ export default function Contact() {
               <label htmlFor="packageType">Balíček</label>
               <select id="packageType" name="packageType">
                 <option value="">Nevím, poraďte mi</option>
-                <option value="zakladni">Základní (7 990 Kč / 1h)</option>
-                <option value="premium">Premium (12 990 Kč / 2h)</option>
+                <option value="start">START (7 990 Kč / 1h)</option>
+                <option value="double-fun">DOUBLE FUN (12 990 Kč / 2h)</option>
+                <option value="vip">VIP 360 Exclusive (individuálně)</option>
               </select>
             </div>
           </div>
@@ -139,8 +140,7 @@ export default function Contact() {
           </button>
           {status === "success" && (
             <div className="form-success">
-              Děkujeme! Ověříme dostupnost termínu a ozveme se Vám do 24 hodin.
-              Pokud je to urgentní, volejte na 777 987 543.
+              Děkujeme! Ověříme dostupnost termínu a ozveme se Vám co nejdříve.
             </div>
           )}
           {status === "error" && (
@@ -151,19 +151,13 @@ export default function Contact() {
         </form>
         <div className="contact-info">
           <div className="contact-block">
-            <h4>Telefon</h4>
-            <a href="tel:+420777987543">Kateřina Vítková — 777 987 543</a>
-            <br />
-            <a href="tel:+420730172812">Josef Perný — 730 172 812</a>
-          </div>
-          <div className="contact-block">
             <h4>E-mail</h4>
             <a href="mailto:info@kajostudio360.cz">info@kajostudio360.cz</a>
           </div>
           <div className="contact-block">
             <h4>Adresa</h4>
             <p>
-              <strong style={{ fontSize: "1.1rem" }}>KAJO Studio 360</strong>
+              <strong style={{ fontSize: "1.5rem", fontFamily: "var(--font-heading)", fontWeight: 800, letterSpacing: "0.05em" }}>KAJO</strong> <span style={{ fontSize: "0.95rem" }}>Studio 360</span>
               <br />
               Československé armády 1175
               <br />
@@ -181,8 +175,7 @@ export default function Contact() {
           <div className="contact-response-box">
             <h4>Rychlá odpověď</h4>
             <p>
-              Na každou poptávku odpovídáme do 24 hodin. Většinou se ozveme
-              ještě tentýž den.
+              Snažíme se odpovědět ještě v den Vaší zprávy.
             </p>
           </div>
         </div>

@@ -176,7 +176,7 @@ function BookingContent() {
         <div style={{ display: "flex", justifyContent: "center", gap: "0.5rem", marginBottom: "3rem" }}>
           {steps.map((s, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <div style={{
+              <div className="booking-step-circle" style={{
                 width: 36, height: 36, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
                 background: i <= step ? "var(--color-gold)" : "rgba(255,255,255,0.05)",
                 color: i <= step ? "var(--color-background)" : "var(--color-muted)",
@@ -185,7 +185,7 @@ function BookingContent() {
                 <s.icon size={16} />
               </div>
               {i < steps.length - 1 && (
-                <div style={{ width: 40, height: 1, background: i < step ? "var(--color-gold)" : "rgba(255,255,255,0.1)" }} />
+                <div className="booking-steps-line" style={{ width: 40, height: 1, background: i < step ? "var(--color-gold)" : "rgba(255,255,255,0.1)" }} />
               )}
             </div>
           ))}
@@ -239,7 +239,7 @@ function BookingContent() {
             <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1.4rem", marginBottom: "1.5rem", textAlign: "center" }}>
               Vyberte čas — {new Date(selectedDate).toLocaleDateString("cs-CZ", { day: "numeric", month: "long" })}
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}>
+            <div className="booking-time-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}>
               {availableTimesForDate.map((t, i) => {
                 const isSelected = selectedTime.start === t.timeStart && selectedTime.end === t.timeEnd;
                 return (
@@ -268,7 +268,7 @@ function BookingContent() {
             <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1.4rem", marginBottom: "1.5rem", textAlign: "center" }}>
               Vyberte balíček
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: packages.length > 1 ? "repeat(2, 1fr)" : "1fr", gap: "1.5rem" }}>
+            <div className="booking-packages-grid" style={{ display: "grid", gridTemplateColumns: packages.length > 1 ? "repeat(2, 1fr)" : "1fr", gap: "1.5rem" }}>
               {packages.map((pkg) => {
                 const isSelected = selectedPackage === pkg.id;
                 return (

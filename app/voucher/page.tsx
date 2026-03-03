@@ -60,7 +60,7 @@ export default function VoucherPage() {
         </p>
 
         {/* Package selection */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "2.5rem" }}>
+        <div className="voucher-pkg-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "2.5rem" }}>
           {packages.map((pkg) => (
             <button
               key={pkg.id}
@@ -123,12 +123,12 @@ export default function VoucherPage() {
             <textarea id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Všechno nejlepší k narozeninám! S láskou..." />
           </div>
 
-          <div style={{ marginTop: "2rem", padding: "1.5rem", background: "rgba(200,169,110,0.08)", borderRadius: "12px", border: "1px solid rgba(200,169,110,0.2)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+          <div className="voucher-payment-box" style={{ marginTop: "2rem", padding: "1.5rem", background: "rgba(200,169,110,0.08)", borderRadius: "12px", border: "1px solid rgba(200,169,110,0.2)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
             <div>
               <div style={{ fontSize: "0.85rem", color: "var(--color-muted)" }}>Celkem k úhradě</div>
               <div style={{ fontSize: "2rem", fontWeight: 700, fontFamily: "var(--font-heading)", color: "var(--color-gold)" }}>{selectedPkg.price} Kč</div>
             </div>
-            <button type="submit" className="btn-primary" disabled={status === "sending"} style={{ minWidth: "200px" }}>
+            <button type="submit" className="btn-primary voucher-payment-btn" disabled={status === "sending"} style={{ minWidth: "200px" }}>
               {status === "sending" ? "Přesměrovávám na platbu..." : "Zaplatit a odeslat voucher"}
             </button>
           </div>

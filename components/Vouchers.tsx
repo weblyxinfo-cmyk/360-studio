@@ -33,10 +33,9 @@ export default function Vouchers() {
             přijde okamžitě na e-mail jako PDF ke stažení nebo vytištění.
           </p>
           <ul className="voucher-perks">
-            <li>Okamžité doručení na e-mail</li>
+            <li>Doručení do 24 hod</li>
             <li>Platnost 12 měsíců od nákupu</li>
             <li>Elegantní PDF design k tisku</li>
-            <li>Bezpečná platba kartou</li>
             <li>Osobní věnování na přání</li>
           </ul>
           <a

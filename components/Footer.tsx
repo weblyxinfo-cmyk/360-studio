@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="logo" style={{ fontSize: "2rem" }}>
           KAJO <span>STUDIO</span> 360
         </div>
-        <p>&copy; 2026 Kajo Studio 360. Všechna práva vyhrazena.</p>
+        <p>&copy; 2026 KAJO STUDIO 360. Všechna práva vyhrazena.</p>
         <p>
           Web vytvořil{" "}
           <a href="https://weblyx.cz" target="_blank" rel="noopener noreferrer">
