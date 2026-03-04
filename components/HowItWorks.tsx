@@ -17,7 +17,7 @@ const steps = [
   {
     num: "04",
     title: "Užijte si zábavu",
-    desc: "Vaši hosté se baví, my obsluhujeme booth.",
+    desc: "Vaši hosté se baví, my obsluhujeme photo booth.",
   },
 ];
 
