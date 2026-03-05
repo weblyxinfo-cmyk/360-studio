@@ -29,9 +29,20 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="logo" style={{ fontSize: "2rem" }}>
-          KAJO <span>STUDIO</span> 360
+          KAJO<span>360</span>
         </div>
-        <p>&copy; 2026 KAJO STUDIO 360. Všechna práva vyhrazena.</p>
+        <p style={{ marginTop: "0.5rem" }}>
+          Československé armády 1175, Slavkov u Brna 684 01
+        </p>
+        <p style={{ marginTop: "0.25rem" }}>
+          <a href="mailto:info@kajostudio360.cz">info@kajostudio360.cz</a>
+        </p>
+        <div className="social-links" style={{ justifyContent: "center", marginTop: "0.75rem" }}>
+          <a href="https://www.instagram.com/kajostudio360" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram" style={{ color: "#E1306C" }}><IconInstagram /></a>
+          <a href="https://www.facebook.com/kajostudio360" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook" style={{ color: "#1877F2" }}><IconFacebook /></a>
+          <a href="https://www.tiktok.com/@kajostudio360" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="TikTok" style={{ color: "#fff" }}><IconTikTok /></a>
+        </div>
+        <p style={{ marginTop: "1rem" }}>&copy; 2026 KAJO Studio 360. Všechna práva vyhrazena.</p>
         <p>
           Web vytvořil{" "}
           <a href="https://weblyx.cz" target="_blank" rel="noopener noreferrer">

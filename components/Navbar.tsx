@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const links = [
   { href: "#jak-to-funguje", label: "Jak to funguje" },
@@ -40,12 +40,30 @@ function IconTikTok() {
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const handleKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMobileOpen(false); };
+    document.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
     <>
-      <nav className="site-nav">
+      <nav className={`site-nav${scrolled ? " nav-scrolled" : ""}`}>
         <a href="/" className="logo">
-          KAJO <span>STUDIO</span> 360
+          KAJO<span>360</span>
         </a>
         <ul className="nav-links">
           {links.map((link) => (
@@ -54,24 +72,14 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="nav-socials">
-          <a href="https://www.instagram.com/kajostudio360" className="nav-social-icon" aria-label="Instagram" style={{ color: "#E1306C" }} target="_blank" rel="noopener noreferrer">
-            <IconInstagram />
-          </a>
-          <a href="https://www.facebook.com/kajostudio360" className="nav-social-icon" aria-label="Facebook" style={{ color: "#1877F2" }} target="_blank" rel="noopener noreferrer">
-            <IconFacebook />
-          </a>
-          <a href="#" className="nav-social-icon" aria-label="TikTok" style={{ color: "#fff" }} target="_blank" rel="noopener noreferrer">
-            <IconTikTok />
-          </a>
-        </div>
         <a href="#poptat" className="nav-cta">
           Chci nabídku
         </a>
         <button
-          className="nav-mobile-btn"
+          className={`nav-mobile-btn${mobileOpen ? " is-open" : ""}`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Menu"
+          aria-expanded={mobileOpen}
         >
           <span />
           <span />
@@ -81,24 +89,20 @@ export default function Navbar() {
 
       {mobileOpen && (
         <div className="nav-mobile" onClick={() => setMobileOpen(false)}>
-          {links.map((link) => (
-            <a key={link.href} href={link.href}>
-              {link.label}
+          <div className="nav-mobile-inner" onClick={(e) => e.stopPropagation()}>
+            {links.map((link) => (
+              <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>
+                {link.label}
+              </a>
+            ))}
+            <a href="#poptat" className="btn-primary" onClick={() => setMobileOpen(false)} style={{ marginTop: "0.5rem" }}>
+              Chci nabídku
             </a>
-          ))}
-          <a href="#poptat" className="btn-primary" style={{ marginTop: "1rem" }}>
-            Chci nabídku
-          </a>
-          <div className="nav-mobile-socials">
-            <a href="https://www.instagram.com/kajostudio360" aria-label="Instagram" style={{ color: "#E1306C" }} target="_blank" rel="noopener noreferrer">
-              <IconInstagram />
-            </a>
-            <a href="https://www.facebook.com/kajostudio360" aria-label="Facebook" style={{ color: "#1877F2" }} target="_blank" rel="noopener noreferrer">
-              <IconFacebook />
-            </a>
-            <a href="#" aria-label="TikTok" style={{ color: "#fff" }} target="_blank" rel="noopener noreferrer">
-              <IconTikTok />
-            </a>
+            <div className="nav-mobile-socials">
+              <a href="https://www.instagram.com/kajostudio360" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{ color: "#E1306C" }}><IconInstagram /></a>
+              <a href="https://www.facebook.com/kajostudio360" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{ color: "#1877F2" }}><IconFacebook /></a>
+              <a href="https://www.tiktok.com/@kajostudio360" target="_blank" rel="noopener noreferrer" aria-label="TikTok" style={{ color: "#fff" }}><IconTikTok /></a>
+            </div>
           </div>
         </div>
       )}
