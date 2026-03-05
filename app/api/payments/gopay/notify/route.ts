@@ -3,6 +3,7 @@ import { db } from "@/db";
 import { payments } from "@/db/schema/payments";
 import { bookings } from "@/db/schema/bookings";
 import { vouchers } from "@/db/schema/vouchers";
+import { availabilitySlots } from "@/db/schema/availability";
 import { getPaymentStatus } from "@/lib/gopay";
 import { notifyPaymentReceived, sendBookingConfirmation } from "@/lib/notifications";
 import { eq } from "drizzle-orm";
@@ -79,11 +80,15 @@ export async function POST(request: Request) {
       }
     }
 
-    // Cancel booking/voucher if payment failed
+    // Cancel booking/voucher if payment failed — release slot back to available
     if (newStatus === "cancelled") {
       if (payment.bookingId) {
         await db.update(bookings).set({ status: "cancelled", updatedAt: new Date().toISOString() })
           .where(eq(bookings.id, payment.bookingId));
+
+        // Release availability slot back to available
+        await db.update(availabilitySlots).set({ status: "available", bookingId: null })
+          .where(eq(availabilitySlots.bookingId, payment.bookingId));
       }
       if (payment.voucherId) {
         await db.update(vouchers).set({ status: "cancelled", updatedAt: new Date().toISOString() })
