@@ -24,20 +24,33 @@ export async function POST(request: Request) {
     let totalAmount = pkg.price;
     let discountAmount = 0;
 
-    // Validate voucher if provided
+    // Validate and atomically redeem voucher if provided
     if (data.voucherCode) {
-      const [voucher] = await db.select().from(vouchers)
-        .where(eq(vouchers.code, data.voucherCode)).limit(1);
+      const voucherResult = await db.transaction(async (tx) => {
+        const [voucher] = await tx.select().from(vouchers)
+          .where(eq(vouchers.code, data.voucherCode!)).limit(1);
 
-      if (!voucher || voucher.status !== "active") {
-        return NextResponse.json({ error: "Neplatný voucher" }, { status: 400 });
+        if (!voucher || voucher.status !== "active") {
+          return { error: "Neplatný voucher" } as const;
+        }
+
+        if (voucher.validUntil && new Date(voucher.validUntil) < new Date()) {
+          return { error: "Voucher expiroval" } as const;
+        }
+
+        // Atomically mark as redeemed within same transaction
+        await tx.update(vouchers)
+          .set({ status: "redeemed", updatedAt: new Date().toISOString() })
+          .where(eq(vouchers.code, data.voucherCode!));
+
+        return { amount: voucher.amount } as const;
+      });
+
+      if ("error" in voucherResult) {
+        return NextResponse.json({ error: voucherResult.error }, { status: 400 });
       }
 
-      if (voucher.validUntil && new Date(voucher.validUntil) < new Date()) {
-        return NextResponse.json({ error: "Voucher expiroval" }, { status: 400 });
-      }
-
-      discountAmount = voucher.amount;
+      discountAmount = voucherResult.amount;
       totalAmount = Math.max(0, totalAmount - discountAmount);
     }
 
@@ -74,13 +87,6 @@ export async function POST(request: Request) {
       status: "booked",
       bookingId,
     });
-
-    // Mark voucher as redeemed
-    if (data.voucherCode) {
-      await db.update(vouchers)
-        .set({ status: "redeemed", updatedAt: new Date().toISOString() })
-        .where(eq(vouchers.code, data.voucherCode));
-    }
 
     // Notify admin
     await notifyNewBooking({

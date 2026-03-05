@@ -5,6 +5,11 @@ import { db } from "@/db";
 import { inquiries } from "@/db/schema/inquiries";
 import { nanoid } from "nanoid";
 
+function esc(str: string | null | undefined): string {
+  if (!str) return "";
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 const contactSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
@@ -41,18 +46,18 @@ export async function POST(request: Request) {
       await resend.emails.send({
         from: "Kajo Studio 360 <onboarding@resend.dev>",
         to: contactEmail,
-        subject: `Nová poptávka: ${data.eventType} — ${data.name}`,
+        subject: `Nová poptávka: ${esc(data.eventType)} — ${esc(data.name)}`,
         html: `
           <h2>Nová poptávka z webu</h2>
-          <p><strong>Jméno:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          <p><strong>Telefon:</strong> ${data.phone || "Neuvedeno"}</p>
-          <p><strong>Typ akce:</strong> ${data.eventType}</p>
-          <p><strong>Balíček:</strong> ${data.packageType || "Neuvedeno"}</p>
-          <p><strong>Datum akce:</strong> ${data.eventDate || "Neuvedeno"}</p>
-          <p><strong>Místo konání:</strong> ${data.eventLocation || "Neuvedeno"}</p>
+          <p><strong>Jméno:</strong> ${esc(data.name)}</p>
+          <p><strong>Email:</strong> ${esc(data.email)}</p>
+          <p><strong>Telefon:</strong> ${esc(data.phone) || "Neuvedeno"}</p>
+          <p><strong>Typ akce:</strong> ${esc(data.eventType)}</p>
+          <p><strong>Balíček:</strong> ${esc(data.packageType) || "Neuvedeno"}</p>
+          <p><strong>Datum akce:</strong> ${esc(data.eventDate) || "Neuvedeno"}</p>
+          <p><strong>Místo konání:</strong> ${esc(data.eventLocation) || "Neuvedeno"}</p>
           <p><strong>Zpráva:</strong></p>
-          <p>${data.message}</p>
+          <p>${esc(data.message)}</p>
         `,
       });
     }

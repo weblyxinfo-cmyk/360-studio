@@ -6,14 +6,14 @@ export default auth((req) => {
 
   // Protect admin routes (except login)
   if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
-    if (!req.auth) {
+    if (!req.auth || !["admin", "superadmin"].includes(req.auth.user?.role || "")) {
       return NextResponse.redirect(new URL("/admin/login", req.url));
     }
   }
 
   // Protect admin API routes
   if (pathname.startsWith("/api/admin")) {
-    if (!req.auth) {
+    if (!req.auth || !["admin", "superadmin"].includes(req.auth.user?.role || "")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
   }

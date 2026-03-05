@@ -22,12 +22,14 @@ export async function POST(request: Request) {
     const voucherId = nanoid();
     const orderNumber = generateOrderNumber();
 
-    // Generate voucher code
+    // Generate voucher code (cryptographically secure)
     const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    const randomBytes = new Uint8Array(8);
+    crypto.getRandomValues(randomBytes);
     let code = "KAJO-";
-    for (let i = 0; i < 4; i++) code += chars[Math.floor(Math.random() * chars.length)];
+    for (let i = 0; i < 4; i++) code += chars[randomBytes[i] % chars.length];
     code += "-";
-    for (let i = 0; i < 4; i++) code += chars[Math.floor(Math.random() * chars.length)];
+    for (let i = 4; i < 8; i++) code += chars[randomBytes[i] % chars.length];
 
     // Create voucher record (pending payment)
     const validUntil = new Date();

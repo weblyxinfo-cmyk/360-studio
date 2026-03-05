@@ -3,6 +3,11 @@ import { resend } from "./resend";
 const ADMIN_EMAIL = process.env.CONTACT_EMAIL || "info@kajostudio360.cz";
 const FROM_EMAIL = "Kajo Studio 360 <onboarding@resend.dev>";
 
+function esc(str: string | null | undefined): string {
+  if (!str) return "";
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 export async function notifyNewBooking(booking: {
   orderNumber: string;
   customerName: string;
@@ -23,16 +28,16 @@ export async function notifyNewBooking(booking: {
   await resend.emails.send({
     from: FROM_EMAIL,
     to: ADMIN_EMAIL,
-    subject: `Nová rezervace: ${booking.orderNumber} — ${booking.customerName}`,
+    subject: `Nová rezervace: ${booking.orderNumber} — ${esc(booking.customerName)}`,
     html: `
       <h2>Nová rezervace</h2>
-      <p><strong>Objednávka:</strong> ${booking.orderNumber}</p>
-      <p><strong>Zákazník:</strong> ${booking.customerName} (${booking.customerEmail})</p>
-      ${booking.customerPhone ? `<p><strong>Telefon:</strong> ${booking.customerPhone}</p>` : ""}
-      <p><strong>Datum:</strong> ${booking.eventDate}</p>
-      <p><strong>Čas:</strong> ${booking.eventTimeStart} – ${booking.eventTimeEnd}</p>
-      ${booking.eventType ? `<p><strong>Typ akce:</strong> ${booking.eventType}</p>` : ""}
-      ${booking.eventLocation ? `<p><strong>Místo:</strong> ${booking.eventLocation}</p>` : ""}
+      <p><strong>Objednávka:</strong> ${esc(booking.orderNumber)}</p>
+      <p><strong>Zákazník:</strong> ${esc(booking.customerName)} (${esc(booking.customerEmail)})</p>
+      ${booking.customerPhone ? `<p><strong>Telefon:</strong> ${esc(booking.customerPhone)}</p>` : ""}
+      <p><strong>Datum:</strong> ${esc(booking.eventDate)}</p>
+      <p><strong>Čas:</strong> ${esc(booking.eventTimeStart)} – ${esc(booking.eventTimeEnd)}</p>
+      ${booking.eventType ? `<p><strong>Typ akce:</strong> ${esc(booking.eventType)}</p>` : ""}
+      ${booking.eventLocation ? `<p><strong>Místo:</strong> ${esc(booking.eventLocation)}</p>` : ""}
       <p><strong>Částka:</strong> ${(booking.totalAmount / 100).toLocaleString("cs-CZ")} Kč</p>
       <hr>
       <p><a href="${process.env.NEXT_PUBLIC_SITE_URL || "https://kajostudio.cz"}/admin/bookings">Zobrazit v adminu</a></p>
@@ -59,8 +64,8 @@ export async function notifyPaymentReceived(payment: {
     html: `
       <h2>Platba přijata</h2>
       <p><strong>Typ:</strong> ${payment.paymentType === "booking" ? "Rezervace" : "Voucher"}</p>
-      <p><strong>Objednávka:</strong> ${payment.orderNumber}</p>
-      <p><strong>Zákazník:</strong> ${payment.customerName} (${payment.customerEmail})</p>
+      <p><strong>Objednávka:</strong> ${esc(payment.orderNumber)}</p>
+      <p><strong>Zákazník:</strong> ${esc(payment.customerName)} (${esc(payment.customerEmail)})</p>
       <p><strong>Částka:</strong> ${(payment.amount / 100).toLocaleString("cs-CZ")} Kč</p>
       <hr>
       <p><a href="${process.env.NEXT_PUBLIC_SITE_URL || "https://kajostudio.cz"}/admin/orders">Zobrazit v adminu</a></p>
@@ -86,12 +91,12 @@ export async function notifyNewReview(review: {
     subject: `Nová recenze: ${review.name} — ${"★".repeat(review.rating)}`,
     html: `
       <h2>Nová recenze</h2>
-      <p><strong>Od:</strong> ${review.name}</p>
+      <p><strong>Od:</strong> ${esc(review.name)}</p>
       <p><strong>Hodnocení:</strong> ${"★".repeat(review.rating)}</p>
-      ${review.eventType ? `<p><strong>Typ akce:</strong> ${review.eventType}</p>` : ""}
-      ${review.city ? `<p><strong>Město:</strong> ${review.city}</p>` : ""}
+      ${review.eventType ? `<p><strong>Typ akce:</strong> ${esc(review.eventType)}</p>` : ""}
+      ${review.city ? `<p><strong>Město:</strong> ${esc(review.city)}</p>` : ""}
       <p><strong>Text:</strong></p>
-      <blockquote>${review.text}</blockquote>
+      <blockquote>${esc(review.text)}</blockquote>
       <hr>
       <p><a href="${process.env.NEXT_PUBLIC_SITE_URL || "https://kajostudio.cz"}/admin/reviews">Zobrazit v adminu</a></p>
     `,
@@ -121,15 +126,15 @@ export async function sendBookingConfirmation(booking: {
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
         <h1 style="color: #c8a96e;">Děkujeme za Vaši rezervaci!</h1>
-        <p>Dobrý den, ${booking.customerName},</p>
+        <p>Dobrý den, ${esc(booking.customerName)},</p>
         <p>Vaše rezervace byla úspěšně zpracována. Zde jsou detaily:</p>
 
         <div style="background: #f5f5f5; padding: 20px; border-radius: 12px; margin: 20px 0;">
-          <p><strong>Objednávka:</strong> ${booking.orderNumber}</p>
-          <p><strong>Datum:</strong> ${booking.eventDate}</p>
-          <p><strong>Čas:</strong> ${booking.eventTimeStart} – ${booking.eventTimeEnd}</p>
-          ${booking.eventType ? `<p><strong>Typ akce:</strong> ${booking.eventType}</p>` : ""}
-          ${booking.eventLocation ? `<p><strong>Místo:</strong> ${booking.eventLocation}</p>` : ""}
+          <p><strong>Objednávka:</strong> ${esc(booking.orderNumber)}</p>
+          <p><strong>Datum:</strong> ${esc(booking.eventDate)}</p>
+          <p><strong>Čas:</strong> ${esc(booking.eventTimeStart)} – ${esc(booking.eventTimeEnd)}</p>
+          ${booking.eventType ? `<p><strong>Typ akce:</strong> ${esc(booking.eventType)}</p>` : ""}
+          ${booking.eventLocation ? `<p><strong>Místo:</strong> ${esc(booking.eventLocation)}</p>` : ""}
           <p><strong>Celková částka:</strong> ${(booking.totalAmount / 100).toLocaleString("cs-CZ")} Kč</p>
         </div>
 

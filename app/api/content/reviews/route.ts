@@ -13,6 +13,6 @@ export async function GET() {
     return NextResponse.json(visibleReviews);
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    return NextResponse.json({ error: msg, dbUrl: process.env.TURSO_DATABASE_URL?.substring(0, 30) }, { status: 500 });
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
