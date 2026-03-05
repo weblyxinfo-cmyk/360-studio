@@ -69,7 +69,36 @@ export async function GET(request: Request) {
     // Sort by date
     availableDates.sort((a, b) => a.date.localeCompare(b.date));
 
-    return NextResponse.json(availableDates);
+    // Build daySummary: per-day counts of total/available/booked/blocked
+    const daySummary: Record<string, { total: number; available: number; booked: number; blocked: number }> = {};
+
+    // Count explicit slots per day
+    for (const slot of slots) {
+      if (!daySummary[slot.date]) {
+        daySummary[slot.date] = { total: 0, available: 0, booked: 0, blocked: 0 };
+      }
+      daySummary[slot.date].total++;
+      if (slot.status === "available") daySummary[slot.date].available++;
+      else if (slot.status === "booked") daySummary[slot.date].booked++;
+      else if (slot.status === "blocked") daySummary[slot.date].blocked++;
+    }
+
+    // Add pattern-based days (without explicit slots) — all slots available
+    for (let d = 1; d <= lastDay.getDate(); d++) {
+      const dateObj = new Date(year, mon - 1, d);
+      const dateStr = `${year}-${String(mon).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+
+      if (dateObj < today) continue;
+      if (explicitDates.has(dateStr)) continue;
+
+      const dayOfWeek = dateObj.getDay();
+      const matchingPatterns = patterns.filter((p) => p.dayOfWeek === dayOfWeek);
+      if (matchingPatterns.length > 0) {
+        daySummary[dateStr] = { total: matchingPatterns.length, available: matchingPatterns.length, booked: 0, blocked: 0 };
+      }
+    }
+
+    return NextResponse.json({ available: availableDates, daySummary });
   } catch (error) {
     console.error("Availability error:", error);
     return NextResponse.json({ error: "Interní chyba" }, { status: 500 });

@@ -20,6 +20,13 @@ interface AvailableDate {
   timeEnd: string;
 }
 
+interface DaySummary {
+  total: number;
+  available: number;
+  booked: number;
+  blocked: number;
+}
+
 const steps = [
   { icon: Calendar, label: "Datum" },
   { icon: Clock, label: "Čas" },
@@ -41,6 +48,7 @@ function BookingContent() {
   const [step, setStep] = useState(0);
   const [packages, setPackages] = useState<PackageData[]>([]);
   const [availability, setAvailability] = useState<AvailableDate[]>([]);
+  const [daySummary, setDaySummary] = useState<Record<string, DaySummary>>({});
   const [currentMonth, setCurrentMonth] = useState(() => {
     const paramDate = searchParams.get("date");
     if (paramDate) {
@@ -78,7 +86,12 @@ function BookingContent() {
   }, []);
 
   useEffect(() => {
-    fetch(`/api/booking/availability?month=${currentMonth}`).then((r) => r.json()).then(setAvailability);
+    fetch(`/api/booking/availability?month=${currentMonth}`)
+      .then((r) => r.json())
+      .then((data) => {
+        setAvailability(data.available || []);
+        setDaySummary(data.daySummary || {});
+      });
   }, [currentMonth]);
 
   function nextMonth() {
@@ -210,17 +223,50 @@ function BookingContent() {
               {Array.from({ length: daysInMonth }).map((_, i) => {
                 const day = i + 1;
                 const dateStr = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-                const isAvailable = availableDates.includes(dateStr);
+                const summary = daySummary[dateStr];
                 const isSelected = selectedDate === dateStr;
+
+                // Color logic:
+                // Green: all available, no bookings → clickable
+                // Orange: has booked slots (pending payment) → NOT clickable
+                // Red: fully booked/blocked → NOT clickable
+                // Gray: not in summary (past/no pattern) → disabled
+                let bgColor = "transparent";
+                let textColor = "rgba(255,255,255,0.2)";
+                let canClick = false;
+
+                if (summary) {
+                  if (summary.booked > 0) {
+                    // Orange — pending payment
+                    bgColor = "rgba(245,158,11,0.15)";
+                    textColor = "#f59e0b";
+                  } else if (summary.available > 0) {
+                    // Green — fully available
+                    bgColor = "rgba(34,197,94,0.15)";
+                    textColor = "#22c55e";
+                    canClick = true;
+                  } else {
+                    // Red — all blocked/unavailable
+                    bgColor = "rgba(239,68,68,0.15)";
+                    textColor = "#ef4444";
+                  }
+                }
+
+                if (isSelected) {
+                  bgColor = "var(--color-gold)";
+                  textColor = "var(--color-background)";
+                }
+
                 return (
                   <button
                     key={day}
-                    onClick={() => isAvailable && setSelectedDate(dateStr)}
-                    disabled={!isAvailable}
+                    onClick={() => canClick && setSelectedDate(dateStr)}
+                    disabled={!canClick}
                     style={{
-                      padding: "0.75rem", borderRadius: 12, border: "none", cursor: isAvailable ? "pointer" : "default",
-                      background: isSelected ? "var(--color-gold)" : isAvailable ? "rgba(200,169,110,0.1)" : "transparent",
-                      color: isSelected ? "var(--color-background)" : isAvailable ? "var(--color-foreground)" : "rgba(255,255,255,0.2)",
+                      padding: "0.75rem", borderRadius: 12, border: "none",
+                      cursor: canClick ? "pointer" : "default",
+                      background: bgColor,
+                      color: textColor,
                       fontWeight: isSelected ? 700 : 400, fontSize: "0.95rem",
                       transition: "all 0.2s",
                     }}
@@ -229,6 +275,21 @@ function BookingContent() {
                   </button>
                 );
               })}
+            </div>
+            {/* Legenda */}
+            <div style={{ display: "flex", justifyContent: "center", gap: "1.5rem", marginTop: "1.5rem", fontSize: "0.8rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} />
+                <span style={{ color: "var(--color-muted)" }}>Volno</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#f59e0b", display: "inline-block" }} />
+                <span style={{ color: "var(--color-muted)" }}>Čeká na platbu</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                <span style={{ width: 10, height: 10, borderRadius: "50%", background: "#ef4444", display: "inline-block" }} />
+                <span style={{ color: "var(--color-muted)" }}>Obsazeno</span>
+              </div>
             </div>
           </div>
         )}
