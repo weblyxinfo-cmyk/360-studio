@@ -27,27 +27,54 @@ function IconTikTok() {
 export default function Footer() {
   return (
     <footer className="site-footer">
-      <div className="footer-inner">
-        <div className="logo" style={{ fontSize: "2rem" }}>
-          KAJO<span>360</span>
+      <div className="footer-grid">
+        {/* Column 1: Brand */}
+        <div className="footer-col">
+          <div className="logo" style={{ fontSize: "1.8rem", marginBottom: "1rem" }}>
+            KAJO<span>360</span>
+          </div>
+          <p className="footer-text">
+            Prémiový 360° photobooth pro nezapomenutelné zážitky na Vaší akci.
+          </p>
+          <div className="footer-socials">
+            <a href="https://www.instagram.com/kajostudio360" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{ color: "#E1306C" }}><IconInstagram /></a>
+            <a href="https://www.facebook.com/kajostudio360" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{ color: "#1877F2" }}><IconFacebook /></a>
+            <a href="https://www.tiktok.com/@kajostudio360" target="_blank" rel="noopener noreferrer" aria-label="TikTok" style={{ color: "#fff" }}><IconTikTok /></a>
+          </div>
         </div>
-        <p style={{ marginTop: "0.5rem" }}>
-          Československé armády 1175, Slavkov u Brna 684 01
-        </p>
-        <p style={{ marginTop: "0.25rem" }}>
-          <a href="mailto:info@kajostudio360.cz">info@kajostudio360.cz</a>
-        </p>
-        <div className="social-links" style={{ justifyContent: "center", marginTop: "0.75rem" }}>
-          <a href="https://www.instagram.com/kajostudio360" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram" style={{ color: "#E1306C" }}><IconInstagram /></a>
-          <a href="https://www.facebook.com/kajostudio360" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook" style={{ color: "#1877F2" }}><IconFacebook /></a>
-          <a href="https://www.tiktok.com/@kajostudio360" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="TikTok" style={{ color: "#fff" }}><IconTikTok /></a>
+
+        {/* Column 2: Navigation */}
+        <div className="footer-col">
+          <h4 className="footer-heading">Navigace</h4>
+          <nav className="footer-nav">
+            <a href="#jak-to-funguje">Jak to funguje</a>
+            <a href="#balicky">Balíčky</a>
+            <a href="#galerie">Galerie</a>
+            <a href="#vouchery">Vouchery</a>
+            <a href="#recenze">Recenze</a>
+            <a href="#poptat">Kontakt</a>
+          </nav>
         </div>
-        <p style={{ marginTop: "1rem" }}>&copy; 2026 KAJO Studio 360. Všechna práva vyhrazena.</p>
+
+        {/* Column 3: Contact */}
+        <div className="footer-col">
+          <h4 className="footer-heading">Kontakt</h4>
+          <div className="footer-contact">
+            <p>Československé armády 1175</p>
+            <p>Slavkov u Brna 684 01</p>
+            <p style={{ marginTop: "0.75rem" }}>
+              <a href="mailto:info@kajostudio360.cz">info@kajostudio360.cz</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="footer-bottom">
+        <p>&copy; {new Date().getFullYear()} KAJO Studio 360. Všechna práva vyhrazena.</p>
         <p>
           Web vytvořil{" "}
-          <a href="https://weblyx.cz" target="_blank" rel="noopener noreferrer">
-            Weblyx.cz
-          </a>
+          <a href="https://weblyx.cz" target="_blank" rel="noopener noreferrer">Weblyx.cz</a>
         </p>
       </div>
     </footer>
