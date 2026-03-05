@@ -25,7 +25,7 @@ async function getHomeData() {
     const visibleReviews = allReviews.filter((r) => r.isVisible);
 
     const allGallery = await db.select().from(galleryItems).orderBy(asc(galleryItems.sortOrder));
-    const visibleGallery = allGallery.filter((g) => g.isVisible);
+    const visibleGallery = allGallery.filter((g) => g.isVisible && g.imageUrl);
 
     const allPackages = await db.select().from(packagesTable).orderBy(asc(packagesTable.sortOrder));
     const visiblePackages = allPackages.filter((p) => p.isVisible);
