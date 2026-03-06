@@ -25,7 +25,7 @@ export default function Packages({ data }: { data?: PackageData[] }) {
               <h3>{pkg.name}</h3>
               <div className="package-duration">{pkg.duration}</div>
               <div className="package-price">
-                {pkg.price > 0 ? <>{(pkg.price / 100).toLocaleString("cs-CZ")} Kč <span>/ akce</span></> : "Na dotaz"}
+                {pkg.price > 0 ? <>{(pkg.price / 100).toLocaleString("cs-CZ")} Kč <span>/ akce</span></> : "Individuálně"}
               </div>
               {pkg.priceNote && <p className="package-note">{pkg.priceNote}</p>}
               <ul className="package-features">
@@ -50,7 +50,7 @@ export default function Packages({ data }: { data?: PackageData[] }) {
           <h3>START</h3>
           <div className="package-duration">1 hodina zábavy</div>
           <div className="package-price">7 990 Kč <span>/ akce</span></div>
-          <p className="package-note">Ideální volba pro menší oslavy a kratší akce.</p>
+          <p className="package-note">Ideální pro menší oslavy a narozeniny.</p>
           <ul className="package-features">
             <li>Profesionální obsluha</li>
             <li>Neomezený počet natočení</li>
@@ -67,7 +67,7 @@ export default function Packages({ data }: { data?: PackageData[] }) {
           <h3>DOUBLE FUN</h3>
           <div className="package-duration">2 hodiny zábavy</div>
           <div className="package-price">12 990 Kč <span>/ akce</span></div>
-          <p className="package-note">Perfektní řešení pro svatby a větší oslavy.</p>
+          <p className="package-note">Perfektní pro svatby, firemní akce a větší oslavy.</p>
           <ul className="package-features">
             <li>Profesionální obsluha</li>
             <li>Neomezený počet natočení</li>

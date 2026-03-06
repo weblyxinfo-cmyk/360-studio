@@ -48,7 +48,7 @@ export default function Coverage({ data }: { data?: CoverageCity[] }) {
             ))}
           </ul>
           <p style={{ fontSize: "0.85rem", color: "var(--color-muted)", marginTop: "1.5rem" }}>
-            Doprava v hlavních čtyřech regionech je v ceně. Ostatní lokality dle individuální dohody.
+            Doprava v hlavních čtyřech krajích je v ceně. Ostatní lokality dle individuální dohody.
           </p>
         </div>
       </div>

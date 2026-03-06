@@ -5,7 +5,7 @@ export default function Vouchers() {
       <h2 className="section-title">
         Darujte zážitek, který
         <br />
-        nikdo nečeká
+        nikdo neočekává
       </h2>
       <p className="section-desc">
         Online nákup voucheru na pronájem 360 fotoboothu. Perfektní dárek na

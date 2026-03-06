@@ -10,6 +10,7 @@ const fallbackFaqs: FAQItem[] = [
   { q: "Jak dlouho trvá instalace?", a: "Instalace trvá přibližně 30-45 minut. Přijedeme s dostatečným předstihem před začátkem akce." },
   { q: "Jak hosté získají svá videa?", a: "Každý host si stáhne video okamžitě přes QR kód přímo na svůj telefon. Po akci obdržíte kompletní galerii." },
   { q: "Fungujete i mimo velká města?", a: "Ano, jezdíme po celé ČR. Doprava je v ceně v rámci našich hlavních regionů, ostatní lokality dle dohody." },
+  { q: "Mohu si booth vyzdobit vlastním logem?", a: "Tuto možnost právě připravujeme. Brzy bude k dispozici branding s vlastním logem, overlayem a grafikou na míru." },
 ];
 
 export default function FAQ({ data }: { data?: FAQItem[] }) {
