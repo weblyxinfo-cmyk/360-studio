@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
 import Packages from "@/components/Packages";
+import Addons from "@/components/Addons";
 import Gallery from "@/components/Gallery";
 import Vouchers from "@/components/Vouchers";
 import Reviews from "@/components/Reviews";
@@ -96,6 +97,7 @@ export default async function Home() {
       <Hero />
       <HowItWorks />
       <Packages data={packages} />
+      <Addons />
       <Gallery data={gallery} />
       <Vouchers />
       <Reviews data={reviews} />
