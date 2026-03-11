@@ -4,31 +4,21 @@ import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// Green coverage zone polygon around Brno (~15-20km radius)
-const coveragePolygon: [number, number][] = [
-  [49.30, 16.50],
-  [49.31, 16.55],
-  [49.32, 16.60],
-  [49.31, 16.67],
-  [49.30, 16.73],
-  [49.28, 16.78],
-  [49.25, 16.82],
-  [49.22, 16.84],
-  [49.19, 16.85],
-  [49.16, 16.84],
-  [49.13, 16.82],
-  [49.10, 16.78],
-  [49.08, 16.73],
-  [49.07, 16.67],
-  [49.07, 16.60],
-  [49.08, 16.53],
-  [49.10, 16.48],
-  [49.13, 16.44],
-  [49.16, 16.42],
-  [49.19, 16.41],
-  [49.22, 16.42],
-  [49.25, 16.44],
-  [49.28, 16.48],
+const cities: { name: string; lat: number; lng: number; type: "main" | "available" | "ondemand" }[] = [
+  { name: "Brno", lat: 49.1951, lng: 16.6068, type: "main" },
+  { name: "Zlín", lat: 49.2265, lng: 17.6669, type: "main" },
+  { name: "Olomouc", lat: 49.5938, lng: 17.2509, type: "available" },
+  { name: "Kroměříž", lat: 49.2977, lng: 17.3933, type: "available" },
+  { name: "Přerov", lat: 49.4553, lng: 17.4510, type: "available" },
+  { name: "Vyškov", lat: 49.2776, lng: 16.9990, type: "available" },
+  { name: "Kuřim", lat: 49.2986, lng: 16.5312, type: "available" },
+  { name: "Jihlava", lat: 49.3961, lng: 15.5912, type: "available" },
+  { name: "Velké Meziříčí", lat: 49.3553, lng: 16.0123, type: "available" },
+  { name: "Boskovice", lat: 49.4879, lng: 16.6601, type: "available" },
+  { name: "Břeclav", lat: 48.7590, lng: 16.8820, type: "available" },
+  { name: "Hodonín", lat: 48.8493, lng: 17.1322, type: "available" },
+  { name: "Mikulov", lat: 48.8056, lng: 16.6377, type: "available" },
+  { name: "Znojmo", lat: 48.8555, lng: 16.0488, type: "ondemand" },
 ];
 
 export default function CoverageMap() {
@@ -38,39 +28,64 @@ export default function CoverageMap() {
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
 
+    const bounds = L.latLngBounds(cities.map((c) => [c.lat, c.lng]));
+
     const map = L.map(mapRef.current, {
-      center: [49.195, 16.608],
-      zoom: 11,
+      center: bounds.getCenter(),
+      zoom: 8,
       scrollWheelZoom: false,
       attributionControl: false,
     });
+
+    map.fitBounds(bounds, { padding: [30, 30] });
 
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
       maxZoom: 19,
     }).addTo(map);
 
-    // Green coverage zone
-    L.polygon(coveragePolygon, {
-      color: "#22c55e",
-      weight: 2,
-      fillColor: "#22c55e",
-      fillOpacity: 0.18,
-    }).addTo(map);
+    // Coverage circles around main cities
+    cities
+      .filter((c) => c.type === "main")
+      .forEach((c) => {
+        L.circle([c.lat, c.lng], {
+          radius: 25000,
+          color: "rgba(200,169,110,0.5)",
+          weight: 1,
+          fillColor: "rgba(200,169,110,0.12)",
+          fillOpacity: 0.12,
+        }).addTo(map);
+      });
 
-    // Brno center marker
-    const icon = L.divIcon({
-      html: `<div style="width:14px;height:14px;background:#22c55e;border-radius:50%;border:2px solid #fff;box-shadow:0 0 10px rgba(34,197,94,0.6)"></div>`,
-      iconSize: [14, 14],
-      iconAnchor: [7, 7],
-      className: "",
+    // City markers
+    cities.forEach((c) => {
+      const isMain = c.type === "main";
+      const isOnDemand = c.type === "ondemand";
+      const size = isMain ? 14 : 10;
+      const color = isOnDemand ? "#888" : isMain ? "#c8a96e" : "#22c55e";
+      const shadow = isMain
+        ? "0 0 12px rgba(200,169,110,0.6)"
+        : isOnDemand
+          ? "0 0 8px rgba(136,136,136,0.4)"
+          : "0 0 8px rgba(34,197,94,0.5)";
+
+      const icon = L.divIcon({
+        html: `<div style="width:${size}px;height:${size}px;background:${color};border-radius:50%;border:2px solid #fff;box-shadow:${shadow}"></div>`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2],
+        className: "",
+      });
+
+      const badge = isMain ? "Hlavní region" : isOnDemand ? "Na poptávku" : "Dostupné";
+      L.marker([c.lat, c.lng], { icon })
+        .addTo(map)
+        .bindPopup(`<strong>${c.name}</strong><br>${badge}`);
     });
 
-    L.marker([49.195, 16.608], { icon }).addTo(map)
-      .bindPopup("<strong>KAJO STUDIO 360</strong><br>Brno — hlavní region");
-
-    // Attribution
-    L.control.attribution({ prefix: false, position: "bottomright" })
-      .addAttribution('&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OSM</a> &copy; <a href="https://carto.com/" target="_blank">CARTO</a>')
+    L.control
+      .attribution({ prefix: false, position: "bottomright" })
+      .addAttribution(
+        '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OSM</a> &copy; <a href="https://carto.com/" target="_blank">CARTO</a>'
+      )
       .addTo(map);
 
     mapInstanceRef.current = map;

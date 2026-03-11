@@ -102,6 +102,13 @@ export default function Contact() {
                 <option value="narozeniny">Narozeniny</option>
                 <option value="firemni">Firemní akce</option>
                 <option value="ples">Ples / Gala</option>
+                <option value="festival">Festival</option>
+                <option value="detsky-den">Dětský den</option>
+                <option value="sportovni-akce">Sportovní akce</option>
+                <option value="rozlucka">Rozlučka se svobodou</option>
+                <option value="teambuilding">Teambuilding</option>
+                <option value="vanocni-vecirek">Vánoční večírek</option>
+                <option value="maturitni-ples">Maturitní ples</option>
                 <option value="jine">Jiné</option>
               </select>
             </div>
@@ -117,7 +124,8 @@ export default function Contact() {
                 <option value="">Nevím, poraďte mi</option>
                 <option value="start">START (7 990 Kč / 1h)</option>
                 <option value="double-fun">DOUBLE FUN (12 990 Kč / 2h)</option>
-                <option value="vip">VIP 360 Exclusive (individuálně)</option>
+                <option value="corporate">CORPORATE (18 500 Kč / 2h)</option>
+                <option value="vip">VIP 360 Exclusive (na dotaz)</option>
               </select>
             </div>
           </div>

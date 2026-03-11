@@ -338,6 +338,7 @@ body::after {
 .package-price {
   font-family: var(--font-heading); font-weight: 800;
   font-size: 2.8rem; margin-bottom: 0.3rem;
+  overflow-wrap: break-word; word-break: break-word;
 }
 .package-price span { font-size: 1rem; font-weight: 400; color: var(--color-muted); }
 .package-note { font-size: 0.8rem; color: var(--color-muted); margin-bottom: 2rem; }
@@ -847,15 +848,8 @@ body::after {
   .steps-grid { grid-template-columns: repeat(2, 1fr); }
   .step:not(:last-child)::after { display: none; }
   .packages-grid {
-    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-    gap: 1rem; padding-bottom: 1rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-  .packages-grid::-webkit-scrollbar { display: none; }
-  .packages-grid .package {
-    min-width: 80vw; max-width: 85vw; flex-shrink: 0;
-    scroll-snap-align: center;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   .addons-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
@@ -908,7 +902,6 @@ body::after {
 
   .package { padding: 1.5rem; }
   .package-price { font-size: 2.2rem; }
-  .packages-grid .package { min-width: 85vw; }
   .addons-grid { grid-template-columns: 1fr; }
 
   .voucher-card { padding: 1.5rem; }
