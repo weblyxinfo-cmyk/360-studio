@@ -32,7 +32,7 @@ export default function Packages({ data }: { data?: PackageData[] }) {
               </div>
               <h3>{pkg.name}</h3>
               <div className="package-duration">{pkg.duration}</div>
-              <div className="package-price">
+              <div className={`package-price${pkg.price === 0 ? " package-price-text" : ""}`}>
                 {pkg.price > 0 ? <>{(pkg.price / 100).toLocaleString("cs-CZ")} Kč <span>/ akce</span></> : <>Na dotaz</>}
               </div>
               {pkg.priceNote && <p className="package-note">{pkg.priceNote}</p>}

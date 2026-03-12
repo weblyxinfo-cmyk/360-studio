@@ -34,51 +34,71 @@ export default function CoverageMap() {
       center: bounds.getCenter(),
       zoom: 8,
       scrollWheelZoom: false,
+      zoomControl: false,
       attributionControl: false,
     });
 
-    map.fitBounds(bounds, { padding: [30, 30] });
+    map.fitBounds(bounds, { padding: [35, 35] });
+
+    // Zoom control top-right
+    L.control.zoom({ position: "topright" }).addTo(map);
 
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
       maxZoom: 19,
     }).addTo(map);
 
-    // Coverage circles around main cities
+    // Large coverage area polygon connecting outer cities
+    const coverageArea: [number, number][] = [
+      [49.60, 15.50],  // above Jihlava
+      [49.55, 17.50],  // above Olomouc/Přerov
+      [49.30, 17.75],  // east of Zlín
+      [48.70, 17.20],  // below Hodonín
+      [48.70, 16.00],  // below Znojmo
+      [49.30, 15.50],  // west of Jihlava
+    ];
+
+    L.polygon(coverageArea, {
+      color: "rgba(200,169,110,0.35)",
+      weight: 1.5,
+      dashArray: "6,4",
+      fillColor: "rgba(200,169,110,0.06)",
+      fillOpacity: 1,
+    }).addTo(map);
+
+    // Glow circles for main cities
     cities
       .filter((c) => c.type === "main")
       .forEach((c) => {
         L.circle([c.lat, c.lng], {
-          radius: 25000,
-          color: "rgba(200,169,110,0.5)",
+          radius: 18000,
+          color: "rgba(200,169,110,0.4)",
           weight: 1,
-          fillColor: "rgba(200,169,110,0.12)",
-          fillOpacity: 0.12,
+          fillColor: "rgba(200,169,110,0.1)",
+          fillOpacity: 1,
         }).addTo(map);
       });
 
-    // City markers
+    // City markers with labels
     cities.forEach((c) => {
       const isMain = c.type === "main";
       const isOnDemand = c.type === "ondemand";
-      const size = isMain ? 14 : 10;
+      const dotSize = isMain ? 12 : 8;
       const color = isOnDemand ? "#888" : isMain ? "#c8a96e" : "#22c55e";
-      const shadow = isMain
-        ? "0 0 12px rgba(200,169,110,0.6)"
-        : isOnDemand
-          ? "0 0 8px rgba(136,136,136,0.4)"
-          : "0 0 8px rgba(34,197,94,0.5)";
+      const labelSize = isMain ? "11px" : "10px";
+      const labelWeight = isMain ? "700" : "500";
+      const labelColor = isMain ? "#c8a96e" : isOnDemand ? "#888" : "rgba(255,255,255,0.8)";
 
       const icon = L.divIcon({
-        html: `<div style="width:${size}px;height:${size}px;background:${color};border-radius:50%;border:2px solid #fff;box-shadow:${shadow}"></div>`,
-        iconSize: [size, size],
-        iconAnchor: [size / 2, size / 2],
+        html: `<div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+          <div style="width:${dotSize}px;height:${dotSize}px;background:${color};border-radius:50%;border:2px solid rgba(255,255,255,0.9);box-shadow:0 0 ${isMain ? "15" : "8"}px ${color}80${isMain ? ",0 0 30px " + color + "40" : ""}"></div>
+          <span style="font-family:'DM Sans',sans-serif;font-size:${labelSize};font-weight:${labelWeight};color:${labelColor};white-space:nowrap;text-shadow:0 1px 4px rgba(0,0,0,0.9),0 0 8px rgba(0,0,0,0.7)">${c.name}</span>
+        </div>`,
+        iconSize: [100, 30],
+        iconAnchor: [50, 8],
         className: "",
       });
 
-      const badge = isMain ? "Hlavní region" : isOnDemand ? "Na poptávku" : "Dostupné";
-      L.marker([c.lat, c.lng], { icon })
-        .addTo(map)
-        .bindPopup(`<strong>${c.name}</strong><br>${badge}`);
+      L.marker([c.lat, c.lng], { icon, interactive: false }).addTo(map);
     });
 
     L.control
