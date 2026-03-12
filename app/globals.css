@@ -298,12 +298,13 @@ body::after {
 }
 
 /* ===== PACKAGES ===== */
+#balicky { max-width: 1400px; }
 .packages-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 2rem; margin-top: 4rem;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem; margin-top: 4rem;
 }
 .package {
-  padding: 2.5rem; border: 1px solid rgba(255,255,255,0.08);
+  padding: 2rem 1.5rem; border: 1px solid rgba(255,255,255,0.08);
   border-radius: 20px; position: relative; overflow: hidden;
   transition: all 0.4s; background: rgba(255,255,255,0.02);
 }
@@ -313,48 +314,49 @@ body::after {
   background: linear-gradient(135deg, rgba(200,169,110,0.08), rgba(200,169,110,0.02));
 }
 .package.featured::before {
-  content: 'NEJČASTĚJŠÍ'; position: absolute; top: 1.5rem; right: -2rem;
+  content: 'NEJČASTĚJŠÍ'; position: absolute; top: 1.2rem; right: -2.2rem;
   background: var(--color-gold); color: var(--color-background);
-  padding: 0.3rem 3rem; font-size: 0.65rem; font-weight: 700;
+  padding: 0.25rem 2.5rem; font-size: 0.6rem; font-weight: 700;
   letter-spacing: 0.1em; transform: rotate(45deg);
 }
 .package-icon {
-  width: 50px; height: 50px; border-radius: 12px;
+  width: 44px; height: 44px; border-radius: 10px;
   background: rgba(200,169,110,0.1); display: flex;
-  align-items: center; justify-content: center; margin-bottom: 1.5rem;
+  align-items: center; justify-content: center; margin-bottom: 1rem;
 }
 .package-icon svg {
-  width: 24px; height: 24px; stroke: var(--color-gold);
+  width: 22px; height: 22px; stroke: var(--color-gold);
   fill: none; stroke-width: 1.5;
 }
 .package h3 {
   font-family: var(--font-heading); font-weight: 700;
-  font-size: 1.5rem; margin-bottom: 0.5rem;
+  font-size: 1.25rem; margin-bottom: 0.3rem;
 }
 .package-duration {
-  color: var(--color-gold); font-size: 0.85rem;
-  font-weight: 500; margin-bottom: 1.5rem;
+  color: var(--color-gold); font-size: 0.8rem;
+  font-weight: 500; margin-bottom: 1rem;
 }
 .package-price {
   font-family: var(--font-heading); font-weight: 800;
-  font-size: 2.8rem; margin-bottom: 0.3rem;
+  font-size: 2rem; margin-bottom: 0.2rem;
 }
-.package-price span { font-size: 1rem; font-weight: 400; color: var(--color-muted); }
-.package-price-text { font-size: 1.8rem; color: var(--color-gold); }
-.package-note { font-size: 0.8rem; color: var(--color-muted); margin-bottom: 2rem; }
-.package-features { list-style: none; margin-bottom: 2.5rem; }
+.package-price span { font-size: 0.8rem; font-weight: 400; color: var(--color-muted); display: block; }
+.package-price-text { font-size: 1.6rem; color: var(--color-gold); }
+.package-note { font-size: 0.75rem; color: var(--color-muted); margin-bottom: 1.5rem; }
+.package-features { list-style: none; margin-bottom: 2rem; }
 .package-features li {
-  padding: 0.6rem 0; font-size: 0.9rem; color: var(--color-muted-light);
+  padding: 0.45rem 0; font-size: 0.82rem; color: var(--color-muted-light);
   border-bottom: 1px solid rgba(255,255,255,0.04);
-  display: flex; align-items: center; gap: 0.7rem;
+  display: flex; align-items: center; gap: 0.5rem;
 }
 .package-features li::before {
   content: '\2713'; color: var(--color-gold);
-  font-weight: 700; font-size: 0.85rem;
+  font-weight: 700; font-size: 0.8rem; flex-shrink: 0;
 }
 .package .btn-primary,
 .package .btn-outline {
   display: block; text-align: center; width: 100%;
+  padding: 0.8rem 1rem; font-size: 0.8rem;
 }
 
 /* ===== ADDONS ===== */
