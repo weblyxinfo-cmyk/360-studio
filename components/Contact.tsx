@@ -124,7 +124,6 @@ export default function Contact() {
                 <option value="">Nevím, poraďte mi</option>
                 <option value="start">START (7 990 Kč / 1h)</option>
                 <option value="double-fun">DOUBLE FUN (12 990 Kč / 2h)</option>
-                <option value="corporate">CORPORATE (18 500 Kč / 2h)</option>
                 <option value="vip">VIP 360 Exclusive (na dotaz)</option>
               </select>
             </div>

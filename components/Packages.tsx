@@ -6,9 +6,6 @@ interface PackageData {
 }
 
 function PackageIcon({ pkg }: { pkg: PackageData }) {
-  if (pkg.slug === "corporate" || pkg.name === "CORPORATE") {
-    return <><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" strokeLinecap="round" strokeLinejoin="round" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" strokeLinecap="round" strokeLinejoin="round" /></>;
-  }
   if (pkg.isFeatured) {
     return <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" strokeLinecap="round" strokeLinejoin="round" />;
   }
@@ -62,10 +59,11 @@ export default function Packages({ data }: { data?: PackageData[] }) {
           <ul className="package-features">
             <li>Profesionální obsluha</li>
             <li>Neomezený počet natočení</li>
-            <li>Rekvizity a doplňky</li>
+            <li>Zábavné rekvizity</li>
+            <li>Barevná LED světla</li>
             <li>Okamžité sdílení přes QR kód</li>
             <li>Digitální galerie videí</li>
-            <li>Instalace a odvoz v ceně</li>
+            <li>Doprava a instalace v ceně</li>
           </ul>
           <a href="#poptat" className="btn-outline">Poptat tento balíček</a>
         </div>
@@ -74,48 +72,35 @@ export default function Packages({ data }: { data?: PackageData[] }) {
           <h3>DOUBLE FUN</h3>
           <div className="package-duration">2 hodiny zábavy</div>
           <div className="package-price">12 990 Kč <span>/ akce</span></div>
-          <p className="package-note">Perfektní pro svatby a firemní akce</p>
+          <p className="package-note">Perfektní pro svatby, firemní akce a větší oslavy.</p>
           <ul className="package-features">
-            <li>Vše ze START balíčku</li>
-            <li>Vlastní branding (logo, barvy)</li>
-            <li>Slow-motion efekty</li>
-            <li>Prémiové pozadí dle výběru</li>
-            <li>USB s videy po akci</li>
-            <li>Prioritní termíny</li>
+            <li>Profesionální obsluha</li>
+            <li>Neomezený počet natočení</li>
+            <li>Zábavné rekvizity</li>
+            <li>Barevná LED světla</li>
+            <li>Okamžité sdílení přes QR kód</li>
+            <li>Digitální galerie videí</li>
+            <li>Doprava a instalace v ceně</li>
           </ul>
           <a href="#poptat" className="btn-primary">Poptat tento balíček</a>
         </div>
         <div className="package">
-          <div className="package-icon"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" strokeLinecap="round" strokeLinejoin="round" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
-          <h3>CORPORATE</h3>
-          <div className="package-duration">2 hodiny provozu</div>
-          <div className="package-price">18 500 Kč <span>/ akce</span></div>
-          <p className="package-note">Firemní akce – každé video se stává propagací značky.</p>
-          <ul className="package-features">
-            <li>2 hodiny provozu</li>
-            <li>Kompletní branding (logo ve videu)</li>
-            <li>Animovaný overlay a grafika na míru</li>
-            <li>QR + email sdílení</li>
-            <li>Archiv všech videí</li>
-            <li>Konzultace vizuálu před akcí</li>
-            <li>Instalace &amp; demontáž</li>
-            <li>Doprava v ceně</li>
-          </ul>
-          <a href="#poptat" className="btn-outline">Poptat tento balíček</a>
-        </div>
-        <div className="package">
           <div className="package-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" strokeLinecap="round" strokeLinejoin="round" /></svg></div>
           <h3>VIP 360 Exclusive</h3>
-          <div className="package-duration">Dle dohody</div>
-          <div className="package-price">Na dotaz</div>
-          <p className="package-note">Pro nejnáročnější klienty a exkluzivní eventy</p>
+          <div className="package-duration">Na míru (více hodin nebo dní)</div>
+          <div className="package-price package-price-text">Na dotaz</div>
           <ul className="package-features">
-            <li>Vše z DOUBLE FUN balíčku</li>
-            <li>Neomezená doba pronájmu</li>
-            <li>Individuální grafický návrh</li>
-            <li>Dedikovaný koordinátor</li>
-            <li>Přednostní technická podpora</li>
-            <li>Kompletní post-produkce</li>
+            <li>Profesionální obsluha</li>
+            <li>Neomezený počet natočení</li>
+            <li>Zábavné rekvizity</li>
+            <li>Barevná LED světla</li>
+            <li>Okamžité sdílení přes QR kód</li>
+            <li>Digitální galerie videí</li>
+            <li>Doprava a instalace v ceně</li>
+            <li>Přednostní termín</li>
+            <li>VIP zábrany (sloupky s páskou)</li>
+            <li>Asistent navíc při větší akci</li>
+            <li>Možnost prodloužení přímo na místě</li>
           </ul>
           <a href="#poptat" className="btn-outline">Poptat tento balíček</a>
         </div>

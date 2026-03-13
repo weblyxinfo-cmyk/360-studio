@@ -6,7 +6,7 @@ import "leaflet/dist/leaflet.css";
 
 const cities: { name: string; lat: number; lng: number; type: "main" | "available" | "ondemand" }[] = [
   { name: "Brno", lat: 49.1951, lng: 16.6068, type: "main" },
-  { name: "Zlín", lat: 49.2265, lng: 17.6669, type: "main" },
+  { name: "Zlín", lat: 49.2265, lng: 17.6669, type: "available" },
   { name: "Olomouc", lat: 49.5938, lng: 17.2509, type: "available" },
   { name: "Kroměříž", lat: 49.2977, lng: 17.3933, type: "available" },
   { name: "Přerov", lat: 49.4553, lng: 17.4510, type: "available" },

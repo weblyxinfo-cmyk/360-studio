@@ -14,27 +14,6 @@ export default function Addons() {
         </div>
         <div className="addon-card">
           <div className="addon-icon">
-            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" strokeLinecap="round" strokeLinejoin="round" /><path d="M8 21h8M12 17v4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </div>
-          <h4>Luxusní backdrop</h4>
-          <div className="addon-price">+ 2 500 Kč</div>
-        </div>
-        <div className="addon-card">
-          <div className="addon-icon">
-            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </div>
-          <h4>LED světelná stěna</h4>
-          <div className="addon-price">+ 3 500 Kč</div>
-        </div>
-        <div className="addon-card">
-          <div className="addon-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z" strokeLinecap="round" strokeLinejoin="round" /><path d="M2 17l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" /><path d="M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </div>
-          <h4>Konfety / speciální efekt</h4>
-          <div className="addon-price">+ 1 900 Kč</div>
-        </div>
-        <div className="addon-card">
-          <div className="addon-icon">
             <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </div>
           <h4>Expresní dodání do 24 h</h4>
@@ -46,6 +25,13 @@ export default function Addons() {
           </div>
           <h4>Asistent navíc při velké akci</h4>
           <div className="addon-price">+ 2 000 Kč</div>
+        </div>
+        <div className="addon-card">
+          <div className="addon-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" strokeLinecap="round" strokeLinejoin="round" /><path d="M8 12c0-2 1.5-4 4-4s4 2 4 4-1.5 5-4 7c-2.5-2-4-5-4-7z" strokeLinecap="round" strokeLinejoin="round" /></svg>
+          </div>
+          <h4>Mlhovač</h4>
+          <div className="addon-price">+ 1 000 Kč</div>
         </div>
       </div>
     </section>

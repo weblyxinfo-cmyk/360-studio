@@ -8,7 +8,7 @@ interface CoverageCity { name: string; badge: string; }
 
 const fallbackCities: CoverageCity[] = [
   { name: "Brno", badge: "Hlavní region" },
-  { name: "Zlín", badge: "Hlavní region" },
+  { name: "Zlín", badge: "Dostupné" },
   { name: "Olomouc", badge: "Dostupné" },
   { name: "Kroměříž", badge: "Dostupné" },
   { name: "Přerov", badge: "Dostupné" },
