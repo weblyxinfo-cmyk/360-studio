@@ -811,6 +811,16 @@ body::after {
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  #balicky { max-width: 1200px; }
+  .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .package { padding: 2rem; }
+  .package-price { font-size: 2.4rem; }
+  .package-price span { display: inline; }
+  .package h3 { font-size: 1.4rem; }
+  .package-features li { font-size: 0.88rem; padding: 0.5rem 0; }
+}
+
 @media (max-width: 900px) {
   .site-nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
