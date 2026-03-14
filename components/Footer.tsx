@@ -39,7 +39,7 @@ export default function Footer() {
           <div className="footer-socials">
             <a href="https://www.instagram.com/kajostudio360" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{ color: "#E1306C" }}><IconInstagram /></a>
             <a href="https://www.facebook.com/kajostudio360" target="_blank" rel="noopener noreferrer" aria-label="Facebook" style={{ color: "#1877F2" }}><IconFacebook /></a>
-            <a href="https://www.tiktok.com/@kajostudio360" target="_blank" rel="noopener noreferrer" aria-label="TikTok" style={{ color: "#fff" }}><IconTikTok /></a>
+            <a href="https://www.tiktok.com/@kajo.studio.360" target="_blank" rel="noopener noreferrer" aria-label="TikTok" style={{ color: "#fff" }}><IconTikTok /></a>
           </div>
         </div>
 
