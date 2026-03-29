@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import AdminShell from "@/components/admin/AdminShell";
 import { MessageSquare, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 
@@ -87,8 +87,8 @@ export default function InquiriesPage() {
             </thead>
             <tbody>
               {inquiries.map((inq) => (
-                <>
-                  <tr key={inq.id}>
+                <Fragment key={inq.id}>
+                  <tr>
                     <td style={{ fontWeight: 600 }}>
                       {inq.name}
                       {inq.message && (
@@ -136,7 +136,7 @@ export default function InquiriesPage() {
                       </td>
                     </tr>
                   )}
-                </>
+                </Fragment>
               ))}
             </tbody>
           </table>

@@ -59,13 +59,13 @@ async function getRecentBookings() {
 }
 
 const statusLabels: Record<string, { label: string; className: string }> = {
-  pending_payment: { label: "Čeká na platbu", className: "admin-badge warning" },
-  paid: { label: "Zaplaceno", className: "admin-badge success" },
-  confirmed: { label: "Potvrzeno", className: "admin-badge success" },
-  in_progress: { label: "Probíhá", className: "admin-badge info" },
-  completed: { label: "Dokončeno", className: "admin-badge" },
-  cancelled: { label: "Zrušeno", className: "admin-badge danger" },
-  refunded: { label: "Vráceno", className: "admin-badge danger" },
+  pending_payment: { label: "Čeká na platbu", className: "admin-badge admin-badge-gold" },
+  paid: { label: "Zaplaceno", className: "admin-badge admin-badge-green" },
+  confirmed: { label: "Potvrzeno", className: "admin-badge admin-badge-green" },
+  in_progress: { label: "Probíhá", className: "admin-badge admin-badge-blue" },
+  completed: { label: "Dokončeno", className: "admin-badge admin-badge-gray" },
+  cancelled: { label: "Zrušeno", className: "admin-badge admin-badge-red" },
+  refunded: { label: "Vráceno", className: "admin-badge admin-badge-red" },
 };
 
 export default async function AdminDashboard() {

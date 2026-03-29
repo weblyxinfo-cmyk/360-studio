@@ -131,19 +131,19 @@ export default function BookingsPage() {
             Vyplňte údaje zákazníka a vygenerujte odkaz na platbu. Odkaz pošlete zákazníkovi e-mailem.
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>Jméno zákazníka</label>
               <input value={genForm.customerName} onChange={(e) => setGenForm({ ...genForm, customerName: e.target.value })} placeholder="Jan Novák" />
             </div>
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>E-mail zákazníka</label>
               <input type="email" value={genForm.customerEmail} onChange={(e) => setGenForm({ ...genForm, customerEmail: e.target.value })} placeholder="jan@email.cz" />
             </div>
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>Datum akce</label>
               <input type="date" value={genForm.date} onChange={(e) => setGenForm({ ...genForm, date: e.target.value })} />
             </div>
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>Balíček</label>
               <select value={genForm.packageId} onChange={(e) => setGenForm({ ...genForm, packageId: e.target.value })}>
                 {packageOptions.map((pkg) => (
@@ -153,11 +153,11 @@ export default function BookingsPage() {
                 ))}
               </select>
             </div>
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>Čas od</label>
               <input type="time" value={genForm.timeStart} onChange={(e) => setGenForm({ ...genForm, timeStart: e.target.value })} />
             </div>
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>Čas do</label>
               <input type="time" value={genForm.timeEnd} onChange={(e) => setGenForm({ ...genForm, timeEnd: e.target.value })} />
             </div>
