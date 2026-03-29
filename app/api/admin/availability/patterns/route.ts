@@ -32,6 +32,24 @@ export async function POST(request: Request) {
   }
 }
 
+export async function PATCH(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+    if (!id) return NextResponse.json({ error: "ID je povinné" }, { status: 400 });
+
+    const body = await request.json();
+    const updateData: Record<string, boolean> = {};
+    if (typeof body.isActive === "boolean") updateData.isActive = body.isActive;
+
+    await db.update(availabilityPatterns).set(updateData).where(eq(availabilityPatterns.id, id));
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Update pattern error:", error);
+    return NextResponse.json({ error: "Interní chyba" }, { status: 500 });
+  }
+}
+
 export async function DELETE(request: Request) {
   try {
     const { searchParams } = new URL(request.url);

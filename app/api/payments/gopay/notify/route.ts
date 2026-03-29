@@ -5,7 +5,8 @@ import { bookings } from "@/db/schema/bookings";
 import { vouchers } from "@/db/schema/vouchers";
 import { availabilitySlots } from "@/db/schema/availability";
 import { getPaymentStatus } from "@/lib/gopay";
-import { notifyPaymentReceived, sendBookingConfirmation } from "@/lib/notifications";
+import { notifyPaymentReceived, sendBookingConfirmation, sendVoucherConfirmation } from "@/lib/notifications";
+import { packages } from "@/db/schema/packages";
 import { eq } from "drizzle-orm";
 
 export async function POST(request: Request) {
@@ -27,10 +28,14 @@ export async function POST(request: Request) {
 
     // Map GoPay states to our states
     let newStatus: "pending" | "paid" | "cancelled" | "refunded" | "partially_refunded" | "failed" = "pending";
-    if (gopayStatus.state === "PAID") newStatus = "paid";
+    if (gopayStatus.state === "PAID" || gopayStatus.state === "AUTHORIZED") newStatus = "paid";
     else if (gopayStatus.state === "CANCELED" || gopayStatus.state === "TIMEOUTED") newStatus = "cancelled";
     else if (gopayStatus.state === "REFUNDED") newStatus = "refunded";
     else if (gopayStatus.state === "PARTIALLY_REFUNDED") newStatus = "partially_refunded";
+    else if (gopayStatus.state === "CREATED" || gopayStatus.state === "PAYMENT_METHOD_CHOSEN") newStatus = "pending";
+    else {
+      console.warn("Unhandled GoPay state:", gopayStatus.state);
+    }
 
     // Update payment
     await db.update(payments).set({
@@ -70,6 +75,7 @@ export async function POST(request: Request) {
 
       const [voucher] = await db.select().from(vouchers).where(eq(vouchers.id, payment.voucherId)).limit(1);
       if (voucher) {
+        // Notify admin
         await notifyPaymentReceived({
           orderNumber: voucher.code,
           amount: payment.amount,
@@ -77,6 +83,24 @@ export async function POST(request: Request) {
           customerEmail: voucher.buyerEmail || "",
           paymentType: "voucher",
         });
+
+        // Send voucher code to buyer
+        if (voucher.buyerEmail) {
+          let packageName: string | undefined;
+          if (voucher.packageId) {
+            const [pkg] = await db.select().from(packages).where(eq(packages.id, voucher.packageId)).limit(1);
+            if (pkg) packageName = pkg.name;
+          }
+          await sendVoucherConfirmation({
+            buyerEmail: voucher.buyerEmail,
+            buyerName: voucher.buyerName,
+            recipientName: voucher.recipientName,
+            code: voucher.code,
+            amount: voucher.amount,
+            validUntil: voucher.validUntil,
+            packageName,
+          });
+        }
       }
     }
 

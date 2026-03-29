@@ -10,7 +10,8 @@ import { nanoid } from "nanoid";
 import { generateOrderNumber } from "@/lib/utils";
 import { createPayment } from "@/lib/gopay";
 import { notifyNewBooking } from "@/lib/notifications";
-import { eq } from "drizzle-orm";
+import { eq, and, or } from "drizzle-orm";
+import { availabilityPatterns } from "@/db/schema/availability";
 
 export async function POST(request: Request) {
   try {
@@ -20,6 +21,48 @@ export async function POST(request: Request) {
     // Get package for pricing
     const [pkg] = await db.select().from(packages).where(eq(packages.id, data.packageId)).limit(1);
     if (!pkg) return NextResponse.json({ error: "Balíček nenalezen" }, { status: 400 });
+
+    // Check for conflicting bookings
+    const existingSlots = await db.select().from(availabilitySlots)
+      .where(and(
+        eq(availabilitySlots.date, data.eventDate),
+        or(
+          eq(availabilitySlots.status, "booked"),
+          eq(availabilitySlots.status, "blocked")
+        )
+      ));
+
+    const hasConflict = existingSlots.some((slot) =>
+      data.eventTimeStart < slot.timeEnd && data.eventTimeEnd > slot.timeStart
+    );
+
+    if (hasConflict) {
+      return NextResponse.json({ error: "Tento termín je již obsazený. Vyberte prosím jiný." }, { status: 409 });
+    }
+
+    // Verify date/time is available (explicit slot or active pattern)
+    const [explicitSlot] = await db.select().from(availabilitySlots)
+      .where(and(
+        eq(availabilitySlots.date, data.eventDate),
+        eq(availabilitySlots.status, "available"),
+      )).limit(1);
+
+    if (!explicitSlot) {
+      const dayOfWeek = new Date(data.eventDate).getDay();
+      const matchingPatterns = await db.select().from(availabilityPatterns)
+        .where(and(
+          eq(availabilityPatterns.dayOfWeek, dayOfWeek),
+          eq(availabilityPatterns.isActive, true),
+        ));
+
+      const patternMatch = matchingPatterns.some((p) =>
+        data.eventTimeStart >= p.timeStart && data.eventTimeEnd <= p.timeEnd
+      );
+
+      if (!patternMatch) {
+        return NextResponse.json({ error: "Vybraný termín není dostupný." }, { status: 400 });
+      }
+    }
 
     let totalAmount = pkg.price;
     let discountAmount = 0;

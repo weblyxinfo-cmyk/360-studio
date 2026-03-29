@@ -100,7 +100,7 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a href="#poptat" className="btn-primary" onClick={() => setMobileOpen(false)} style={{ marginTop: "0.5rem" }}>
+            <a href="#poptat" className="nav-mobile-cta" onClick={() => setMobileOpen(false)}>
               Chci nabídku
             </a>
             <div className="nav-mobile-socials">

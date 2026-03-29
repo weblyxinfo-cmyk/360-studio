@@ -70,6 +70,15 @@ export default function AvailabilityPage() {
     fetchData();
   }
 
+  async function handleTogglePattern(id: string, isActive: boolean) {
+    await fetch(`/api/admin/availability/patterns?id=${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ isActive: !isActive }),
+    });
+    fetchData();
+  }
+
   async function handleDeletePattern(id: string) {
     await fetch(`/api/admin/availability/patterns?id=${id}`, { method: "DELETE" });
     fetchData();
@@ -103,7 +112,15 @@ export default function AvailabilityPage() {
                   <td>{dayNames[p.dayOfWeek]}</td>
                   <td>{p.timeStart}</td>
                   <td>{p.timeEnd}</td>
-                  <td><span className={`admin-badge ${p.isActive ? "admin-badge-green" : "admin-badge-gray"}`}>{p.isActive ? "Ano" : "Ne"}</span></td>
+                  <td>
+                    <button
+                      className={`admin-badge ${p.isActive ? "admin-badge-green" : "admin-badge-gray"}`}
+                      onClick={() => handleTogglePattern(p.id, p.isActive)}
+                      style={{ cursor: "pointer", border: "none" }}
+                    >
+                      {p.isActive ? "Ano" : "Ne"}
+                    </button>
+                  </td>
                   <td><button className="admin-btn admin-btn-danger admin-btn-sm" onClick={() => handleDeletePattern(p.id)}><Trash2 size={14} /></button></td>
                 </tr>
               ))}

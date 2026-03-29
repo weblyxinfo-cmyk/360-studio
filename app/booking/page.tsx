@@ -72,6 +72,8 @@ function BookingContent() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [packagesLoading, setPackagesLoading] = useState(true);
+  const [fetchError, setFetchError] = useState("");
 
   // If URL has all params, skip to details/summary step
   const prefilled = !!(searchParams.get("date") && searchParams.get("package"));
@@ -82,7 +84,12 @@ function BookingContent() {
   }, [prefilled, initialStep]);
 
   useEffect(() => {
-    fetch("/api/booking/packages").then((r) => r.json()).then(setPackages);
+    setPackagesLoading(true);
+    fetch("/api/booking/packages")
+      .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(setPackages)
+      .catch(() => setFetchError("Nepodařilo se načíst balíčky. Zkuste obnovit stránku."))
+      .finally(() => setPackagesLoading(false));
   }, []);
 
   useEffect(() => {
@@ -329,6 +336,12 @@ function BookingContent() {
             <h2 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "1.4rem", marginBottom: "1.5rem", textAlign: "center" }}>
               Vyberte balíček
             </h2>
+            {fetchError && (
+              <div className="form-error" style={{ textAlign: "center", marginBottom: "1.5rem" }}>{fetchError}</div>
+            )}
+            {packagesLoading ? (
+              <div style={{ textAlign: "center", color: "var(--color-muted)", padding: "3rem 0" }}>Načítání balíčků...</div>
+            ) : (
             <div className="booking-packages-grid" style={{ display: "grid", gridTemplateColumns: packages.length > 1 ? "repeat(2, 1fr)" : "1fr", gap: "1.5rem" }}>
               {packages.map((pkg) => {
                 const isSelected = selectedPackage === pkg.id;
@@ -360,6 +373,7 @@ function BookingContent() {
                 );
               })}
             </div>
+            )}
           </div>
         )}
 

@@ -60,6 +60,7 @@ export default function Footer() {
         <div className="footer-col">
           <h4 className="footer-heading">Kontakt</h4>
           <div className="footer-contact">
+            <p>KAJO Studio 360 s.r.o. | IČO: 24347876</p>
             <p>Československé armády 1175</p>
             <p>Slavkov u Brna 684 01</p>
             <p style={{ marginTop: "0.75rem" }}>
@@ -71,6 +72,13 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="footer-bottom">
+        <div className="footer-legal">
+          <a href="/obchodni-podminky">Obchodní podmínky</a>
+          <span className="footer-legal-sep">|</span>
+          <a href="/ochrana-osobnich-udaju">Ochrana osobních údajů</a>
+          <span className="footer-legal-sep">|</span>
+          <a href="/cookies">Cookies</a>
+        </div>
         <p>&copy; {new Date().getFullYear()} KAJO Studio 360. Všechna práva vyhrazena.</p>
         <p>
           Web vytvořil{" "}

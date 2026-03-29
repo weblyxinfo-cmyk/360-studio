@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import AdminShell from "@/components/admin/AdminShell";
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 
 interface Inquiry {
   id: string;
@@ -27,14 +27,32 @@ const statusLabels: Record<string, { label: string; badge: string }> = {
 export default function InquiriesPage() {
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  useEffect(() => {
+  function fetchData() {
     fetch("/api/admin/inquiries")
       .then((r) => r.json())
       .then((data) => setInquiries(Array.isArray(data) ? data : []))
       .catch(() => setInquiries([]))
       .finally(() => setLoading(false));
-  }, []);
+  }
+
+  useEffect(() => { fetchData(); }, []);
+
+  async function handleStatusChange(id: string, status: string) {
+    await fetch(`/api/admin/inquiries/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status }),
+    });
+    fetchData();
+  }
+
+  async function handleDelete(id: string) {
+    if (!window.confirm("Opravdu smazat tuto poptávku?")) return;
+    await fetch(`/api/admin/inquiries/${id}`, { method: "DELETE" });
+    fetchData();
+  }
 
   return (
     <AdminShell>
@@ -64,29 +82,61 @@ export default function InquiriesPage() {
                 <th>Místo</th>
                 <th>Stav</th>
                 <th>Přijato</th>
+                <th>Akce</th>
               </tr>
             </thead>
             <tbody>
               {inquiries.map((inq) => (
-                <tr key={inq.id}>
-                  <td style={{ fontWeight: 600 }}>{inq.name}</td>
-                  <td>
-                    <div style={{ fontSize: "0.85rem" }}>{inq.email}</div>
-                    {inq.phone && <div style={{ fontSize: "0.8rem", color: "var(--color-muted)" }}>{inq.phone}</div>}
-                  </td>
-                  <td>{inq.eventType}</td>
-                  <td>{inq.packageType || "—"}</td>
-                  <td>{inq.eventDate || "—"}</td>
-                  <td>{inq.eventLocation || "—"}</td>
-                  <td>
-                    <span className={`admin-badge ${statusLabels[inq.status]?.badge || "admin-badge-gray"}`}>
-                      {statusLabels[inq.status]?.label || inq.status}
-                    </span>
-                  </td>
-                  <td style={{ fontSize: "0.8rem", color: "var(--color-muted)" }}>
-                    {inq.createdAt ? new Date(inq.createdAt).toLocaleDateString("cs-CZ") : "—"}
-                  </td>
-                </tr>
+                <>
+                  <tr key={inq.id}>
+                    <td style={{ fontWeight: 600 }}>
+                      {inq.name}
+                      {inq.message && (
+                        <button
+                          onClick={() => setExpandedId(expandedId === inq.id ? null : inq.id)}
+                          style={{ background: "none", border: "none", cursor: "pointer", color: "var(--color-muted)", marginLeft: "0.3rem", verticalAlign: "middle" }}
+                        >
+                          {expandedId === inq.id ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                        </button>
+                      )}
+                    </td>
+                    <td>
+                      <div style={{ fontSize: "0.85rem" }}>{inq.email}</div>
+                      {inq.phone && <div style={{ fontSize: "0.8rem", color: "var(--color-muted)" }}>{inq.phone}</div>}
+                    </td>
+                    <td>{inq.eventType}</td>
+                    <td>{inq.packageType || "—"}</td>
+                    <td>{inq.eventDate || "—"}</td>
+                    <td>{inq.eventLocation || "—"}</td>
+                    <td>
+                      <select
+                        value={inq.status}
+                        onChange={(e) => handleStatusChange(inq.id, e.target.value)}
+                        className={`admin-badge ${statusLabels[inq.status]?.badge || "admin-badge-gray"}`}
+                        style={{ cursor: "pointer", border: "none", background: "inherit", color: "inherit", fontSize: "inherit", fontWeight: "inherit", padding: "0.25rem 0.5rem" }}
+                      >
+                        <option value="new">Nová</option>
+                        <option value="contacted">Kontaktováno</option>
+                        <option value="closed">Uzavřeno</option>
+                      </select>
+                    </td>
+                    <td style={{ fontSize: "0.8rem", color: "var(--color-muted)" }}>
+                      {inq.createdAt ? new Date(inq.createdAt).toLocaleDateString("cs-CZ") : "—"}
+                    </td>
+                    <td>
+                      <button className="admin-btn admin-btn-danger admin-btn-sm" onClick={() => handleDelete(inq.id)}>
+                        <Trash2 size={14} />
+                      </button>
+                    </td>
+                  </tr>
+                  {expandedId === inq.id && inq.message && (
+                    <tr key={`${inq.id}-msg`}>
+                      <td colSpan={9} style={{ padding: "0.75rem 1rem", background: "rgba(255,255,255,0.02)", fontSize: "0.9rem", color: "var(--color-muted-light)" }}>
+                        <strong style={{ color: "var(--color-foreground)" }}>Zpráva:</strong> {inq.message}
+                      </td>
+                    </tr>
+                  )}
+                </>
               ))}
             </tbody>
           </table>
