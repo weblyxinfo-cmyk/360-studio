@@ -43,23 +43,27 @@ export async function POST(request: Request) {
     const contactEmail = process.env.CONTACT_EMAIL || "info@kajostudio360.cz";
 
     if (resend) {
-      await resend.emails.send({
-        from: "Kajo Studio 360 <onboarding@resend.dev>",
-        to: contactEmail,
-        subject: `Nová poptávka: ${esc(data.eventType)} — ${esc(data.name)}`,
-        html: `
-          <h2>Nová poptávka z webu</h2>
-          <p><strong>Jméno:</strong> ${esc(data.name)}</p>
-          <p><strong>Email:</strong> ${esc(data.email)}</p>
-          <p><strong>Telefon:</strong> ${esc(data.phone) || "Neuvedeno"}</p>
-          <p><strong>Typ akce:</strong> ${esc(data.eventType)}</p>
-          <p><strong>Balíček:</strong> ${esc(data.packageType) || "Neuvedeno"}</p>
-          <p><strong>Datum akce:</strong> ${esc(data.eventDate) || "Neuvedeno"}</p>
-          <p><strong>Místo konání:</strong> ${esc(data.eventLocation) || "Neuvedeno"}</p>
-          <p><strong>Zpráva:</strong></p>
-          <p>${esc(data.message)}</p>
-        `,
-      });
+      try {
+        await resend.emails.send({
+          from: "Kajo Studio 360 <onboarding@resend.dev>",
+          to: contactEmail,
+          subject: `Nová poptávka: ${esc(data.eventType)} — ${esc(data.name)}`,
+          html: `
+            <h2>Nová poptávka z webu</h2>
+            <p><strong>Jméno:</strong> ${esc(data.name)}</p>
+            <p><strong>Email:</strong> ${esc(data.email)}</p>
+            <p><strong>Telefon:</strong> ${esc(data.phone) || "Neuvedeno"}</p>
+            <p><strong>Typ akce:</strong> ${esc(data.eventType)}</p>
+            <p><strong>Balíček:</strong> ${esc(data.packageType) || "Neuvedeno"}</p>
+            <p><strong>Datum akce:</strong> ${esc(data.eventDate) || "Neuvedeno"}</p>
+            <p><strong>Místo konání:</strong> ${esc(data.eventLocation) || "Neuvedeno"}</p>
+            <p><strong>Zpráva:</strong></p>
+            <p>${esc(data.message)}</p>
+          `,
+        });
+      } catch (emailError) {
+        console.error("Email notification failed (inquiry saved to DB):", emailError);
+      }
     }
 
     return NextResponse.json({ success: true });

@@ -131,19 +131,23 @@ export async function POST(request: Request) {
       bookingId,
     });
 
-    // Notify admin
-    await notifyNewBooking({
-      orderNumber,
-      customerName: data.customerName,
-      customerEmail: data.customerEmail,
-      customerPhone: data.customerPhone,
-      eventDate: data.eventDate,
-      eventTimeStart: data.eventTimeStart,
-      eventTimeEnd: data.eventTimeEnd,
-      eventType: data.eventType,
-      eventLocation: data.eventLocation,
-      totalAmount,
-    });
+    // Notify admin (don't fail booking if email fails)
+    try {
+      await notifyNewBooking({
+        orderNumber,
+        customerName: data.customerName,
+        customerEmail: data.customerEmail,
+        customerPhone: data.customerPhone,
+        eventDate: data.eventDate,
+        eventTimeStart: data.eventTimeStart,
+        eventTimeEnd: data.eventTimeEnd,
+        eventType: data.eventType,
+        eventLocation: data.eventLocation,
+        totalAmount,
+      });
+    } catch (emailError) {
+      console.error("Email notification failed (booking saved):", emailError);
+    }
 
     // If fully paid by voucher, return success
     if (totalAmount === 0) {
